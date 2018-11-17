@@ -2,33 +2,31 @@ package com.example.kamill.githubtest;
 
 public class Uczen {
 
-    int id;
+    String id;
     String login;
-    String haslo;
     String imie;
     String nazwisko;
     String pesel;
-    int id_rodzica;
+    String login_rodzica;
 
     public Uczen() {
 
     }
 
-    public Uczen(int id, String login, String haslo, String imie, String nazwisko, String pesel, int id_rodzica) {
+    public Uczen(String id, String login, String imie, String nazwisko, String pesel, String login_rodzica) {
         this.id = id;
         this.login = login;
-        this.haslo = haslo;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
-        this.id_rodzica = id_rodzica;
+        this.login_rodzica = login_rodzica;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,14 +36,6 @@ public class Uczen {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getHaslo() {
-        return haslo;
-    }
-
-    public void setHaslo(String haslo) {
-        this.haslo = haslo;
     }
 
     public String getImie() {
@@ -72,11 +62,11 @@ public class Uczen {
         this.pesel = pesel;
     }
 
-    public int getId_rodzica() {
-        return id_rodzica;
+    public String getLogin_rodzica() {
+        return login_rodzica;
     }
 
-    public void setId_rodzica(int id_rodzica) {
-        this.id_rodzica = id_rodzica;
+    public void setLogin_rodzica(String login_rodzica) {
+        this.login_rodzica = login_rodzica;
     }
 }
