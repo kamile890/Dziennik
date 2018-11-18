@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Profile" />
-        <activity android:name=".Dodawanie_ucznia"></activity>
+        <activity android:name=".Dodawanie_ucznia" />
+        <activity android:name=".Wysylanie_maila"></activity>
     </application>
 
 </manifest>

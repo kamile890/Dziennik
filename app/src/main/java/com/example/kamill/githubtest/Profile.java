@@ -41,6 +41,10 @@ public class Profile extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void wysylanie_maila(View v){
+        Intent intent = new Intent(this, Wysylanie_maila.class);
+        startActivity(intent);
+    }
 
 
 

@@ -55,6 +55,8 @@ public class Dodawanie_ucznia extends AppCompatActivity {
         final String login_rodzica_ucznia = login_rodzica.getText().toString();
         final String haslo = randomString(10);
         String login_adm = firebaseAuth.getCurrentUser().getEmail();
+
+
         firebaseAuth.createUserWithEmailAndPassword(login_ucznia, haslo)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -66,6 +68,8 @@ public class Dodawanie_ucznia extends AppCompatActivity {
                       }
                     }
                 });
+
+
 
         Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia);
         Database.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);

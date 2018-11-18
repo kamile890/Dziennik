@@ -5,11 +5,13 @@
       <w>dodawanie</w>
       <w>haslo</w>
       <w>imie</w>
+      <w>maila</w>
       <w>nazwisko</w>
       <w>pesel</w>
       <w>rodzica</w>
       <w>testhaslo</w>
       <w>ucznia</w>
+      <w>wysylanie</w>
     </words>
   </dictionary>
 </component>
