@@ -24,7 +24,7 @@ public class Wysylanie_maila extends AppCompatActivity {
 
     Properties emailProperties;
     PackageInstaller.Session mailSession;
-    MimeMessage emailMessage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
