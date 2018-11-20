@@ -121,22 +121,15 @@
         android:layout_height="77dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:onClick="dodawanie_ucznia"
         android:text="Dodaj"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/testhaslo"
-        android:layout_width="304dp"
-        android:layout_height="56dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="433dp" />
 
     <EditText
         android:id="@+id/login_nowego_ucznia"
@@ -149,4 +142,5 @@
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/nazwisko_nowego_ucznia" />
+
 </android.support.constraint.ConstraintLayout>

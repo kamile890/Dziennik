@@ -39,7 +39,7 @@ public class Dodawanie_ucznia extends AppCompatActivity {
         login_rodzica = findViewById(R.id.login_rodzica_ucznia);
         Database = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
-        text = findViewById(R.id.testhaslo);
+
 
 
 
@@ -54,7 +54,7 @@ public class Dodawanie_ucznia extends AppCompatActivity {
         final String PESEL_ucznia = PESEL.getText().toString();
         final String login_rodzica_ucznia = login_rodzica.getText().toString();
         final String haslo = randomString(10);
-        String login_adm = firebaseAuth.getCurrentUser().getEmail();
+        final String login_adm = firebaseAuth.getCurrentUser().getEmail();
 
 
         firebaseAuth.createUserWithEmailAndPassword(login_ucznia, haslo)
@@ -62,6 +62,12 @@ public class Dodawanie_ucznia extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                       if(task.isSuccessful()){
+                          Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia);
+                          Database.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
+                            firebaseAuth.sendPasswordResetEmail(login_ucznia);
+                          firebaseAuth.signInWithEmailAndPassword(login_adm,"admin123");
+
+
                           Toast.makeText(Dodawanie_ucznia.this,"Dodano użytkownika", Toast.LENGTH_LONG).show();
                       }  else{
                           Toast.makeText(Dodawanie_ucznia.this,"Nie udało się", Toast.LENGTH_LONG).show();
@@ -70,14 +76,9 @@ public class Dodawanie_ucznia extends AppCompatActivity {
                 });
 
 
-
-        Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia);
-        Database.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
-
-        firebaseAuth.signInWithEmailAndPassword(login_adm,"admin123");
-
-        text.setText(firebaseAuth.getCurrentUser().getEmail());
     }
+
+
 
     public String randomString(int len)
     {

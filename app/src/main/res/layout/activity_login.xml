@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/tlo"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -22,8 +23,8 @@
 
     <ScrollView
         android:id="@+id/login_form"
-        android:layout_width="329dp"
-        android:layout_height="176dp">
+        android:layout_width="332dp"
+        android:layout_height="242dp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -54,7 +55,7 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
+                    android:hint="@string/Hasło"
                     android:imeActionId="6"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
@@ -70,15 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:text="Zaloguj" />
 
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="302dp"
-        android:layout_height="116dp"
-        android:text="TextView" />
 </LinearLayout>

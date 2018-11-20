@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Wysylanie_maila">
+    tools:context=".Uczen_Activity">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="123dp"
-        android:layout_height="59dp"
-        android:onClick="wysylanie"
-        android:text="Wyślij"
-        tools:layout_editor_absoluteX="131dp"
-        tools:layout_editor_absoluteY="87dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="216dp"
+        android:layout_height="88dp"
+        android:text="Uczen"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="56dp" />
 </android.support.constraint.ConstraintLayout>

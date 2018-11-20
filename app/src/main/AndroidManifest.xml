@@ -23,9 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Profile" />
         <activity android:name=".Dodawanie_ucznia" />
-        <activity android:name=".Wysylanie_maila"></activity>
+        <activity
+            android:name=".AdminActivity"
+            android:label="@string/title_activity_admin" />
+        <activity android:name=".Rodzic_Activity" />
+        <activity android:name=".Nauczyciel_Activity" />
+        <activity android:name=".Uczen_Activity"></activity>
     </application>
 
 </manifest>

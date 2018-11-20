@@ -11,22 +11,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Button button;
+public class LoginActivity extends AppCompatActivity {
+    //deklaracja zmiennych
+    private Button zaloguj;
     private EditText email_field;
     private EditText password_field;
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
-
+    private DatabaseReference Database;
 
 
 
@@ -34,68 +41,127 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        button = findViewById(R.id.button);
+        //inicjalizacja zmiennych
+        zaloguj = findViewById(R.id.button);
         email_field = findViewById(R.id.email);
         password_field = findViewById(R.id.password);
         firebaseauth = FirebaseAuth.getInstance();
-        button.setOnClickListener(this);
-
         proggres_dialog = new ProgressDialog(this);
+        Database = FirebaseDatabase.getInstance().getReference();
 
 
+        // ustawienie OnClickListenera dla przycisku
+        zaloguj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogInUser();
+            }
+        });
+
+        // sprawdzanie czy ktoś jest zalogowany
+        if(firebaseauth.getCurrentUser() != null){
+            firebaseauth.signOut();
+        }
 
     }
 
-    public void go_to_profile(){
-        Intent intent = new Intent(getApplicationContext(),Profile.class);
+    // przejście do aktywności Admina
+    public void go_to_Admin_Activity(){
+        Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
         startActivity(intent);
     }
 
-    private void registerUser(){
+    // przejście do aktywności ucznia
+    public void go_to_Uczen_Activity(){
+        Intent intent = new Intent(getApplicationContext(),Uczen_Activity.class);
+        startActivity(intent);
+    }
+
+    // przejście do aktywności nauczyciela
+    public void go_to_Nauczyciel_Activity(){
+        Intent intent = new Intent(getApplicationContext(),Nauczyciel_Activity.class);
+        startActivity(intent);
+    }
+
+    //przejście do aktywności rodzica
+    public void go_to_Rodzic_Activity(){
+        Intent intent = new Intent(getApplicationContext(),Rodzic_Activity.class);
+        startActivity(intent);
+    }
+
+    // logowanie(metoda dla przycisku)
+    private void LogInUser() {
         String email = email_field.getText().toString().trim();
         String password = password_field.getText().toString().trim();
 
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email", Toast.LENGTH_SHORT).show();
-        }
+        // jeśli pola sa puste, wyświetla się komunikat
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Wpisz login", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Wpisz hasło", Toast.LENGTH_SHORT).show();
+        } else {
+            // animacja logowania
+            proggres_dialog.setMessage("Logowanie ...");
+            proggres_dialog.show();
 
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_SHORT).show();
-        }
+            // Authentication
+            firebaseauth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-        proggres_dialog.setMessage("Registering User");
-        proggres_dialog.show();
+                            // jeśli się powiodło ...
+                            if (task.isSuccessful()) {
 
-        firebaseauth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                // pobieranie Uid zalogowanego usera
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                final String Uid = user.getUid();
 
-                        if(task.isSuccessful()){
-                            Toast.makeText(getApplicationContext(), "Udało się zalogować", Toast.LENGTH_SHORT).show();
-                            finish();
-                            go_to_profile();
-                        }else{
-                            Toast.makeText(getApplicationContext(), "Nie udało się zalogować", Toast.LENGTH_SHORT).show();
-                            finish();
-                            go_to_profile();
+                                // przeszukanie bazy danych w celu sprawdzenia jaki status ma użytkownik
+                                Database.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Uczen uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
+                                        Rodzic rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Rodzic.class);
+                                        Nauczyciel nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
+                                        Admin admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
+
+
+                                        // przejście do odpowiedniego interfejsu w zależności od statusu
+                                        if(uczen != null){
+                                           go_to_Uczen_Activity();
+                                        }else if (rodzic != null){
+                                            go_to_Rodzic_Activity();
+                                        }else if(nauczyciel != null){
+                                            go_to_Nauczyciel_Activity();
+                                        } else if(admin != null){
+                                            go_to_Admin_Activity();
+                                        }
+                                        proggres_dialog.hide();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Dane niepoprawne", Toast.LENGTH_SHORT).show();
+                                proggres_dialog.hide();
+
+                            }
                         }
-                    }
-                });
-
-    }
-
-
-
-
-    @Override
-    public void onClick(View v) {
-        if(v ==button){
-            registerUser();
+                    });
         }
-
-
     }
+
+
+
+
+
+
+
 }
 
