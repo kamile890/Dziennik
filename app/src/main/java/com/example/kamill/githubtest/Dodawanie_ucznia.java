@@ -107,7 +107,7 @@ public class Dodawanie_ucznia extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                       if(task.isSuccessful()){
-                          Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia);
+                          Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia, klasa_ucznia);
                           Database.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
                             firebaseAuth.sendPasswordResetEmail(login_ucznia);
                           firebaseAuth.signInWithEmailAndPassword(login_adm,"admin123");

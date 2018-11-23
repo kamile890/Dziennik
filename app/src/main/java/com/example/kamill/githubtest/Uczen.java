@@ -8,18 +8,20 @@ public class Uczen {
     String nazwisko;
     String pesel;
     String login_rodzica;
+    String klasa;
 
     public Uczen() {
 
     }
 
-    public Uczen(String id, String login, String imie, String nazwisko, String pesel, String login_rodzica) {
+    public Uczen(String id, String login, String imie, String nazwisko, String pesel, String login_rodzica, String klasa) {
         this.id = id;
         this.login = login;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
         this.login_rodzica = login_rodzica;
+        this.klasa = klasa;
     }
 
     public String getId() {
@@ -68,5 +70,13 @@ public class Uczen {
 
     public void setLogin_rodzica(String login_rodzica) {
         this.login_rodzica = login_rodzica;
+    }
+
+    public String getKlasa() {
+        return klasa;
+    }
+
+    public void setKlasa(String klasa) {
+        this.klasa = klasa;
     }
 }
