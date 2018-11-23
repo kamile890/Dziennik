@@ -27,7 +27,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:text="Nowy nauczyciel"
+        android:onClick="zarzadzanie_nauczycielami"
+        android:text="Zarządzanie nauczycielami"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_dodaj_ucznia"
         app:layout_constraintTop_toTopOf="parent" />
