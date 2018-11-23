@@ -18,7 +18,10 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void zarzadzanie_klasami(View v){
+        Intent intent = new Intent(this, Zarzadzenie_klasami.class);
+        startActivity(intent);
+    }
 
 
 
