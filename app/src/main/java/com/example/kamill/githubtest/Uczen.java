@@ -7,20 +7,20 @@ public class Uczen {
     String imie;
     String nazwisko;
     String pesel;
-    String login_rodzica;
+
     String klasa;
 
     public Uczen() {
 
     }
 
-    public Uczen(String id, String login, String imie, String nazwisko, String pesel, String login_rodzica, String klasa) {
+    public Uczen(String id, String login, String imie, String nazwisko, String pesel, String klasa) {
         this.id = id;
         this.login = login;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
-        this.login_rodzica = login_rodzica;
+
         this.klasa = klasa;
     }
 
@@ -64,13 +64,7 @@ public class Uczen {
         this.pesel = pesel;
     }
 
-    public String getLogin_rodzica() {
-        return login_rodzica;
-    }
 
-    public void setLogin_rodzica(String login_rodzica) {
-        this.login_rodzica = login_rodzica;
-    }
 
     public String getKlasa() {
         return klasa;

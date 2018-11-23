@@ -33,7 +33,6 @@ public class Dodawanie_ucznia extends AppCompatActivity {
     private EditText imie;
     private EditText nazwisko;
     private EditText PESEL;
-    private EditText login_rodzica;
     private DatabaseReference Database;
     private FirebaseAuth firebaseAuth;
     private Spinner spinner;
@@ -98,7 +97,7 @@ public class Dodawanie_ucznia extends AppCompatActivity {
         final String nazwisko_ucznia = nazwisko.getText().toString();
         final String login_ucznia = email.getText().toString();
         final String PESEL_ucznia = PESEL.getText().toString();
-        final String login_rodzica_ucznia = login_rodzica.getText().toString();
+
         final String haslo = randomString(10);
         final String login_adm = firebaseAuth.getCurrentUser().getEmail();
 
@@ -107,7 +106,7 @@ public class Dodawanie_ucznia extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                       if(task.isSuccessful()){
-                          Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, login_rodzica_ucznia, klasa_ucznia);
+                          Uczen uczen = new Uczen(firebaseAuth.getCurrentUser().getUid(),login_ucznia, imie_ucznia, nazwisko_ucznia, PESEL_ucznia, klasa_ucznia);
                           Database.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
                             firebaseAuth.sendPasswordResetEmail(login_ucznia);
                           firebaseAuth.signInWithEmailAndPassword(login_adm,"admin123");
