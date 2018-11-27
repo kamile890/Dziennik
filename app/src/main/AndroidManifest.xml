@@ -34,6 +34,7 @@
         <activity android:name=".Zarzadzenie_klasami" />
         <activity android:name=".Zarzadzanie_nauczycielami" />
         <activity android:name=".Dodawanie_nauczyciela" />
+        <activity android:name=".Resetowanie_hasla"></activity>
     </application>
 
 </manifest>
