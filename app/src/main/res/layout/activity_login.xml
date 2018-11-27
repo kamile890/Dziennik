@@ -70,8 +70,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/common_signin_button_text"
+                android:text="Zaloguj"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/zapomnialem_hasla"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="zapomnialem_hasla"
+                android:layout_marginTop="20dp"
+                android:text="Zapomniałem hasła"
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>
