@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Wiadomość do ucznia"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="imię i nazwisko ucznia"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Treść wiadomości"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="158dp" />
+
+    <Button
+        android:id="@+id/button18"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Menu"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="445dp" />
+
+    <Button
+        android:id="@+id/button21"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Wyślij"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="371dp" />
+</android.support.constraint.ConstraintLayout>
