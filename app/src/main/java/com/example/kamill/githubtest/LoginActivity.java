@@ -65,6 +65,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //przejście do aktywności resetowania hasła
+    public void zapomnialem_hasla(View v){
+        Intent intent = new Intent(getApplicationContext(), Resetowanie_hasla.class);
+        startActivity(intent);
+    }
+
     // przejście do aktywności Admina
     public void go_to_Admin_Activity(){
         Intent intent = new Intent(getApplicationContext(),AdminActivity.class);

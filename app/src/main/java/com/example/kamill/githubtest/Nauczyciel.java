@@ -4,20 +4,20 @@ public class Nauczyciel {
 
     int id;
     String login;
-    String haslo;
     String imie;
     String nazwisko;
+    String pensja;
 
    public Nauczyciel(){
 
    }
 
-    public Nauczyciel(int id, String login, String haslo, String imie, String nazwisko) {
-        this.id = id;
+    public Nauczyciel(String login, String imie, String nazwisko, String pensja) {
+
         this.login = login;
-        this.haslo = haslo;
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.pensja = pensja;
     }
 
     public String getLogin() {
@@ -26,14 +26,6 @@ public class Nauczyciel {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getHaslo() {
-        return haslo;
-    }
-
-    public void setHaslo(String haslo) {
-        this.haslo = haslo;
     }
 
     public String getImie() {
@@ -58,5 +50,13 @@ public class Nauczyciel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPensja() {
+        return pensja;
+    }
+
+    public void setPensja(String pensja) {
+        this.pensja = pensja;
     }
 }
