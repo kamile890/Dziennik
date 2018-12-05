@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +50,7 @@ public class AdminActivity extends AppCompatActivity {
         firebaseauth.signOut();
         Intent i = new Intent(AdminActivity.this, LoginActivity.class);
         startActivity(i);
-
+        Toast.makeText(AdminActivity.this, "Pomyślnie wylogowano!", Toast.LENGTH_SHORT).show();
     }
 
 
