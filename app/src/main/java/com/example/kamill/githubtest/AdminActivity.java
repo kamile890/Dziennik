@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminActivity extends AppCompatActivity {
 
-
+    private FirebaseAuth firebaseauth;
 
 
 
@@ -21,6 +21,9 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
+
+        firebaseauth = FirebaseAuth.getInstance();
+
 
     }
 
@@ -39,6 +42,14 @@ public class AdminActivity extends AppCompatActivity {
     public void zarzadzanie_nauczycielami(View v){
         Intent intent = new Intent(this, Zarzadzanie_nauczycielami.class);
         startActivity(intent);
+    }
+
+    public void wyloguj(View v){
+
+        firebaseauth.signOut();
+        Intent i = new Intent(AdminActivity.this, LoginActivity.class);
+        startActivity(i);
+
     }
 
 
