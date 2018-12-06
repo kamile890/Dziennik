@@ -23,18 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Dodawanie_ucznia" />
-        <activity
-            android:name=".AdminActivity"
-            android:label="Panel Administratora" />
         <activity android:name=".Rodzic_Activity" />
         <activity android:name=".Nauczyciel_Activity" />
         <activity android:name=".Uczen_Activity" />
         <activity android:name=".Test" />
-        <activity android:name=".Zarzadzenie_klasami" />
-        <activity android:name=".Zarzadzanie_nauczycielami" />
         <activity android:name=".Dodawanie_nauczyciela" />
-        <activity android:name=".Resetowanie_hasla"></activity>
+        <activity android:name=".Resetowanie_hasla" />
+        <activity
+            android:name=".admin_activity"
+            android:label="@string/title_activity_admin_activity"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kamill.githubtest.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -34,6 +34,11 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
     private DatabaseReference Database;
+    private Uczen uczen;
+    private Nauczyciel nauczyciel;
+    private Rodzic rodzic;
+    private Admin admin;
+
 
 
 
@@ -67,13 +72,13 @@ public class LoginActivity extends AppCompatActivity {
 
     //przejście do aktywności resetowania hasła
     public void zapomnialem_hasla(View v){
-        Intent intent = new Intent(getApplicationContext(), Resetowanie_hasla.class);
-        startActivity(intent);
+        Intent i = new Intent(getApplicationContext(), Resetowanie_hasla.class);
+        startActivity(i);
     }
 
     // przejście do aktywności Admina
     public void go_to_Admin_Activity(){
-        Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
+        Intent intent = new Intent(getApplicationContext(),admin_activity.class);
         startActivity(intent);
     }
 
@@ -127,23 +132,13 @@ public class LoginActivity extends AppCompatActivity {
                                 Database.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        Uczen uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
-                                        Rodzic rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Rodzic.class);
-                                        Nauczyciel nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
-                                        Admin admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
+                                        uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
+                                        rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Rodzic.class);
+                                        nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
+                                        admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
 
 
-                                        // przejście do odpowiedniego interfejsu w zależności od statusu
-                                        if(uczen != null){
-                                           go_to_Uczen_Activity();
-                                        }else if (rodzic != null){
-                                            go_to_Rodzic_Activity();
-                                        }else if(nauczyciel != null){
-                                            go_to_Nauczyciel_Activity();
-                                        } else if(admin != null){
-                                            go_to_Admin_Activity();
-                                        }
-                                        proggres_dialog.hide();
+
                                     }
 
                                     @Override
@@ -151,6 +146,18 @@ public class LoginActivity extends AppCompatActivity {
 
                                     }
                                 });
+
+                                // przejście do odpowiedniego interfejsu w zależności od statusu
+                                if(uczen != null){
+                                    go_to_Uczen_Activity();
+                                }else if (rodzic != null){
+                                    go_to_Rodzic_Activity();
+                                }else if(nauczyciel != null){
+                                    go_to_Nauczyciel_Activity();
+                                } else if(admin != null){
+                                    go_to_Admin_Activity();
+                                }
+                                proggres_dialog.hide();
 
 
                             } else {

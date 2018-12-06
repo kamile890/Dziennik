@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dodawanie_ucznia_a">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/login_ucznia"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:ems="10"
+        android:hint="Login ucznia"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/imie_ucznia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="15dp"
+        android:ems="10"
+        android:hint="Imie ucznia"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/nazwisko_ucznia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="15dp"
+        android:ems="10"
+        android:hint="Nazwisko"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/pesel_ucznia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="15dp"
+        android:ems="10"
+        android:hint="PESEL"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/dodaj_ucznia_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="240dp"
+        android:text="Dodaj" />
+
+</FrameLayout>
