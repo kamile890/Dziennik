@@ -42,6 +42,8 @@ public class dodawanie_nauczyciela_a extends Fragment {
     private FirebaseAuth firebaseAuth;
     private String przedmiot;
     private String klasa;
+    private ArrayList lista_przedmiotow_do_listy;
+    private ArrayList lista_klas_do_listy;
 
 
 
@@ -62,6 +64,10 @@ public class dodawanie_nauczyciela_a extends Fragment {
         spinner_klasy = v.findViewById(R.id.spinner_klasa);
         baza = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        lista_przedmiotow = v.findViewById(R.id.lista_przedmiotow);
+        lista_klas = v.findViewById(R.id.lista_klas);
+        dodaj_przedmiot_do_listy_btn = v.findViewById(R.id.dodaj_przedmiot_do_listy_btn);
+        lista_klas_do_listy = new ArrayList<>();
 
         //tworzenie listy przedmiotów
         baza.addValueEventListener(new ValueEventListener() {
@@ -123,6 +129,13 @@ public class dodawanie_nauczyciela_a extends Fragment {
             }
         });
 
+        dodaj_przedmiot_do_listy_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_przedmiot_do_listy();
+            }
+        });
+
 
 
 
@@ -136,6 +149,12 @@ public class dodawanie_nauczyciela_a extends Fragment {
 
     //metoda dodająca przedmioty do listy
     public void dodaj_przedmiot_do_listy(){
+
+        lista_klas_do_listy.add(przedmiot);
+        ArrayAdapter adapter_listy_przedmiotow = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, lista_klas_do_listy);
+        lista_przedmiotow.setAdapter(adapter_listy_przedmiotow);
+
+
 
     }
 
