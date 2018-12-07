@@ -52,7 +52,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="85dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="290dp"
         android:text="Dodaj" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content" />
+
 
 </FrameLayout>

@@ -13,14 +13,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class admin_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private TextView login;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_activity);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -38,9 +53,12 @@ public class admin_activity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // zmiana tekstu w headerze paska bocznego
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View v = navigationView.getHeaderView(0);
+        login = v.findViewById(R.id.login_admina);
+        login.setText(firebaseAuth.getCurrentUser().getEmail());
     }
 
     @Override
@@ -81,24 +99,21 @@ public class admin_activity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.dodawanie_ucznia) {
+        if (id == R.id.nowy_uczen) {
             setTitle("Dodawanie ucznia");
             dodawanie_ucznia_a obiekt = new dodawanie_ucznia_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,obiekt).commit();
-        } else if (id == R.id.dodawanie_nauczyciela) {
+        } else if (id == R.id.nowy_nauczyciel) {
             setTitle("Dodawanie nauczyciela");
             dodawanie_nauczyciela_a dod_nau = new dodawanie_nauczyciela_a();
             FragmentManager f = getSupportFragmentManager();
-            f.beginTransaction().replace(R.id.fragment,dod_nau).commit();
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            f.beginTransaction().replace(R.id.fragment, dod_nau).commit();
+        } else if (id == R.id.nowy_opiekun) {
+            setTitle("Dodawanie opiekuna");
+            dodawanie_opiekuna_a dod_op = new dodawanie_opiekuna_a();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment, dod_op).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

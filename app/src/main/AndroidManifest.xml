@@ -27,7 +27,6 @@
         <activity android:name=".Nauczyciel_Activity" />
         <activity android:name=".Uczen_Activity" />
         <activity android:name=".Test" />
-        <activity android:name=".Dodawanie_nauczyciela" />
         <activity android:name=".Resetowanie_hasla" />
         <activity
             android:name=".admin_activity"

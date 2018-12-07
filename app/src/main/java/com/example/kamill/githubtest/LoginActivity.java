@@ -28,7 +28,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     //deklaracja zmiennych
-    private Button zaloguj;
     private EditText email_field;
     private EditText password_field;
     private ProgressDialog proggres_dialog;
@@ -47,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //inicjalizacja zmiennych
-        zaloguj = findViewById(R.id.button);
         email_field = findViewById(R.id.email);
         password_field = findViewById(R.id.password);
         firebaseauth = FirebaseAuth.getInstance();
@@ -55,13 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         Database = FirebaseDatabase.getInstance().getReference();
 
 
-        // ustawienie OnClickListenera dla przycisku
-        zaloguj.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LogInUser();
-            }
-        });
+
 
         // sprawdzanie czy ktoś jest zalogowany
         if(firebaseauth.getCurrentUser() != null){
@@ -101,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // logowanie(metoda dla przycisku)
-    private void LogInUser() {
+    public void LogInUser(View v) {
         String email = email_field.getText().toString().trim();
         String password = password_field.getText().toString().trim();
 
@@ -129,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                                 final String Uid = user.getUid();
 
                                 // przeszukanie bazy danych w celu sprawdzenia jaki status ma użytkownik
-                                Database.addValueEventListener(new ValueEventListener() {
+                                Database.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
@@ -137,27 +129,36 @@ public class LoginActivity extends AppCompatActivity {
                                         nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
                                         admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
 
+                                        Toast.makeText(getApplicationContext(),"Przeszukano baze danych", Toast.LENGTH_SHORT).show();
 
+                                        // przejście do odpowiedniego interfejsu w zależności od statusu
+                                        if(uczen != null){
+                                            go_to_Uczen_Activity();
+                                            Toast.makeText(getApplicationContext(),"Zalogowano ucznia", Toast.LENGTH_SHORT).show();
+                                        }else if (rodzic != null){
+                                            go_to_Rodzic_Activity();
+                                            Toast.makeText(getApplicationContext(),"Zalogowano rodzica", Toast.LENGTH_SHORT).show();
+
+                                        }else if(nauczyciel != null){
+                                            go_to_Nauczyciel_Activity();
+                                            Toast.makeText(getApplicationContext(),"Zalogowano nauczyciela", Toast.LENGTH_SHORT).show();
+
+                                        } else if(admin != null){
+                                            go_to_Admin_Activity();
+                                            Toast.makeText(getApplicationContext(),"Zalogowano admina", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                        proggres_dialog.hide();
 
                                     }
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                        Toast.makeText(getApplicationContext(),"Błąd z bazą danych", Toast.LENGTH_SHORT).show();
                                     }
                                 });
 
-                                // przejście do odpowiedniego interfejsu w zależności od statusu
-                                if(uczen != null){
-                                    go_to_Uczen_Activity();
-                                }else if (rodzic != null){
-                                    go_to_Rodzic_Activity();
-                                }else if(nauczyciel != null){
-                                    go_to_Nauczyciel_Activity();
-                                } else if(admin != null){
-                                    go_to_Admin_Activity();
-                                }
-                                proggres_dialog.hide();
+
 
 
                             } else {
@@ -165,6 +166,9 @@ public class LoginActivity extends AppCompatActivity {
                                 proggres_dialog.hide();
 
                             }
+
+
+
                         }
                     });
         }

@@ -3,35 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/dodawanie_ucznia"
-            android:icon="@android:drawable/ic_input_add"
-            android:title="Dodaj ucznia" />
-        <item
-            android:id="@+id/dodawanie_nauczyciela"
-            android:icon="@android:drawable/ic_input_add"
-            android:title="Dodaj nauczyciela" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
-
-    <item android:title="Communicate">
+    <item android:title="Uczen">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nowy_uczen"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Nowy uczeń" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/edycja_ucznia"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Edytuj" />
+        </menu>
+    </item>
+    <item android:title="Nauczyciel">
+        <menu>
+            <item
+                android:id="@+id/nowy_nauczyciel"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Nowy nauczyciel" />
+            <item
+                android:id="@+id/edycja_nauczyciela"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Edytuj" />
+        </menu>
+    </item>
+    <item android:title="Opiekun">
+        <menu>
+            <item
+                android:id="@+id/nowy_opiekun"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Nowy opiekun" />
+            <item
+                android:id="@+id/edycja_opiekuna"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Edytuj" />
+        </menu>
+    </item>
+    <item android:title="Klasy">
+        <menu>
+            <item
+                android:id="@+id/nowa_klasa"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Nowa klasa" />
+            <item
+                android:id="@+id/edytuj_klasy"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="Edytuj klasy" />
+        </menu>
+    </item>
+    <item android:title="Przedmioty">
+        <menu>
+            <item
+                android:id="@+id/lista_przedmiotów"
+                android:icon="@android:drawable/ic_menu_sort_by_size"
+                android:title="Lista przedmiotów" />
         </menu>
     </item>
 

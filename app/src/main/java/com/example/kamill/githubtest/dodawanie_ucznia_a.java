@@ -7,17 +7,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class dodawanie_ucznia_a extends Fragment {
@@ -29,7 +39,9 @@ public class dodawanie_ucznia_a extends Fragment {
     private EditText imie;
     private EditText nazwisko;
     private EditText pesel;
-    private EditText klasa;
+    private Spinner spinner;
+    private String klasa;
+
 
 
 
@@ -46,9 +58,11 @@ public class dodawanie_ucznia_a extends Fragment {
         baza = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         View v = inflater.inflate(R.layout.fragment_dodawanie_ucznia_a, container, false);
+        spinner = v.findViewById(R.id.spinner);
         login = v.findViewById(R.id.login_ucznia);
         imie = v.findViewById(R.id.imie_ucznia);
         nazwisko = v.findViewById(R.id.nazwisko_ucznia);
+
         pesel = v.findViewById(R.id.pesel_ucznia);
         btn = v.findViewById(R.id.dodaj_ucznia_btn);
         // onClickListener dla przycisku
@@ -56,6 +70,36 @@ public class dodawanie_ucznia_a extends Fragment {
             @Override
             public void onClick(View v) {
                 dodaj_ucznia_a();
+            }
+        });
+
+
+        // wyszukanie wszystkich klas w bazie i dodanie ich do listy
+        baza.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final ArrayList<String> lista_klas = new ArrayList<>();
+                for (DataSnapshot klasa : dataSnapshot.child("Klasy").getChildren()) {
+                    lista_klas.add(klasa.getKey());
+                }
+                //tworzenie spinnera
+                ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, lista_klas);
+                spinner.setAdapter(adapter);
+                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        for (int i = 1; i <= lista_klas.size(); i++) {
+                            klasa = lista_klas.get(position);
+                        }
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
 
@@ -70,13 +114,14 @@ public class dodawanie_ucznia_a extends Fragment {
         String haslo = randomString(10);
         final String login_admina = firebaseAuth.getCurrentUser().getEmail();
 
+
         firebaseAuth.createUserWithEmailAndPassword(login_ucznia,haslo)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 
-                            Uczen uczen = new Uczen(login_ucznia,imie_ucznia,nazwisko_ucznia,pesel_ucznia,"Klasa 1");
+                            Uczen uczen = new Uczen(login_ucznia,imie_ucznia,nazwisko_ucznia,pesel_ucznia,klasa);
                             baza.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
                             firebaseAuth.sendPasswordResetEmail(login_ucznia);
                             firebaseAuth.signInWithEmailAndPassword(login_admina,"admin123");
