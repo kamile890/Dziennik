@@ -68,7 +68,7 @@
         android:layout_marginLeft="250dp"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:text="Dodaj do listy" />
+        android:text="Dodaj" />
 
     <Button
         android:id="@+id/dodaj_nauczyciela_btn"
@@ -99,7 +99,7 @@
         android:layout_marginLeft="250dp"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:text="Dodaj do listy" />
+        android:text="Dodaj" />
 
     <TextView
         android:id="@+id/tekst_spinner_klasa"
