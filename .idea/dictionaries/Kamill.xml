@@ -2,9 +2,13 @@
   <dictionary name="Kamill">
     <words>
       <w>admina</w>
+      <w>aktualizuj</w>
+      <w>aktualizująca</w>
       <w>baza</w>
       <w>bazy</w>
+      <w>będzie</w>
       <w>dodaj</w>
+      <w>dodająca</w>
       <w>dodano</w>
       <w>dodawanie</w>
       <w>dodać</w>
@@ -16,11 +20,13 @@
       <w>jeśli</w>
       <w>klas</w>
       <w>klasa</w>
+      <w>klasami</w>
       <w>klase</w>
       <w>klasy</w>
       <w>lista</w>
       <w>listy</w>
       <w>listą</w>
+      <w>listę</w>
       <w>losowe</w>
       <w>metoda</w>
       <w>nauczyciel</w>
@@ -29,6 +35,7 @@
       <w>nazwa</w>
       <w>nazwisko</w>
       <w>nowego</w>
+      <w>nową</w>
       <w>opiekuna</w>
       <w>pensja</w>
       <w>pesel</w>
@@ -42,12 +49,15 @@
       <w>przeszukanie</w>
       <w>przycisku</w>
       <w>spinnera</w>
+      <w>spinnerze</w>
+      <w>tutaj</w>
       <w>tworzenie</w>
       <w>uczen</w>
       <w>ucznia</w>
       <w>udało</w>
       <w>usera</w>
       <w>użytkownika</w>
+      <w>wyboru</w>
       <w>wyloguj</w>
       <w>zalogowanego</w>
       <w>zarzadzanie</w>
