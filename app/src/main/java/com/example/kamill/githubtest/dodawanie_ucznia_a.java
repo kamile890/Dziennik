@@ -75,7 +75,7 @@ public class dodawanie_ucznia_a extends Fragment {
 
 
         // wyszukanie wszystkich klas w bazie i dodanie ich do listy
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList<String> lista_klas = new ArrayList<>();
