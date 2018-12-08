@@ -2,6 +2,7 @@
   <dictionary name="Kamill">
     <words>
       <w>admina</w>
+      <w>baza</w>
       <w>bazy</w>
       <w>dodaj</w>
       <w>dodano</w>
@@ -25,14 +26,18 @@
       <w>nauczyciel</w>
       <w>nauczyciela</w>
       <w>nauczycielami</w>
+      <w>nazwa</w>
       <w>nazwisko</w>
+      <w>nowego</w>
       <w>opiekuna</w>
       <w>pensja</w>
       <w>pesel</w>
       <w>pobieranie</w>
       <w>powiodło</w>
       <w>przedmiot</w>
+      <w>przedmiotami</w>
       <w>przedmiotow</w>
+      <w>przedmiotu</w>
       <w>przedmiotów</w>
       <w>przeszukanie</w>
       <w>przycisku</w>
@@ -46,6 +51,7 @@
       <w>wyloguj</w>
       <w>zalogowanego</w>
       <w>zarzadzanie</w>
+      <w>zmienne</w>
       <w>zmiennych</w>
     </words>
   </dictionary>
