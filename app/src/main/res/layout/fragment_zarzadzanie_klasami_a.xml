@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".zarzadzanie_klasami_a">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:text="Nowa klasa:"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"/>
+
+    <EditText
+        android:id="@+id/nazwa_nowej_klasy_edit_text"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:hint="Nazwa klasy"/>
+
+    <Button
+        android:id="@+id/dodaj_klase_btn"
+        android:layout_width="90dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="230dp"
+        android:text="Dodaj"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="_____________________________________________________________________________________"
+        android:layout_marginTop="75dp"/>
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="15dp"
+        android:text="Wybierz klasę:"
+        android:textSize="20dp"/>
+
+    <Spinner
+        android:id="@+id/wybor_klasy_spinner"
+        android:layout_width="190dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="160dp"></Spinner>
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="140dp">
+        <RadioButton
+            android:id="@+id/dodaj_przedmiot_radio_button"
+            android:layout_width="170dp"
+            android:layout_height="39dp"
+            android:text="Dodaj przedmiot"/>
+        <RadioButton
+            android:id="@+id/dodaj_ucznia_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:text="Dodaj ucznia"/>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="15dp"
+        android:text="Wybierz przedmiot:"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="180dp"
+        android:text="Lista przedmiotów dla: "/>
+
+    <Spinner
+        android:id="@+id/wybor_przedmiotu_spinner"
+        android:layout_marginTop="240dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"></Spinner>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/dodaj_przedmiot_btn"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="35dp"
+        android:text="Dodaj"/>
+
+    <ListView
+        android:id="@+id/lista_przedmiotow_list_view"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="240dp"></ListView>
+
+
+
+
+
+
+
+
+
+
+</FrameLayout>
