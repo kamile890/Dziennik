@@ -42,13 +42,9 @@
     <item android:title="Klasy">
         <menu>
             <item
-                android:id="@+id/nowa_klasa"
-                android:icon="@android:drawable/ic_input_add"
-                android:title="Nowa klasa" />
-            <item
-                android:id="@+id/edytuj_klasy"
+                android:id="@+id/zarzadzanie_klasami"
                 android:icon="@android:drawable/ic_menu_edit"
-                android:title="Edytuj klasy" />
+                android:title="Zarządzaj klasami" />
         </menu>
     </item>
     <item android:title="Przedmioty">
