@@ -54,7 +54,7 @@
     <item android:title="Przedmioty">
         <menu>
             <item
-                android:id="@+id/lista_przedmiotów"
+                android:id="@+id/lista_przedmiotow"
                 android:icon="@android:drawable/ic_menu_sort_by_size"
                 android:title="Lista przedmiotów" />
         </menu>
