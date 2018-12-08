@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Nauczyciel {
 
-    int id;
+
     String login;
     String imie;
     String nazwisko;
@@ -50,13 +50,6 @@ public class Nauczyciel {
         this.nazwisko = nazwisko;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getPensja() {
         return pensja;
