@@ -39,14 +39,7 @@ public class admin_activity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -114,6 +107,11 @@ public class admin_activity extends AppCompatActivity
             dodawanie_opiekuna_a dod_op = new dodawanie_opiekuna_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment, dod_op).commit();
+        } else if (id == R.id.lista_przedmiotow){
+            setTitle("Zarządzanie przedmiotami");
+            zarzadzanie_przedmiotami_a zarz_przed = new zarzadzanie_przedmiotami_a();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment, zarz_przed).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
