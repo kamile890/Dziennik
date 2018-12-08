@@ -48,8 +48,8 @@ public class dodawanie_nauczyciela_a extends Fragment {
     private FirebaseAuth firebaseAuth;
     private String przedmiot;
     private String klasa;
-    private ArrayList lista_przedmiotow_do_listy;
-    private ArrayList lista_klas_do_listy;
+    private ArrayList<String> lista_przedmiotow_do_listy;
+    private ArrayList<String> lista_klas_do_listy;
 
 
 
@@ -79,7 +79,7 @@ public class dodawanie_nauczyciela_a extends Fragment {
         lista_przedmiotow_do_listy = new ArrayList<>();
 
         //tworzenie listy przedmiotów
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  array_lista_przedmiotow = new ArrayList<String>();
@@ -109,7 +109,7 @@ public class dodawanie_nauczyciela_a extends Fragment {
         });
 
         //tworzenie listy klas
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 array_lista_klas = new ArrayList<String>();
@@ -227,18 +227,18 @@ public class dodawanie_nauczyciela_a extends Fragment {
                             }
                         }
                     });
-            login_nauczyciela.setText("");
-            imie_nauczyciela.setText("");
-            nazwisko_nauczyciela.setText("");
-            pensja_nauczyciela.setText("");
-            lista_klas_do_listy.clear();
-            ArrayAdapter adapter_listy_klas = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,lista_klas_do_listy);
-            lista_klas.setAdapter(adapter_listy_klas);
 
-            lista_przedmiotow_do_listy.clear();
-            ArrayAdapter adapter_listy_przedmiotow = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, lista_przedmiotow_do_listy);
-            lista_przedmiotow.setAdapter(adapter_listy_przedmiotow);
+
         }
+
+        login_nauczyciela.setText("");
+        imie_nauczyciela.setText("");
+        nazwisko_nauczyciela.setText("");
+        pensja_nauczyciela.setText("");
+
+
+
+
     }
     //metoda dodająca przedmioty do listy
     public void dodaj_przedmiot_do_listy() {
