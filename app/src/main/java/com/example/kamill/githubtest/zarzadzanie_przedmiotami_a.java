@@ -69,6 +69,24 @@ public class zarzadzanie_przedmiotami_a extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 baza.child("Przedmioty").child(przedmiot).removeValue();
+                                baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot klasa: dataSnapshot.child("Klasy").getChildren()){
+                                            baza.child("Klasy").child(klasa.getKey()).child("Przedmioty").child(przedmiot).removeValue();
+                                            for(DataSnapshot uczen: dataSnapshot.child("Klasy").child(klasa.getKey()).child("Uczniowie").getChildren()){
+                                                baza.child("Klasy").child(klasa.getKey()).child("Uczniowie").child(uczen.getKey()).child("Oceny").child(przedmiot).removeValue();
+                                            }
+                                        }
+
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                                 aktualizuj_liste();
                                 Toast.makeText(getContext(),"Usunięto '"+przedmiot+"' z bazy danych", Toast.LENGTH_SHORT).show();
                             }
