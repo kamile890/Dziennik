@@ -54,36 +54,39 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="140dp">
+
         <RadioButton
             android:id="@+id/dodaj_przedmiot_radio_button"
             android:layout_width="170dp"
             android:layout_height="39dp"
-            android:text="Dodaj przedmiot"/>
+            android:text="Przedmioty" />
+
         <RadioButton
             android:id="@+id/dodaj_ucznia_radio_button"
             android:layout_width="match_parent"
             android:layout_height="39dp"
-            android:text="Dodaj ucznia"/>
+            android:text="Uczniowie" />
     </RadioGroup>
 
     <TextView
+        android:id="@+id/wybierz_przedmiot_textView"
         android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="180dp"
+        android:layout_height="31dp"
         android:layout_marginLeft="15dp"
-        android:text="Wybierz przedmiot:"/>
+        android:layout_marginTop="190dp"
+        android:text="Wybierz przedmiot:" />
 
     <TextView
         android:id="@+id/lista_przedmiotow_dla"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginLeft="180dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="190dp"
         android:text="Lista przedmiotów dla: " />
 
     <Spinner
         android:id="@+id/wybor_przedmiotu_spinner"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="230dp"
         android:layout_marginLeft="15dp"
         android:layout_width="150dp"
         android:layout_height="40dp"></Spinner>
@@ -101,6 +104,13 @@
         android:layout_width="150dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="180dp"
+        android:layout_marginTop="240dp"></ListView>
+
+    <ListView
+        android:id="@+id/lista_uczniow_listView"
+        android:layout_width="307dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="240dp"></ListView>
 
 

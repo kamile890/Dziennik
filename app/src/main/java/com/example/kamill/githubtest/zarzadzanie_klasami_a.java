@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -39,16 +40,15 @@ public class zarzadzanie_klasami_a extends Fragment {
     private ArrayList lista_przedmiotow;
     private ArrayList lista_przedmiotow_dla_list_view;
     private ArrayList lista_uczniow;
-    private ArrayList lista_uczniow_list_view;
     private RadioButton dodawanie_przedmiotu_radio_button;
-    private RadioButton dodawanie_ucznia_radio_button;
     private Spinner spinner_wybieranie_przedmiotu;
     private Button dodawanie_przedmiotu_btn;
     private String przedmiot;
-    private String uczen;
     private ListView lista_przemiotow_ListView;
     private String wybrana_klasa;
     private TextView lista_przedmiotow_dla;
+    private TextView wybierz_przedmiot_textView;
+    private ListView lista_uczniow_ListView;
 
 
     public zarzadzanie_klasami_a() {
@@ -69,12 +69,16 @@ public class zarzadzanie_klasami_a extends Fragment {
         dodawanie_przedmiotu_btn = v.findViewById(R.id.dodaj_przedmiot_btn);
         dodawanie_przedmiotu_radio_button = v.findViewById(R.id.dodaj_przedmiot_radio_button);
         lista_przedmiotow_dla = v.findViewById(R.id.lista_przedmiotow_dla);
+        wybierz_przedmiot_textView = v.findViewById(R.id.wybierz_przedmiot_textView);
+        lista_uczniow_ListView = v.findViewById(R.id.lista_uczniow_listView);
+
+
 
         //radiobutton "dodawanie przedmiotu" zanaczony jako domyślny
         dodawanie_przedmiotu_radio_button.setChecked(true);
 
         // sprawdzanie, który radiobutton jest wciśnięty
-
+        ktory_radiobutton();
 
         //spinner wyboru przedmiotu
         stworz_spinnera_z_przedmiotami();
@@ -125,9 +129,11 @@ public class zarzadzanie_klasami_a extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_przedmiotow = new ArrayList<>();
+
                 for (DataSnapshot przedmiot : dataSnapshot.child("Przedmioty").getChildren()) {
                     lista_przedmiotow.add(przedmiot.getKey());
-                }
+                    }
+
                 ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista_przedmiotow);
                 spinner_wybieranie_przedmiotu.setAdapter(adapter);
                 spinner_wybieranie_przedmiotu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -183,6 +189,7 @@ public class zarzadzanie_klasami_a extends Fragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         usun_przedmiot(przedmiot,wybrana_klasa);
+
                                         Toast.makeText(getContext(),"Usunięto '"+przedmiot+"' z '"+wybrana_klasa+"'", Toast.LENGTH_SHORT).show();
                                     }
                                 })
@@ -244,10 +251,70 @@ public class zarzadzanie_klasami_a extends Fragment {
 
         //----------------------------------------------------------------------------
             //metoda usuwająca wybrany przedmiot z bazy wybranej klasy
-    public void usun_przedmiot(String przedmiot, String klasa){
-        lista_przedmiotow_dla_list_view.remove(przedmiot);
-        baza.child("Klasy").child(klasa).child("Przedmioty").setValue(lista_przedmiotow_dla_list_view);
+    public void usun_przedmiot(final String przedmiot,final String klasa){
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                baza.child("Klasy").child(klasa).child("Przedmioty").child(przedmiot).removeValue();
+                for(DataSnapshot uczen: dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").getChildren()){
+                    baza.child("Klasy").child(klasa).child("Uczniowie").child(uczen.getKey()).child("Oceny").child(przedmiot).removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
+    }
+
+    //---------------------------------------------------------------------------------
+    //metoda sprawdzająca, który radiobutton jest wciśnięty
+    public void ktory_radiobutton(){
+        dodawanie_przedmiotu_radio_button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(dodawanie_przedmiotu_radio_button.isChecked()){
+                    wybierz_przedmiot_textView.setVisibility(View.VISIBLE);
+                    lista_przedmiotow_dla.setVisibility(View.VISIBLE);
+                    spinner_wybieranie_przedmiotu.setVisibility(View.VISIBLE);
+                    dodawanie_przedmiotu_btn.setVisibility(View.VISIBLE);
+                    lista_przemiotow_ListView.setVisibility(View.VISIBLE);
+                    lista_uczniow_ListView.setVisibility(View.INVISIBLE);
+                }else{
+                    wybierz_przedmiot_textView.setVisibility(View.INVISIBLE);
+                    lista_przedmiotow_dla.setVisibility(View.INVISIBLE);
+                    spinner_wybieranie_przedmiotu.setVisibility(View.INVISIBLE);
+                    dodawanie_przedmiotu_btn.setVisibility(View.INVISIBLE);
+                    lista_przemiotow_ListView.setVisibility(View.INVISIBLE);
+                    lista_uczniow_ListView.setVisibility(View.VISIBLE);
+
+
+
+                }
+            }
+        });
+    }
+
+    //-----------------------------------------------------------------------------------
+    //metoda pobierająca listę uczniów
+    public void wyswietl_liste_uczniow_dla_klasy(){
+            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    lista_uczniow = new ArrayList<>();
+                    for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").getChildren()){
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
     }
 
 
