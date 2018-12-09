@@ -91,7 +91,7 @@ public class zarzadzanie_klasami_a extends Fragment {
         dodawanie_przedmiotu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dodaj_przedmiot_do_listy();
+                dodaj_przedmiot_do_listy(przedmiot,wybrana_klasa);
             }
         });
 
@@ -156,10 +156,23 @@ public class zarzadzanie_klasami_a extends Fragment {
     }
 //----------------------------------------------------------------
     //metoda dodająca nowy przedmiot dla klasy
-    public void dodaj_przedmiot_do_listy(){
+    public void dodaj_przedmiot_do_listy(final String przedmiot, final String klasa){
 
         if(!lista_przedmiotow_dla_list_view.contains(przedmiot)){
             baza.child("Klasy").child(wybrana_klasa).child("Przedmioty").child(przedmiot).setValue(przedmiot);
+            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").getChildren()){
+                        baza.child("Klasy").child(klasa).child("Uczniowie").child(uczen.getKey()).child("Oceny").child(przedmiot).setValue("null");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
             Toast.makeText(getContext(),"Dodano '"+przedmiot+"' do listy",Toast.LENGTH_SHORT).show();
         }else{
