@@ -1,6 +1,8 @@
 package com.example.kamill.githubtest;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -46,7 +46,7 @@ public class zarzadzanie_klasami_a extends Fragment {
     private Button dodawanie_przedmiotu_btn;
     private String przedmiot;
     private String uczen;
-    private ListView lista_przemiotow_wyswietlanie;
+    private ListView lista_przemiotow_ListView;
     private String wybrana_klasa;
     private TextView lista_przedmiotow_dla;
 
@@ -65,7 +65,7 @@ public class zarzadzanie_klasami_a extends Fragment {
         dodaj_nowa_klase_btn = v.findViewById(R.id.dodaj_klase_btn);
         spinner_wyboru_klasy = v.findViewById(R.id.wybor_klasy_spinner);
         spinner_wybieranie_przedmiotu = v.findViewById(R.id.wybor_przedmiotu_spinner);
-        lista_przemiotow_wyswietlanie = v.findViewById(R.id.lista_przedmiotow_list_view);
+        lista_przemiotow_ListView = v.findViewById(R.id.lista_przedmiotow_list_view);
         dodawanie_przedmiotu_btn = v.findViewById(R.id.dodaj_przedmiot_btn);
         dodawanie_przedmiotu_radio_button = v.findViewById(R.id.dodaj_przedmiot_radio_button);
         lista_przedmiotow_dla = v.findViewById(R.id.lista_przedmiotow_dla);
@@ -73,14 +73,54 @@ public class zarzadzanie_klasami_a extends Fragment {
         //radiobutton "dodawanie przedmiotu" zanaczony jako domyślny
         dodawanie_przedmiotu_radio_button.setChecked(true);
 
+        // sprawdzanie, który radiobutton jest wciśnięty
 
-
-
-
-        //pobieranie listy klas do spinnera wyboru klasy i wyświetlanie listy przedmiotów
-        wyświetl_liste_przedmiotow_po_zmianie_klasy();
 
         //spinner wyboru przedmiotu
+        stworz_spinnera_z_przedmiotami();
+
+        //spinner wyboru klasy
+        aktualizacja_spinnera_z_klasami();
+
+
+        //onClickListener dodawanie przedmiotu do listy
+        dodawanie_przedmiotu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_przedmiot_do_listy();
+            }
+        });
+
+
+
+        // onClickListener dodawanie nowej klasy
+        dodaj_nowa_klase_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_klase();
+            }
+        });
+
+        return v;
+    }
+
+
+    //metody-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //metoda dodająca nową klase do bazy
+    public void dodaj_klase(){
+        String nazwa_klasy = nazwa_nowej_klasy.getText().toString();
+        if(!lista_klas.contains(nazwa_klasy)) {
+            baza.child("Klasy").child(nazwa_klasy).setValue("a");
+            aktualizacja_spinnera_z_klasami();
+            Toast.makeText(getContext(), "Dodano '" + nazwa_klasy + "' do bazy", Toast.LENGTH_SHORT).show();
+          }else{
+           Toast.makeText(getContext(),"'"+nazwa_klasy+"' już istnieje", Toast.LENGTH_SHORT).show();
+        }
+    }
+//----------------------------------------------------------------
+    //metoda dodająca wszystkie przedmioty do spinnera z przedmiotami
+    public void stworz_spinnera_z_przedmiotami(){
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -107,132 +147,114 @@ public class zarzadzanie_klasami_a extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-
-
-
-        dodawanie_przedmiotu_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dodaj_przedmiot_do_listy();
-            }
-        });
-
-
-
-
-        dodaj_nowa_klase_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dodaj_klase();
-            }
-        });
-
-        return v;
-    }
-
-
-    //metody-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //metoda dodająca nową klase do bazy
-    public void dodaj_klase(){
-        String nazwa_klasy = nazwa_nowej_klasy.getText().toString();
-        baza.child("Klasy").child(nazwa_klasy).setValue("a");
-        wyświetl_liste_przedmiotow_po_zmianie_klasy();
-        Toast.makeText(getContext(),"Dodano '"+nazwa_klasy+"' do bazy", Toast.LENGTH_SHORT).show();
     }
 //----------------------------------------------------------------
-    //metoda dodająca przedmiot to listy
+    //metoda dodająca nowy przedmiot dla klasy
     public void dodaj_przedmiot_do_listy(){
-        pobierz_listę_przedmiotow_dla_klasy(wybrana_klasa);
+
         if(!lista_przedmiotow_dla_list_view.contains(przedmiot)){
-            lista_przedmiotow_dla_list_view.add(przedmiot);
-            baza.child("Klasy").child(wybrana_klasa).child("Przedmioty").setValue(lista_przedmiotow_dla_list_view);
-            wyświetl_liste_przedmiotow();
+            baza.child("Klasy").child(wybrana_klasa).child("Przedmioty").child(przedmiot).setValue(przedmiot);
+            wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
             Toast.makeText(getContext(),"Dodano '"+przedmiot+"' do listy",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getContext(),"Przedmiot '"+przedmiot+"' znajduje się już w liście",Toast.LENGTH_SHORT).show();
         }
     }
 //----------------------------------------------------------------
-    //metoda aktualizująca listę w spinnerze
-    public void wyświetl_liste_przedmiotow_po_zmianie_klasy(){
-        baza.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                lista_klas = new ArrayList<>();
-                for (DataSnapshot klasa : dataSnapshot.child("Klasy").getChildren()) {
-                    lista_klas.add(klasa.getKey());
-                }
-                ArrayAdapter adapter_wyboru_klasy = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, lista_klas);
-                spinner_wyboru_klasy.setAdapter(adapter_wyboru_klasy);
-                spinner_wyboru_klasy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { wybrana_klasa = (String)lista_klas.get(position);
-                      lista_przedmiotow_dla.setText("Lista przedmiotów dla: "+wybrana_klasa);
-                       baza.addListenerForSingleValueEvent(new ValueEventListener() {
-                           @Override
-                           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                               lista_przedmiotow_dla_list_view = new ArrayList<>();
-                               for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Przedmioty").getChildren()) {
-                                   lista_przedmiotow_dla_list_view.add(przedmiot.getValue());
-                               }
-                               ArrayAdapter adapterek = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_przedmiotow_dla_list_view);
-                               lista_przemiotow_wyswietlanie.setAdapter(adapterek);
-                               lista_przemiotow_wyswietlanie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                   @Override
-                                   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                   }
-                               });
-                           }
-
-                           @Override
-                           public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                           }
-                       });
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
-                });
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
-//-----------------------------------------------------------------------------
-    //metoda pobierająca listę przedmiotów dla klasy
-    public void pobierz_listę_przedmiotow_dla_klasy(final String klasa_a){
-
+    //metoda pobierająca z bazy i wyświetlająca listę przedmiotów w ListView dla danej klasy
+    public void wyświetl_liste_przedmiotow_w_List_View(final String klasa){
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_przedmiotow_dla_list_view = new ArrayList<>();
-                for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(klasa_a).child("Przedmioty").getChildren()) {
+                for(DataSnapshot przedmiot: dataSnapshot.child("Klasy").child(klasa).child("Przedmioty").getChildren()){
                     lista_przedmiotow_dla_list_view.add(przedmiot.getValue());
                 }
+                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item,lista_przedmiotow_dla_list_view);
+                lista_przemiotow_ListView.setAdapter(adapter);
+                lista_przemiotow_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                        final String przedmiot = ((TextView)view).getText().toString();
+                        final AlertDialog.Builder alert_dialog = new AlertDialog.Builder(getContext());
+                        alert_dialog.setMessage("Czy na pewno chcesz usunąć '"+przedmiot+"' z '"+wybrana_klasa+"' ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        usun_przedmiot(przedmiot,wybrana_klasa);
+                                        Toast.makeText(getContext(),"Usunięto '"+przedmiot+"' z '"+wybrana_klasa+"'", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alert = alert_dialog.create();
+                        alert.setTitle("Usuń");
+                        alert.show();
+
+                    }
+                });
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
     }
-//----------------------------------------------------------------------------
-    //metoda wyświetlająca liste przedmiotów dla klasy
-    public void wyświetl_liste_przedmiotow(){
-        ArrayAdapter adapterek = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_przedmiotow_dla_list_view);
-        lista_przemiotow_wyswietlanie.setAdapter(adapterek);
-        lista_przemiotow_wyswietlanie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-        });
+    //---------------------------------------------------------------------------
+    //metoda tworząca spinnera z wszystkimi klasami
+        public void aktualizacja_spinnera_z_klasami() {
+            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    lista_klas = new ArrayList<>();
+                    for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").getChildren()) {
+                        lista_klas.add(przedmiot.getKey());
+                    }
+                    ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista_klas);
+                    spinner_wyboru_klasy.setAdapter(adapter);
+                    spinner_wyboru_klasy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            for (int i = 1; i <= lista_klas.size(); i++) {
+                                wybrana_klasa = (String) lista_klas.get(position);
+                            }
+                            wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
+                            lista_przedmiotow_dla.setText("Lista przedmiotów dla: "+wybrana_klasa);
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
+
+
+        //----------------------------------------------------------------------------
+            //metoda usuwająca wybrany przedmiot z bazy wybranej klasy
+    public void usun_przedmiot(String przedmiot, String klasa){
+        lista_przedmiotow_dla_list_view.remove(przedmiot);
+        baza.child("Klasy").child(klasa).child("Przedmioty").setValue(lista_przedmiotow_dla_list_view);
+        wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
     }
+
+
+
+
+
+
 
 
 }
