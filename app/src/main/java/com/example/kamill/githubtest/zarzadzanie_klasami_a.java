@@ -48,6 +48,7 @@ public class zarzadzanie_klasami_a extends Fragment {
     private String uczen;
     private ListView lista_przemiotow_wyswietlanie;
     private String wybrana_klasa;
+    private TextView lista_przedmiotow_dla;
 
 
     public zarzadzanie_klasami_a() {
@@ -66,10 +67,18 @@ public class zarzadzanie_klasami_a extends Fragment {
         spinner_wybieranie_przedmiotu = v.findViewById(R.id.wybor_przedmiotu_spinner);
         lista_przemiotow_wyswietlanie = v.findViewById(R.id.lista_przedmiotow_list_view);
         dodawanie_przedmiotu_btn = v.findViewById(R.id.dodaj_przedmiot_btn);
+        dodawanie_przedmiotu_radio_button = v.findViewById(R.id.dodaj_przedmiot_radio_button);
+        lista_przedmiotow_dla = v.findViewById(R.id.lista_przedmiotow_dla);
+
+        //radiobutton "dodawanie przedmiotu" zanaczony jako domyślny
+        dodawanie_przedmiotu_radio_button.setChecked(true);
 
 
-        //spinner wyboru klasy
-        aktualizuj_spinnera_klas();
+
+
+
+        //pobieranie listy klas do spinnera wyboru klasy i wyświetlanie listy przedmiotów
+        wyświetl_liste_przedmiotow_po_zmianie_klasy();
 
         //spinner wyboru przedmiotu
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,13 +132,16 @@ public class zarzadzanie_klasami_a extends Fragment {
     }
 
 
+    //metody-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     //metoda dodająca nową klase do bazy
     public void dodaj_klase(){
         String nazwa_klasy = nazwa_nowej_klasy.getText().toString();
         baza.child("Klasy").child(nazwa_klasy).setValue("a");
+        wyświetl_liste_przedmiotow_po_zmianie_klasy();
         Toast.makeText(getContext(),"Dodano '"+nazwa_klasy+"' do bazy", Toast.LENGTH_SHORT).show();
     }
-
+//----------------------------------------------------------------
     //metoda dodająca przedmiot to listy
     public void dodaj_przedmiot_do_listy(){
         pobierz_listę_przedmiotow_dla_klasy(wybrana_klasa);
@@ -137,13 +149,14 @@ public class zarzadzanie_klasami_a extends Fragment {
             lista_przedmiotow_dla_list_view.add(przedmiot);
             baza.child("Klasy").child(wybrana_klasa).child("Przedmioty").setValue(lista_przedmiotow_dla_list_view);
             wyświetl_liste_przedmiotow();
+            Toast.makeText(getContext(),"Dodano '"+przedmiot+"' do listy",Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getContext(),"Przedmiot '"+przedmiot+"' znajduje się już w liście",Toast.LENGTH_SHORT).show();
         }
     }
-
+//----------------------------------------------------------------
     //metoda aktualizująca listę w spinnerze
-    public void aktualizuj_spinnera_klas(){
+    public void wyświetl_liste_przedmiotow_po_zmianie_klasy(){
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -156,6 +169,7 @@ public class zarzadzanie_klasami_a extends Fragment {
                 spinner_wyboru_klasy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { wybrana_klasa = (String)lista_klas.get(position);
+                      lista_przedmiotow_dla.setText("Lista przedmiotów dla: "+wybrana_klasa);
                        baza.addListenerForSingleValueEvent(new ValueEventListener() {
                            @Override
                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -189,7 +203,7 @@ public class zarzadzanie_klasami_a extends Fragment {
             }
         });
     }
-
+//-----------------------------------------------------------------------------
     //metoda pobierająca listę przedmiotów dla klasy
     public void pobierz_listę_przedmiotow_dla_klasy(final String klasa_a){
 
@@ -207,7 +221,7 @@ public class zarzadzanie_klasami_a extends Fragment {
             }
         });
     }
-
+//----------------------------------------------------------------------------
     //metoda wyświetlająca liste przedmiotów dla klasy
     public void wyświetl_liste_przedmiotow(){
         ArrayAdapter adapterek = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_przedmiotow_dla_list_view);
