@@ -123,6 +123,19 @@ public class dodawanie_ucznia_a extends Fragment {
 
                             Uczen uczen = new Uczen(login_ucznia,imie_ucznia,nazwisko_ucznia,pesel_ucznia,klasa);
                             baza.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
+                            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot przedmiot: dataSnapshot.child("Klasy").child(klasa).child("Przedmioty").getChildren()){
+                                        baza.child("Klasy").child(klasa).child("Uczniowie").child(firebaseAuth.getCurrentUser().getUid()).child("Oceny").child(przedmiot.getKey()).setValue("null");
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                             firebaseAuth.sendPasswordResetEmail(login_ucznia);
                             firebaseAuth.signInWithEmailAndPassword(login_admina,"admin123");
                             Toast.makeText(getContext(),"Dodano ucznia do bazy", Toast.LENGTH_SHORT).show();
