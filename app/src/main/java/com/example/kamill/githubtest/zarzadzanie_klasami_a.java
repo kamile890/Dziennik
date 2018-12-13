@@ -40,6 +40,7 @@ public class zarzadzanie_klasami_a extends Fragment {
     private ArrayList lista_przedmiotow;
     private ArrayList lista_przedmiotow_dla_list_view;
     private ArrayList lista_uczniow;
+    private ArrayList lista_uczniow_UID;
     private RadioButton dodawanie_przedmiotu_radio_button;
     private Spinner spinner_wybieranie_przedmiotu;
     private Button dodawanie_przedmiotu_btn;
@@ -49,6 +50,14 @@ public class zarzadzanie_klasami_a extends Fragment {
     private TextView lista_przedmiotow_dla;
     private TextView wybierz_przedmiot_textView;
     private ListView lista_uczniow_ListView;
+    private Spinner spinner_uczniow_bez_klasy;
+    private Button dodaj_ucznia_btn;
+    private TextView pesel_textView;
+    private ArrayList lista_uczniow_bez_klasy;
+    private ArrayList lista_UID_uczniow_bez_klasy;
+    private ArrayList lista_pesel_uczniow_bez_klasy;
+    private String uczen_bez_klasy;
+    private TextView text_nad_pinnerem;
 
 
     public zarzadzanie_klasami_a() {
@@ -71,12 +80,20 @@ public class zarzadzanie_klasami_a extends Fragment {
         lista_przedmiotow_dla = v.findViewById(R.id.lista_przedmiotow_dla);
         wybierz_przedmiot_textView = v.findViewById(R.id.wybierz_przedmiot_textView);
         lista_uczniow_ListView = v.findViewById(R.id.lista_uczniow_listView);
+        spinner_uczniow_bez_klasy = v.findViewById(R.id.spinner_uczniow_bez_klasy);
+        dodaj_ucznia_btn = v.findViewById(R.id.dodaj_ucznia_btn);
+        pesel_textView = v.findViewById(R.id.pesel_textView);
+        text_nad_pinnerem = v.findViewById(R.id.text_nad_pinnerem);
 
 
 
-        //radiobutton "dodawanie przedmiotu" zanaczony jako domyślny
+        //radiobutton "dodawanie przedmiotu" zaznaczony jako domyślny
         dodawanie_przedmiotu_radio_button.setChecked(true);
-
+        lista_uczniow_ListView.setVisibility(View.INVISIBLE);
+        spinner_uczniow_bez_klasy.setVisibility(View.INVISIBLE);
+        dodaj_ucznia_btn.setVisibility(View.INVISIBLE);
+        pesel_textView.setVisibility(View.INVISIBLE);
+        text_nad_pinnerem.setVisibility(View.INVISIBLE);
         // sprawdzanie, który radiobutton jest wciśnięty
         ktory_radiobutton();
 
@@ -85,6 +102,12 @@ public class zarzadzanie_klasami_a extends Fragment {
 
         //spinner wyboru klasy
         aktualizacja_spinnera_z_klasami();
+
+        //wyświetlanie spinnera z uczniami bez klasy
+        wyświetl_uczniow_bez_klasy_w_spinnerze();
+
+
+
 
 
         //onClickListener dodawanie przedmiotu do listy
@@ -102,6 +125,14 @@ public class zarzadzanie_klasami_a extends Fragment {
             @Override
             public void onClick(View v) {
                 dodaj_klase();
+            }
+        });
+
+        //onClickListener dodawanie ucznia do klasy
+        dodaj_ucznia_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_ucznia_do_klasy();
             }
         });
 
@@ -247,6 +278,8 @@ public class zarzadzanie_klasami_a extends Fragment {
                             }
                             wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
                             lista_przedmiotow_dla.setText("Lista przedmiotów dla: "+wybrana_klasa);
+                            wyswietl_liste_uczniow_dla_klasy();
+
                         }
 
                         @Override
@@ -261,9 +294,8 @@ public class zarzadzanie_klasami_a extends Fragment {
             });
         }
 
-
         //----------------------------------------------------------------------------
-            //metoda usuwająca wybrany przedmiot z bazy wybranej klasy
+            //metoda usuwająca wybrany przedmiot z wybranej klasy
     public void usun_przedmiot(final String przedmiot,final String klasa){
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -271,7 +303,9 @@ public class zarzadzanie_klasami_a extends Fragment {
                 baza.child("Klasy").child(klasa).child("Przedmioty").child(przedmiot).removeValue();
                 for(DataSnapshot uczen: dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").getChildren()){
                     baza.child("Klasy").child(klasa).child("Uczniowie").child(uczen.getKey()).child("Oceny").child(przedmiot).removeValue();
+
                 }
+                wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
             }
 
             @Override
@@ -280,7 +314,7 @@ public class zarzadzanie_klasami_a extends Fragment {
             }
         });
 
-        wyświetl_liste_przedmiotow_w_List_View(wybrana_klasa);
+
     }
 
     //---------------------------------------------------------------------------------
@@ -295,6 +329,10 @@ public class zarzadzanie_klasami_a extends Fragment {
                     spinner_wybieranie_przedmiotu.setVisibility(View.VISIBLE);
                     dodawanie_przedmiotu_btn.setVisibility(View.VISIBLE);
                     lista_przemiotow_ListView.setVisibility(View.VISIBLE);
+                    spinner_uczniow_bez_klasy.setVisibility(View.INVISIBLE);
+                    dodaj_ucznia_btn.setVisibility(View.INVISIBLE);
+                    pesel_textView.setVisibility(View.INVISIBLE);
+                    text_nad_pinnerem.setVisibility(View.INVISIBLE);
                     lista_uczniow_ListView.setVisibility(View.INVISIBLE);
                 }else{
                     wybierz_przedmiot_textView.setVisibility(View.INVISIBLE);
@@ -303,7 +341,11 @@ public class zarzadzanie_klasami_a extends Fragment {
                     dodawanie_przedmiotu_btn.setVisibility(View.INVISIBLE);
                     lista_przemiotow_ListView.setVisibility(View.INVISIBLE);
                     lista_uczniow_ListView.setVisibility(View.VISIBLE);
-
+                    spinner_uczniow_bez_klasy.setVisibility(View.VISIBLE);
+                    dodaj_ucznia_btn.setVisibility(View.VISIBLE);
+                    pesel_textView.setVisibility(View.VISIBLE);
+                    text_nad_pinnerem.setVisibility(View.VISIBLE);
+                    wyswietl_liste_uczniow_dla_klasy();
 
 
                 }
@@ -317,10 +359,48 @@ public class zarzadzanie_klasami_a extends Fragment {
             baza.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    lista_uczniow = new ArrayList<>();
-                    for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").getChildren()){
+                       lista_uczniow = new ArrayList();
+                       lista_uczniow_UID = new ArrayList();
+                        for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").getChildren()){
+                           String UID = uczen.getKey();
+                           Uczen uczenn = dataSnapshot.child("Users").child("Uczen").child(UID).getValue(Uczen.class);
+                           String imie = uczenn.imie;
+                           String nazwisko = uczenn.nazwisko;
+                           String pesel = uczenn.pesel;
+                           lista_uczniow.add(imie+" "+nazwisko+"  | Pesel: "+pesel);
+                           lista_uczniow_UID.add(UID);
+                       }
+                       ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_uczniow);
+                        lista_uczniow_ListView.setAdapter(adapter);
+                        lista_uczniow_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                final String uczen = ((TextView)view).getText().toString();
+                                final String UID = (String)lista_uczniow_UID.get(position);
+                                final AlertDialog.Builder alert_dialog = new AlertDialog.Builder(getContext());
+                                alert_dialog.setMessage("Czy na pewno chcesz usunąć '"+uczen+"' z '"+wybrana_klasa+"' ?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                usun_ucznia(UID,wybrana_klasa);
+                                                wyświetl_uczniow_bez_klasy_w_spinnerze();
+                                                Toast.makeText(getContext(),"Usunięto '"+uczen+"' z '"+wybrana_klasa+"'", Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alert = alert_dialog.create();
+                                alert.setTitle("Usuń");
+                                alert.show();
 
-                    }
+                            }
+                        });
+
                 }
 
                 @Override
@@ -330,6 +410,84 @@ public class zarzadzanie_klasami_a extends Fragment {
             });
     }
 
+
+    //--------------------------------------------------------------------------------------------
+    // usuwanie ucznia z klasy
+    public void usun_ucznia(String UID, String wybrana_klasa){
+        baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(UID).removeValue();
+        baza.child("Users").child("Uczen").child(UID).child("klasa").setValue("null");
+        wyswietl_liste_uczniow_dla_klasy();
+    }
+
+    //--------------------------------------------------------------------------------------------
+    //wyświetlanie uczniów bez klasy w spinnerze
+    public void wyświetl_uczniow_bez_klasy_w_spinnerze(){
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lista_uczniow_bez_klasy = new ArrayList();
+                lista_UID_uczniow_bez_klasy = new ArrayList();
+                lista_pesel_uczniow_bez_klasy = new ArrayList();
+                for(DataSnapshot uczen : dataSnapshot.child("Users").child("Uczen").getChildren()){
+                    String UID = uczen.getKey();
+                    Uczen uczenn = uczen.getValue(Uczen.class);
+                    String imie = uczenn.imie;
+                    String nazwisko = uczenn.nazwisko;
+                    String pesel = uczenn.pesel;
+                    if(uczenn.klasa.equals("null")){
+                         lista_UID_uczniow_bez_klasy.add(UID);
+                         lista_pesel_uczniow_bez_klasy.add(pesel);
+                         lista_uczniow_bez_klasy.add(imie+" "+nazwisko);
+                    }
+                }
+                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_uczniow_bez_klasy);
+                spinner_uczniow_bez_klasy.setAdapter(adapter);
+                spinner_uczniow_bez_klasy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        uczen_bez_klasy = (String)lista_UID_uczniow_bez_klasy.get(position);
+                        pesel_textView.setText("Pesel: " + lista_pesel_uczniow_bez_klasy.get(position));
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //--------------------------------------------------------------------------------------------
+    // dodawanie ucznia bez klasy do wybranej klasy
+    public void dodaj_ucznia_do_klasy(){
+
+
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                baza.child("Users").child("Uczen").child(uczen_bez_klasy).child("klasa").setValue(wybrana_klasa);
+                for(DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Przedmioty").getChildren()){
+                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(uczen_bez_klasy).child("Oceny").child(przedmiot.getKey()).setValue("null");
+                }
+                wyświetl_uczniow_bez_klasy_w_spinnerze();
+                wyswietl_liste_uczniow_dla_klasy();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
 
