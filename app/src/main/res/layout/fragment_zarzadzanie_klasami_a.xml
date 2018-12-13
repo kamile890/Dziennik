@@ -120,7 +120,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="390dp"
         android:gravity="center"
-        android:text="Lista uczniów be przydziału do klasy" />
+        android:text="Lista uczniów bez przydziału do klasy" />
 
     <Spinner
         android:id="@+id/spinner_uczniow_bez_klasy"
