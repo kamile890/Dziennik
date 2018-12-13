@@ -106,6 +106,8 @@ public class zarzadzanie_klasami_a extends Fragment {
         //wyświetlanie spinnera z uczniami bez klasy
         wyświetl_uczniow_bez_klasy_w_spinnerze();
 
+        //jeśli spinner nie wskazuje żadnego ucznia wyczyść textvie z peselem
+
 
 
 
@@ -447,6 +449,7 @@ public class zarzadzanie_klasami_a extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         uczen_bez_klasy = (String)lista_UID_uczniow_bez_klasy.get(position);
                         pesel_textView.setText("Pesel: " + lista_pesel_uczniow_bez_klasy.get(position));
+
                     }
 
                     @Override
@@ -480,6 +483,7 @@ public class zarzadzanie_klasami_a extends Fragment {
                 }
                 wyświetl_uczniow_bez_klasy_w_spinnerze();
                 wyswietl_liste_uczniow_dla_klasy();
+                jesli_spinner_pusty_wyczysc_pole_z_peselem();
             }
 
             @Override
@@ -489,6 +493,26 @@ public class zarzadzanie_klasami_a extends Fragment {
         });
     }
 
+
+    //-------------------------------------------------------------------------------------------
+    //sprawdzenie czy spinner z uczniami bez klasy nic nie wskazuje, jeśli true to wyczyść pole z peselem
+    public void jesli_spinner_pusty_wyczysc_pole_z_peselem(){
+        spinner_uczniow_bez_klasy.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(spinner_uczniow_bez_klasy.getSelectedItem() == null){
+                    Toast.makeText(getContext(),"Pusty spinner", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+            pesel_textView.setText("");
+
+    }
 
 
 
