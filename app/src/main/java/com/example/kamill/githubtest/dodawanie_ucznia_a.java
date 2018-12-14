@@ -1,6 +1,7 @@
 package com.example.kamill.githubtest;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,7 @@ public class dodawanie_ucznia_a extends Fragment {
 
 
 
+
     public dodawanie_ucznia_a() {
         // Required empty public constructor
     }
@@ -63,6 +65,7 @@ public class dodawanie_ucznia_a extends Fragment {
         login = v.findViewById(R.id.login_ucznia);
         imie = v.findViewById(R.id.imie_ucznia);
         nazwisko = v.findViewById(R.id.nazwisko_ucznia);
+
 
         pesel = v.findViewById(R.id.pesel_ucznia);
         btn = v.findViewById(R.id.dodaj_ucznia_btn);
@@ -127,6 +130,8 @@ public class dodawanie_ucznia_a extends Fragment {
             Toast.makeText(getContext(),"Niepoprawny format e-mail ucznia", Toast.LENGTH_SHORT).show();
         }else {
 
+
+
             firebaseAuth.createUserWithEmailAndPassword(login_ucznia, haslo)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -156,6 +161,7 @@ public class dodawanie_ucznia_a extends Fragment {
                             }
                         }
                     });
+
             login.setText("");
             imie.setText("");
             nazwisko.setText("");

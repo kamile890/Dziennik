@@ -30,15 +30,8 @@ public class admin_activity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-
-
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
