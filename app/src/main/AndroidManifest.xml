@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Rodzic_Activity" />
+        <activity android:name=".Nauczyciel_Activity" />
         <activity android:name=".Uczen_Activity" />
         <activity android:name=".Test" />
         <activity android:name=".Resetowanie_hasla" />
@@ -36,16 +37,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kamill.githubtest.LoginActivity" />
         </activity>
-        <activity
-            android:name=".Nauczyciel_Activity"
-            android:label="@string/title_activity_nauczyciel_activity"
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.kamill.githubtest.LoginActivity" />
-        </activity>
-
     </application>
 
 </manifest>

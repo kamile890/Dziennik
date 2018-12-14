@@ -75,23 +75,12 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // przejście do aktywności ucznia
-    public void go_to_Uczen_Activity(){
-        Intent intent = new Intent(getApplicationContext(),Uczen_Activity.class);
-        startActivity(intent);
+    public  void  go_to_Nauczyciel_Activity(){
+        Intent i = new Intent(getApplicationContext(),Nauczyciel_Activity.class);
+        startActivity(i);
     }
 
-    // przejście do aktywności nauczyciela
-    public void go_to_Nauczyciel_Activity(){
-        Intent intent = new Intent(getApplicationContext(),Nauczyciel_Activity.class);
-        startActivity(intent);
-    }
 
-    //przejście do aktywności rodzica
-    public void go_to_Rodzic_Activity(){
-        Intent intent = new Intent(getApplicationContext(),Rodzic_Activity.class);
-        startActivity(intent);
-    }
 
     // logowanie(metoda dla przycisku)
     public void LogInUser(View v) {
@@ -135,24 +124,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
                                         // przejście do odpowiedniego interfejsu w zależności od statusu
-                                        if(uczen != null){
-                                            proggres_dialog.dismiss();
-                                            go_to_Uczen_Activity();
 
-                                        }else if (rodzic != null){
-                                            proggres_dialog.dismiss();
-                                            go_to_Rodzic_Activity();
-
-
-                                        }else if(nauczyciel != null){
-                                            proggres_dialog.dismiss();
-                                            go_to_Nauczyciel_Activity();
-
-
-                                        } else if(admin != null){
+                                       if(admin != null){
                                             proggres_dialog.dismiss();
                                             go_to_Admin_Activity();
-                                        }
+                                        }else if(nauczyciel != null){
+                                           proggres_dialog.dismiss();
+                                           go_to_Nauczyciel_Activity();
+                                       }
 
 
                                     }
