@@ -101,8 +101,10 @@ public class LoginActivity extends AppCompatActivity {
         // jeśli pola sa puste, wyświetla się komunikat
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Wpisz login", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(password)) {
+        }else if(TextUtils.isEmpty(password)){
             Toast.makeText(this, "Wpisz hasło", Toast.LENGTH_SHORT).show();
+        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(getApplicationContext(),"Nieprawidłowy format adresu e-mail", Toast.LENGTH_SHORT).show();
         } else {
             // animacja logowania
             proggres_dialog.setMessage("Logowanie ...");

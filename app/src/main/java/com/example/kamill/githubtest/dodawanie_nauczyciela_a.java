@@ -210,7 +210,9 @@ public class dodawanie_nauczyciela_a extends Fragment {
             Toast.makeText(getContext(), "Lista przedmiotów jest pusta", Toast.LENGTH_SHORT).show();
         } else if (lista_klas_do_listy.isEmpty()) {
             Toast.makeText(getContext(), "Lista klas jest pusta", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(login).matches()){
+            Toast.makeText(getContext(),"Nieprawidłowy format e-mail", Toast.LENGTH_SHORT).show();
+        }else {
 
             firebaseAuth.createUserWithEmailAndPassword(login, haslo)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -227,14 +229,16 @@ public class dodawanie_nauczyciela_a extends Fragment {
                             }
                         }
                     });
+            login_nauczyciela.setText("");
+            imie_nauczyciela.setText("");
+            nazwisko_nauczyciela.setText("");
+            pensja_nauczyciela.setText("");
+
 
 
         }
 
-        login_nauczyciela.setText("");
-        imie_nauczyciela.setText("");
-        nazwisko_nauczyciela.setText("");
-        pensja_nauczyciela.setText("");
+
 
 
 

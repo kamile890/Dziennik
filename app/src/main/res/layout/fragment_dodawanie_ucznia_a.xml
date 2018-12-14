@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,13 +13,15 @@
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:ems="10"
-        android:hint="Login ucznia"
+        android:hint="E-mail ucznia"
         android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/imie_ucznia"
         android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="15dp"
@@ -30,6 +32,7 @@
     <EditText
         android:id="@+id/nazwisko_ucznia"
         android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:layout_marginLeft="15dp"
@@ -41,6 +44,7 @@
         android:id="@+id/pesel_ucznia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="180dp"
         android:layout_marginLeft="15dp"
         android:ems="10"
@@ -51,6 +55,7 @@
         android:id="@+id/dodaj_ucznia_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="290dp"
         android:text="Dodaj" />
@@ -59,8 +64,9 @@
         android:id="@+id/spinner"
         android:layout_marginTop="240dp"
         android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="225dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
 
-</FrameLayout>
+</RelativeLayout>

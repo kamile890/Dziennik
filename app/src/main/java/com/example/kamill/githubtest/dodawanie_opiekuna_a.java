@@ -4,6 +4,7 @@ package com.example.kamill.githubtest;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,26 +75,44 @@ public class dodawanie_opiekuna_a extends Fragment {
         String haslo_opiekuna = randomString(10);
         final String login_admina = firebaseAuth.getCurrentUser().getEmail();
 
-        firebaseAuth.createUserWithEmailAndPassword(login_opiekuna,haslo_opiekuna)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+        if(TextUtils.isEmpty(login_opiekuna)){
+            Toast.makeText(getContext(),"Wpisz e-mail opiekuna", Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(imie_opiekuna)){
+            Toast.makeText(getContext(),"Wpisz imię opiekuna", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(nazwisko_opiekuna)){
+            Toast.makeText(getContext(),"Wpisz nazwisko opiekuna", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(telefon_opiekuna)){
+            Toast.makeText(getContext(),"Wpisz telefon do opiekuna", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(login_dziecka_opiekuna)){
+            Toast.makeText(getContext(),"Wpisz e-mail podopiecznego", Toast.LENGTH_SHORT).show();
+        }else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(login_opiekuna).matches()){
+            Toast.makeText(getContext(),"Niepoprawny format e-mail opiekuna",Toast.LENGTH_SHORT).show();
+        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(login_dziecka_opiekuna).matches()){
+            Toast.makeText(getContext(),"Niepoprawny format e-mail podpiecznego",Toast.LENGTH_SHORT).show();
+        }else {
+            firebaseAuth.createUserWithEmailAndPassword(login_opiekuna, haslo_opiekuna)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            Rodzic rodzic = new Rodzic(login_opiekuna,imie_opiekuna,nazwisko_opiekuna,telefon_opiekuna,login_dziecka_opiekuna);
-                            baza.child("Users").child("Opiekun").child(firebaseAuth.getCurrentUser().getUid()).setValue(rodzic);
-                            firebaseAuth.sendPasswordResetEmail(login_opiekuna);
-                            firebaseAuth.signInWithEmailAndPassword(login_admina,"admin123");
-                            Toast.makeText(getContext(),"Dodano opiekuna", Toast.LENGTH_SHORT).show();
+                                Rodzic rodzic = new Rodzic(login_opiekuna, imie_opiekuna, nazwisko_opiekuna, telefon_opiekuna, login_dziecka_opiekuna);
+                                baza.child("Users").child("Opiekun").child(firebaseAuth.getCurrentUser().getUid()).setValue(rodzic);
+                                firebaseAuth.sendPasswordResetEmail(login_opiekuna);
+                                firebaseAuth.signInWithEmailAndPassword(login_admina, "admin123");
+                                Toast.makeText(getContext(), "Dodano opiekuna", Toast.LENGTH_SHORT).show();
 
-                        } else {
-                            Toast.makeText(getContext(),"Nie udało się dodać opiekuna", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Nie udało się dodać opiekuna", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-
-
-
+                    });
+            login.setText("");
+            imie.setText("");
+            nazwisko.setText("");
+            telefon.setText("");
+            login_dziecka.setText("");
+        }
     }
 
     // metoda generująca losowe hasło

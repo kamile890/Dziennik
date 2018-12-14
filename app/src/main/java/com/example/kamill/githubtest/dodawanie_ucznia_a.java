@@ -4,6 +4,7 @@ package com.example.kamill.githubtest;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,36 +115,52 @@ public class dodawanie_ucznia_a extends Fragment {
         String haslo = randomString(10);
         final String login_admina = firebaseAuth.getCurrentUser().getEmail();
 
+        if(TextUtils.isEmpty(login_ucznia)){
+            Toast.makeText(getContext(),"Wpisz e-mail ucznia",Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(imie_ucznia)){
+            Toast.makeText(getContext(),"Wpisz imię ucznia", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(nazwisko_ucznia)){
+            Toast.makeText(getContext(),"Wpisz nazwisko ucznia", Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(pesel_ucznia)){
+            Toast.makeText(getContext(),"Wpisz PESEL ucznia",Toast.LENGTH_SHORT).show();
+        }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(login_ucznia).matches()){
+            Toast.makeText(getContext(),"Niepoprawny format e-mail ucznia", Toast.LENGTH_SHORT).show();
+        }else {
 
-        firebaseAuth.createUserWithEmailAndPassword(login_ucznia,haslo)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+            firebaseAuth.createUserWithEmailAndPassword(login_ucznia, haslo)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            Uczen uczen = new Uczen(login_ucznia,imie_ucznia,nazwisko_ucznia,pesel_ucznia,klasa);
-                            baza.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
-                            baza.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for(DataSnapshot przedmiot: dataSnapshot.child("Klasy").child(klasa).child("Przedmioty").getChildren()){
-                                        baza.child("Klasy").child(klasa).child("Uczniowie").child(firebaseAuth.getCurrentUser().getUid()).child("Oceny").child(przedmiot.getKey()).setValue("null");
+                                Uczen uczen = new Uczen(login_ucznia, imie_ucznia, nazwisko_ucznia, pesel_ucznia, klasa);
+                                baza.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
+                                baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(klasa).child("Przedmioty").getChildren()) {
+                                            baza.child("Klasy").child(klasa).child("Uczniowie").child(firebaseAuth.getCurrentUser().getUid()).child("Oceny").child(przedmiot.getKey()).setValue("null");
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                }
-                            });
-                            firebaseAuth.sendPasswordResetEmail(login_ucznia);
-                            firebaseAuth.signInWithEmailAndPassword(login_admina,"admin123");
-                            Toast.makeText(getContext(),"Dodano ucznia do bazy", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(getContext(),"Nie udało się dodać do bazy", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                firebaseAuth.sendPasswordResetEmail(login_ucznia);
+                                firebaseAuth.signInWithEmailAndPassword(login_admina, "admin123");
+                                Toast.makeText(getContext(), "Dodano ucznia do bazy", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Nie udało się dodać do bazy", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
+                    });
+            login.setText("");
+            imie.setText("");
+            nazwisko.setText("");
+            pesel.setText("");
+            }
         }
 
 
