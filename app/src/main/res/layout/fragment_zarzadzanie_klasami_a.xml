@@ -69,33 +69,25 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"></Spinner>
 
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="140dp"
+    android:orientation="horizontal">
 
     <RadioButton
         android:id="@+id/dodaj_przedmiot_radio_button"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="124dp"
+        android:layout_height="match_parent"
         android:text="Przedmioty" />
 
     <RadioButton
-        android:id="@+id/dodaj_ucznia_radio_button"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
 
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_toEndOf="@+id/dodaj_przedmiot_radio_button"
-        android:layout_toRightOf="@+id/dodaj_przedmiot_radio_button"
-        android:text="Uczniowie" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="Uczniowie"/>
+</RadioGroup>
 
 
     <TextView
