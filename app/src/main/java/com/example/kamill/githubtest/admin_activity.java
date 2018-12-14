@@ -124,6 +124,11 @@ public class admin_activity extends AppCompatActivity
             finish();
             startActivity(i);
             Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.edycja_ucznia){
+            setTitle("Edytuj dane ucznia");
+            edycja_ucznia_a edycja = new edycja_ucznia_a();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment, edycja).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

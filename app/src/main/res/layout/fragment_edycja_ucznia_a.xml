@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edycja_ucznia_a">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lista uczniów: "
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        />
+
+    <Spinner
+
+        android:id="@+id/spinner_lista_uczniow"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"></Spinner>
+    
+    <EditText
+        android:id="@+id/imie_ucznia_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Wpisz nowe imię"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:id="@+id/nazwisko_ucznia_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Wpisz nowe nazwisko"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/pesel_ucznia_Edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Wpisz nowy pesel"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/zapisz_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="270dp"
+        android:text="Zapisz"/>
+
+</RelativeLayout>
