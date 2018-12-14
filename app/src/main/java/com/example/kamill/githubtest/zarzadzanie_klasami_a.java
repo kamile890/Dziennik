@@ -94,7 +94,7 @@ public class zarzadzanie_klasami_a extends Fragment {
         dodaj_ucznia_btn.setVisibility(View.INVISIBLE);
         pesel_textView.setVisibility(View.INVISIBLE);
         text_nad_pinnerem.setVisibility(View.INVISIBLE);
-        // sprawdzanie, który radiobutton jest wciśnięty
+        // sprawdzanie, który radiobutton jest wciśnięty(przełączanie między przedmiotami i uczniami)
         ktory_radiobutton();
 
         //spinner wyboru przedmiotu
@@ -107,11 +107,7 @@ public class zarzadzanie_klasami_a extends Fragment {
         wyświetl_uczniow_bez_klasy_w_spinnerze();
 
 
-
-
-
-
-
+        
         //onClickListener dodawanie przedmiotu do listy
         dodawanie_przedmiotu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
