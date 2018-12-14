@@ -132,26 +132,28 @@ public class LoginActivity extends AppCompatActivity {
                                         nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
                                         admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
 
-                                        Toast.makeText(getApplicationContext(),"Przeszukano baze danych", Toast.LENGTH_SHORT).show();
+
 
                                         // przejście do odpowiedniego interfejsu w zależności od statusu
                                         if(uczen != null){
+                                            proggres_dialog.dismiss();
                                             go_to_Uczen_Activity();
-                                            Toast.makeText(getApplicationContext(),"Zalogowano ucznia", Toast.LENGTH_SHORT).show();
+
                                         }else if (rodzic != null){
+                                            proggres_dialog.dismiss();
                                             go_to_Rodzic_Activity();
-                                            Toast.makeText(getApplicationContext(),"Zalogowano rodzica", Toast.LENGTH_SHORT).show();
+
 
                                         }else if(nauczyciel != null){
+                                            proggres_dialog.dismiss();
                                             go_to_Nauczyciel_Activity();
-                                            Toast.makeText(getApplicationContext(),"Zalogowano nauczyciela", Toast.LENGTH_SHORT).show();
+
 
                                         } else if(admin != null){
+                                            proggres_dialog.dismiss();
                                             go_to_Admin_Activity();
-                                            Toast.makeText(getApplicationContext(),"Zalogowano admina", Toast.LENGTH_SHORT).show();
-
                                         }
-                                        proggres_dialog.hide();
+
 
                                     }
 
