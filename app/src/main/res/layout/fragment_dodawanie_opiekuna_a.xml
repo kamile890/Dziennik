@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,8 +11,9 @@
         android:id="@+id/login_opiekuna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
+
         android:ems="10"
         android:hint="E-mail opiekuna"
         android:inputType="textPersonName" />
@@ -21,6 +22,7 @@
         android:id="@+id/imie_opiekuna"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -30,6 +32,7 @@
     <EditText
         android:id="@+id/nazwisko_opiekuna"
         android:layout_marginTop="110dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,6 +42,7 @@
 
     <EditText
         android:id="@+id/telefon_opiekuna"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -49,6 +53,7 @@
 
     <EditText
         android:id="@+id/login_dziecka_opiekuna"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="210dp"
         android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
@@ -60,9 +65,11 @@
     <Button
         android:id="@+id/dodaj_opiekuna_btn"
         android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginTop="260dp"
         android:onClick="dodaj_opiekuna"
         android:text="Dodaj" />
-</FrameLayout>
+
+</RelativeLayout>

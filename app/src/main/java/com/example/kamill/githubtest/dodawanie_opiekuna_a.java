@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,7 @@ public class dodawanie_opiekuna_a extends Fragment {
     private FirebaseAuth firebaseAuth;
     private Button btn;
 
+
     public dodawanie_opiekuna_a() {
         // Required empty public constructor
     }
@@ -39,6 +41,7 @@ public class dodawanie_opiekuna_a extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_dodawanie_opiekuna_a, container, false);
+
         login = v.findViewById(R.id.login_opiekuna);
         btn = v.findViewById(R.id.dodaj_opiekuna_btn);
         imie = v.findViewById(R.id.imie_opiekuna);
@@ -47,6 +50,8 @@ public class dodawanie_opiekuna_a extends Fragment {
         login_dziecka = v.findViewById(R.id.login_dziecka_opiekuna);
         baza = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +62,8 @@ public class dodawanie_opiekuna_a extends Fragment {
 
         return v;
     }
+
+
 
     public void dodaj_opiekuna(){
         final String login_opiekuna = login.getText().toString();
