@@ -1,5 +1,6 @@
 package com.example.kamill.githubtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -37,7 +39,11 @@ public class admin_activity extends AppCompatActivity
 
 
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if(!drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.openDrawer(GravityCompat.START);
+        }
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -113,6 +119,12 @@ public class admin_activity extends AppCompatActivity
             zarzadzanie_klasami_a z = new zarzadzanie_klasami_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,z).commit();
+        } else if (id == R.id.wyloguj){
+            firebaseAuth.signOut();
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            finish();
+            startActivity(i);
+            Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -11,6 +11,8 @@
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:background="@drawable/tloo"
+        android:visibility="visible"></FrameLayout>
 
 </RelativeLayout>
