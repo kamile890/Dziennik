@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     // przejście do aktywności Admina
     public void go_to_Admin_Activity(){
         Intent intent = new Intent(getApplicationContext(),admin_activity.class);
+        finish();
         startActivity(intent);
     }
 
