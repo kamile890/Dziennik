@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Login"
         android:inputType="textPersonName" />
@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Imie"
         android:inputType="textPersonName" />
@@ -31,6 +32,7 @@
         android:id="@+id/nazwisko_nauczyciela"
         android:layout_marginTop="110dp"
         android:layout_marginLeft="15dp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -41,6 +43,7 @@
         android:layout_marginTop="160dp"
         android:layout_marginLeft="15dp"
         android:id="@+id/pensja_nauczyciela"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -49,87 +52,125 @@
 
     <TextView
         android:id="@+id/teskt_spinner_przedmiot"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="15dp"
         android:text="Wybierz przedmiot" />
 
     <Spinner
         android:id="@+id/spinner_przedmiot"
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="230dp" />
+        />
 
     <Button
         android:id="@+id/dodaj_przedmiot_do_listy_btn"
-        android:layout_marginTop="225dp"
-        android:layout_marginLeft="250dp"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="225dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="126dp"
         android:text="Dodaj" />
 
     <Button
         android:id="@+id/dodaj_nauczyciela_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="310dp"
+        android:layout_marginEnd="203dp"
+        android:layout_marginRight="203dp"
         android:text="Dodaj nauczyciela" />
 
     <TextView
         android:id="@+id/tekst_lista_przedmiotow"
-        android:layout_marginTop="380dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="250dp"
         android:text="Lista przedmiotów:" />
 
     <Spinner
         android:id="@+id/spinner_klasa"
         android:layout_marginTop="280dp"
         android:layout_marginLeft="15dp"
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/dodaj_klase_do_listy_btn"
-        android:layout_marginTop="275dp"
-        android:layout_marginLeft="250dp"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="275dp"
+        android:layout_marginRight="40dp"
         android:text="Dodaj" />
 
     <TextView
         android:id="@+id/tekst_spinner_klasa"
-        android:layout_marginTop="260dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="15dp"
         android:text="Wybierz klase" />
 
     <TextView
         android:id="@+id/tekst_lista_klas"
-        android:layout_marginTop="320dp"
-        android:layout_marginLeft="220dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
         android:text="Lista klas:" />
 
     <ListView
         android:id="@+id/lista_przedmiotow"
-        android:layout_marginTop="400dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="400dp" />
 
     <ListView
         android:id="@+id/lista_klas"
-        android:layout_marginTop="350dp"
-        android:layout_marginLeft="210dp"
         android:layout_width="150dp"
-        android:layout_height="160dp" />
+        android:layout_height="160dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_toEndOf="@+id/lista_przedmiotow"
+        android:layout_toRightOf="@+id/lista_przedmiotow" />
 
 
-</FrameLayout>
+</RelativeLayout>
