@@ -1,5 +1,6 @@
 package com.example.kamill.githubtest;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,9 @@ public class Resetowanie_hasla extends AppCompatActivity {
     public void resetowanie(View v){
         String Email = email.getText().toString();
         firebaseAuth.sendPasswordResetEmail(Email);
+        Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+        finish();
+        startActivity(i);
         Toast.makeText(Resetowanie_hasla.this,"Na twoją skrzynkę pocztową wysłano maila resetujacego hasło.", Toast.LENGTH_SHORT).show();
     }
 }
