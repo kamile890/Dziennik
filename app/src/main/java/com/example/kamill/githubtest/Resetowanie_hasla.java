@@ -28,7 +28,7 @@ public class Resetowanie_hasla extends AppCompatActivity {
 
         String Email = email.getText().toString();
         if(TextUtils.isEmpty(Email)){
-            Toast.makeText(getApplicationContext(),"Podaj e-mail", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(),"Podaj e-mail", Toast.LENGTH_SHORT).show();
         } else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
             Toast.makeText(getApplicationContext(),"Nieprawidłowy format adresu e-mail", Toast.LENGTH_SHORT).show();
         }else {
