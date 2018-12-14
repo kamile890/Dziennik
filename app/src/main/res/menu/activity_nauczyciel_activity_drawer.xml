@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="Menu">
+        <menu>
+            <item
+                android:id="@+id/przedmioty_nauczyciela"
+                android:icon="@android:drawable/ic_menu_sort_by_size"
+                android:title="Moje przedmioty" />
+            <item
+                android:id="@+id/klasy_nauczyciela"
+                android:icon="@android:drawable/ic_menu_sort_by_size"
+                android:title="Moje klasy" />
+        </menu>
+    </item>
+
+    <item android:title="Wyloguj">
+        <menu>
+            <item
+                android:id="@+id/wyloguj"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="Wyloguj" />
+        </menu>
+    </item>
+
+</menu>
