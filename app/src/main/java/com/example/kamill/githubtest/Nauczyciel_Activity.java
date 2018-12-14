@@ -48,8 +48,8 @@ public class Nauczyciel_Activity extends AppCompatActivity
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
-        login = v.findViewById(R.id.login_admina);
-        login.setText(firebaseAuth.getCurrentUser().getEmail());
+        login = v.findViewById(R.id.login_nauczyciela);
+        login.setText(firebaseAuth.getCurrentUser().getEmail().toString());
     }
 
 

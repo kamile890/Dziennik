@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Test" />
         <activity android:name=".Resetowanie_hasla" />
         <activity
             android:name=".admin_activity"
@@ -33,6 +32,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kamill.githubtest.LoginActivity" />
+        </activity>
+        <activity android:name=".Nauczyciel_Activity"
+            android:label="Dziennik Elektroniczny"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.kamill.githubtest.LoginActivity"/>
         </activity>
     </application>
 
