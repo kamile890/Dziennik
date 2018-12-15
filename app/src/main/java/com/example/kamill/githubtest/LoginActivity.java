@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference Database;
     private Uczen uczen;
     private Nauczyciel nauczyciel;
-    private Rodzic rodzic;
+    private Opiekun rodzic;
     private Admin admin;
 
 
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
-                                        rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Rodzic.class);
+                                        rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Opiekun.class);
                                         nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
                                         admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
 
