@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-
         android:ems="10"
         android:hint="E-mail opiekuna"
         android:inputType="textPersonName" />
@@ -51,25 +50,57 @@
         android:hint="Nr telefonu do opiekuna"
         android:inputType="phone" />
 
-    <EditText
-        android:id="@+id/login_dziecka_opiekuna"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="210dp"
-        android:layout_marginLeft="15dp"
+    <Spinner
+        android:id="@+id/spinner_lista_uczniow"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="E-mail podopiecznego"
-        android:inputType="textPersonName" />
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/dodaj_ucznia_do_listy_btn"
+        android:layout_toLeftOf="@+id/dodaj_ucznia_do_listy_btn"></Spinner>
+
+    <Button
+        android:id="@+id/dodaj_ucznia_do_listy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+
+        android:text="Dodaj" />
+
+    <ListView
+        android:id="@+id/lista_uczniow_ListView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_toStartOf="@+id/dodaj_opiekuna_btn"
+        android:layout_toLeftOf="@+id/dodaj_opiekuna_btn"></ListView>
 
     <Button
         android:id="@+id/dodaj_opiekuna_btn"
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="370dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:onClick="dodaj_opiekuna"
-        android:text="Dodaj" />
+        android:text="Dodaj opiekuna" />
 
 </RelativeLayout>
