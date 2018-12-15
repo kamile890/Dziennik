@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edycja_opiekuna_a">
+
+    <TextView
+        android:id="@+id/lista_opikunow_Text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:text="Lista opiekunów:"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true" />
+
+    <Spinner
+        android:id="@+id/spinner_opiekunow"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"></Spinner>
+
+    <EditText
+        android:id="@+id/imie_opiekuna_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="140dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Wpisz imię opiekuna"/>
+
+    <EditText
+        android:id="@+id/nazwisko_opiekuna_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="190dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Wpisz nazwisko opiekuna"/>
+
+    <EditText
+        android:id="@+id/telefon_opiekuna_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="240dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:hint="Wpisz telefon opiekuna"/>
+
+    <Button
+        android:id="@+id/zapisz_btn"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="Zapisz"/>
+
+
+
+</RelativeLayout>

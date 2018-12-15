@@ -6,24 +6,37 @@
     tools:context=".edycja_nauczyciela">
 
     <TextView
+        android:id="@+id/textView_lista_nauczycieli"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Lista nauczycieli: "
-        android:textSize="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+
+        android:text="Lista nauczycieli: "
+        android:textSize="20dp" />
 
     <Spinner
+        android:id="@+id/spinner_nauczycieli"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"></Spinner>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_toEndOf="@+id/textView_lista_nauczycieli"
+        android:layout_toRightOf="@+id/textView_lista_nauczycieli"></Spinner>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:hint="Wpisz imie nauczyciela"/>
 
     <EditText

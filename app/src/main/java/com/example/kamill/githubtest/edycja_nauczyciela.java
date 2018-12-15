@@ -1,7 +1,5 @@
 package com.example.kamill.githubtest;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,7 +19,7 @@ public class edycja_nauczyciela extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_edycja_nauczyciela, container, false);
+        View v = inflater.inflate(R.layout.fragment_edycja_nauczyciela_a, container, false);
 
 
 
