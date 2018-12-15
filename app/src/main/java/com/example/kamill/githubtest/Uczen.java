@@ -8,19 +8,21 @@ public class Uczen {
     String nazwisko;
     String pesel;
     String klasa;
+    String opiekun;
 
 
     public Uczen() {
 
     }
 
-    public Uczen(String login, String imie, String nazwisko, String pesel, String klasa) {
+    public Uczen(String login, String imie, String nazwisko, String pesel, String klasa, String opiekun) {
 
         this.login = login;
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.pesel = pesel;
         this.klasa = klasa;
+        this.opiekun = opiekun;
 
     }
 
@@ -65,4 +67,11 @@ public class Uczen {
         this.klasa = klasa;
     }
 
+    public String getOpiekun() {
+        return opiekun;
+    }
+
+    public void setOpiekun(String opiekun) {
+        this.opiekun = opiekun;
+    }
 }

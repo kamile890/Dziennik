@@ -138,7 +138,7 @@ public class dodawanie_ucznia_a extends Fragment {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
 
-                                Uczen uczen = new Uczen(login_ucznia, imie_ucznia, nazwisko_ucznia, pesel_ucznia, klasa);
+                                Uczen uczen = new Uczen(login_ucznia, imie_ucznia, nazwisko_ucznia, pesel_ucznia, klasa, "null");
                                 baza.child("Users").child("Uczen").child(firebaseAuth.getCurrentUser().getUid()).setValue(uczen);
                                 baza.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
