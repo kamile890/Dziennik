@@ -31,18 +31,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kamill.githubtest.Nauczyciel_Activity" />
         </activity>
-
         <activity android:name=".Resetowanie_hasla" />
         <activity
             android:name=".admin_activity"
             android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-
-            >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.kamill.githubtest.LoginActivity" />
         </activity>
+        <activity
+            android:name=".Uczen_activity"
+            android:label="@string/title_activity_uczen_activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

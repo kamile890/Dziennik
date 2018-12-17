@@ -80,6 +80,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public  void  go_to_Uczen_Activity(){
+        Intent i = new Intent(getApplicationContext(),Uczen_activity.class);
+        startActivity(i);
+    }
+
 
 
     // logowanie(metoda dla przycisku)
@@ -126,12 +131,16 @@ public class LoginActivity extends AppCompatActivity {
                                         // przejście do odpowiedniego interfejsu w zależności od statusu
 
                                        if(admin != null){
-                                            proggres_dialog.dismiss();
+                                           proggres_dialog.dismiss();
                                             go_to_Admin_Activity();
-                                        }else if(nauczyciel != null){
+                                       }else if(nauczyciel != null){
                                            proggres_dialog.dismiss();
                                            go_to_Nauczyciel_Activity();
+                                       }else if(uczen != null){
+                                           proggres_dialog.dismiss();
+                                           go_to_Uczen_Activity();
                                        }
+
 
 
                                     }
