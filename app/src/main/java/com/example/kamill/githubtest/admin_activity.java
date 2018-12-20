@@ -123,6 +123,11 @@ public class admin_activity extends AppCompatActivity
             edycja_ucznia_a edycja = new edycja_ucznia_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment, edycja).commit();
+        } else if (id == R.id.edycja_opiekuna){
+            setTitle("Edytuj dane opiekuna");
+            edycja_opiekuna_a edy = new edycja_opiekuna_a();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment, edy).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
