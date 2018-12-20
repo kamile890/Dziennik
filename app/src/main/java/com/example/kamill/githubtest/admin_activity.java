@@ -128,6 +128,11 @@ public class admin_activity extends AppCompatActivity
             edycja_opiekuna_a edy = new edycja_opiekuna_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment, edy).commit();
+        } else if (id == R.id.edycja_nauczyciela){
+            setTitle("Edytuj dane nauczyciela");
+            edycja_nauczyciela edy = new edycja_nauczyciela();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment, edy).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -14,7 +14,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-
         android:text="Lista nauczycieli: "
         android:textSize="20dp" />
 
@@ -43,15 +42,133 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="130dp"
         android:hint="Wpisz nazwisko nauczyciela"/>
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="180dp"
+        android:text="Lista przedmiotów: "
+        android:textSize="19sp"
+        android:gravity="center"/>
+
+    <Spinner
+        android:id="@+id/spinner_lista_przedmiotow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="220dp"
-        android:hint="Wpisz imie nauczyciela"/>
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/dodaj_przedmiot_btn"
+        android:layout_toLeftOf="@+id/dodaj_przedmiot_btn"></Spinner>
+
+    <Button
+        android:id="@+id/dodaj_przedmiot_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Dodaj"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="260dp"
+        android:text="Lista klas: "
+        android:textSize="19sp"
+        android:gravity="center"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/dodaj_klase_btn"
+        android:layout_toLeftOf="@+id/dodaj_klase_btn"></Spinner>
+
+    <Button
+        android:id="@+id/dodaj_klase_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Dodaj" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:text="Lista przedmiotów: "
+        android:textSize="19sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:text="Lista klas: "
+        android:textSize="19sp" />
+
+    <ListView
+        android:id="@+id/ListView_lista_przedmiotow"
+        android:layout_width="179dp"
+        android:layout_height="226dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/LiesView_lista_klas"
+        android:layout_toLeftOf="@+id/LiesView_lista_klas"></ListView>
+
+    <ListView
+        android:id="@+id/LiesView_lista_klas"
+        android:layout_width="192dp"
+        android:layout_height="224dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"></ListView>
+
+
 
 
 </RelativeLayout>
