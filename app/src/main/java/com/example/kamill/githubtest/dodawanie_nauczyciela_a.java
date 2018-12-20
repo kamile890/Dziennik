@@ -34,7 +34,6 @@ public class dodawanie_nauczyciela_a extends Fragment {
     private EditText login_nauczyciela;
     private EditText imie_nauczyciela;
     private EditText nazwisko_nauczyciela;
-    private EditText pensja_nauczyciela;
     private Spinner spinner_przedmioty;
     private Spinner spinner_klasy;
     private Button dodaj_nauczyciela_btn;
@@ -65,7 +64,6 @@ public class dodawanie_nauczyciela_a extends Fragment {
         login_nauczyciela = v.findViewById(R.id.login_nauczyciela);
         imie_nauczyciela = v.findViewById(R.id.imie_nauczyciela);
         nazwisko_nauczyciela = v.findViewById(R.id.nazwisko_nauczyciela);
-        pensja_nauczyciela = v.findViewById(R.id.pensja_nauczyciela);
         spinner_przedmioty = v.findViewById(R.id.spinner_przedmiot);
         spinner_klasy = v.findViewById(R.id.spinner_klasa);
         baza = FirebaseDatabase.getInstance().getReference();
@@ -194,7 +192,6 @@ public class dodawanie_nauczyciela_a extends Fragment {
         final String login = login_nauczyciela.getText().toString();
         final String imie = imie_nauczyciela.getText().toString();
         final String nazwisko = nazwisko_nauczyciela.getText().toString();
-        final String pensja = pensja_nauczyciela.getText().toString();
         final String haslo = randomString(10);
         final String login_admina = firebaseAuth.getCurrentUser().getEmail();
 
@@ -204,8 +201,6 @@ public class dodawanie_nauczyciela_a extends Fragment {
             Toast.makeText(getContext(), "Wpisz imię", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(nazwisko)) {
             Toast.makeText(getContext(), "Wpisz nazwisko", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(pensja)) {
-            Toast.makeText(getContext(), "Wpisz pensję", Toast.LENGTH_SHORT).show();
         } else if (lista_przedmiotow_do_listy.isEmpty()) {
             Toast.makeText(getContext(), "Lista przedmiotów jest pusta", Toast.LENGTH_SHORT).show();
         } else if (lista_klas_do_listy.isEmpty()) {
@@ -219,7 +214,7 @@ public class dodawanie_nauczyciela_a extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Nauczyciel nauczyciel = new Nauczyciel(login, imie, nazwisko, pensja, lista_przedmiotow_do_listy, lista_klas_do_listy);
+                                Nauczyciel nauczyciel = new Nauczyciel(login, imie, nazwisko, lista_przedmiotow_do_listy, lista_klas_do_listy);
                                 baza.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).setValue(nauczyciel);
                                 firebaseAuth.sendPasswordResetEmail(login);
                                 firebaseAuth.signInWithEmailAndPassword(login_admina, "admin123");
@@ -232,10 +227,6 @@ public class dodawanie_nauczyciela_a extends Fragment {
             login_nauczyciela.setText("");
             imie_nauczyciela.setText("");
             nazwisko_nauczyciela.setText("");
-            pensja_nauczyciela.setText("");
-
-
-
         }
 
 
