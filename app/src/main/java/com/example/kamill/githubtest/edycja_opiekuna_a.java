@@ -47,6 +47,7 @@ public class edycja_opiekuna_a extends Fragment {
     private String wybrany_uczen;
     private String wybrany_uczen_UID;
     private TextView pole_pesel;
+    private ArrayList lista_UID_usunietych;
 
     public edycja_opiekuna_a() {
         // Required empty public constructor
@@ -68,6 +69,8 @@ public class edycja_opiekuna_a extends Fragment {
         spinner_uczniow_bez_opiekuna = v.findViewById(R.id.spinner_uczniow);
         baza = FirebaseDatabase.getInstance().getReference();
         pole_pesel = v.findViewById(R.id.pesel_textView);
+        lista_UID_usunietych = new ArrayList();
+
 
         aktualizuj_liste_opiekunow();
 
@@ -118,6 +121,7 @@ public class edycja_opiekuna_a extends Fragment {
                         nazwisko_o.setText(nazwisko);
                         telefon_o.setText(telefon);
                         wyswietl_liste_uczniow();
+                        lista_UID_usunietych.clear();
                     }
 
                     @Override
@@ -144,11 +148,20 @@ public class edycja_opiekuna_a extends Fragment {
         baza.child("Users").child("Opiekun").child(UID).child("imie").setValue(imie);
         baza.child("Users").child("Opiekun").child(UID).child("nazwisko").setValue(nazwisko);
         baza.child("Users").child("Opiekun").child(UID).child("nr_telefonu").setValue(telefon);
-        baza.child("Users").child("Opiekun").child(UID).child("lista_dzieci").setValue(lista_UID_dzieci_opiekuna);
-        for(int i = 0; i<lista_UID_dzieci_opiekuna.size(); i++){
-            String UID_podopiecznego = (String)lista_UID_dzieci_opiekuna.get(i);
-            baza.child("Users").child("Uczen").child(UID_podopiecznego).child("opiekun").setValue(UID);
+        if(lista_UID_dzieci_opiekuna.isEmpty()){
+            baza.child("Users").child("Opiekun").child(UID).child("lista_dzieci").setValue("null");
+        }else {
+            baza.child("Users").child("Opiekun").child(UID).child("lista_dzieci").setValue(lista_UID_dzieci_opiekuna);
+            for(int i=0;i<lista_UID_dzieci_opiekuna.size();i++){
+                baza.child("Users").child("Uczen").child(lista_UID_dzieci_opiekuna.get(i).toString()).child("opiekun").setValue(UID);
+            }
+            for(int i=0; i<lista_UID_usunietych.size();i++){
+                baza.child("Users").child("Uczen").child(lista_UID_usunietych.get(i).toString()).child("opiekun").setValue("null");
+            }
+
         }
+        lista_UID_usunietych.clear();
+
         Toast.makeText(getContext(), "Zapisano zmiany", Toast.LENGTH_SHORT).show();
         wyswietl_liste_uczniow();
         stworz_spinner_z_dziecmi_bez_opiekuna();
@@ -181,6 +194,7 @@ public class edycja_opiekuna_a extends Fragment {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             String uczen = (String)lista_dzieci_opiekuna.get(position);
                             lista_dzieci_opiekuna.remove(lista_dzieci_opiekuna.get(position));
+                            lista_UID_usunietych.add(lista_UID_dzieci_opiekuna.get(position));
                             lista_UID_dzieci_opiekuna.remove(lista_UID_dzieci_opiekuna.get(position));
                             ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_dzieci_opiekuna);
                             lista_podopiecznych_ListView.setAdapter(adapter);
@@ -249,6 +263,7 @@ public class edycja_opiekuna_a extends Fragment {
         }else {
             lista_dzieci_opiekuna.add(wybrany_uczen);
             lista_UID_dzieci_opiekuna.add(wybrany_uczen_UID);
+
             ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista_dzieci_opiekuna);
             lista_podopiecznych_ListView.setAdapter(adapter);
         }
@@ -256,6 +271,5 @@ public class edycja_opiekuna_a extends Fragment {
 
 }
 
-// dokończyć metode zapisywania danych
 // dodać walidacje pesel w innych klasach
 // dodać sprawdzanie na małą litere (toLowerCase)
