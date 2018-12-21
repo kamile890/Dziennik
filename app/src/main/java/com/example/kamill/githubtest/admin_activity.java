@@ -130,7 +130,7 @@ public class admin_activity extends AppCompatActivity
             f.beginTransaction().replace(R.id.fragment, edy).commit();
         } else if (id == R.id.edycja_nauczyciela){
             setTitle("Edytuj dane nauczyciela");
-            edycja_nauczyciela edy = new edycja_nauczyciela();
+            edycja_nauczyciela_a edy = new edycja_nauczyciela_a();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment, edy).commit();
         }
