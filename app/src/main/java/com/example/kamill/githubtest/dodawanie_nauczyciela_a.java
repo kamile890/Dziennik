@@ -244,7 +244,7 @@ public class dodawanie_nauczyciela_a extends Fragment {
             } else {
                 Toast.makeText(getContext(), "'" + przedmiot + "' już znajduje się na liście", Toast.LENGTH_SHORT).show();
             }
-            ArrayAdapter adapter_listy_przedmiotow = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1, lista_przedmiotow_do_listy);
+            ArrayAdapter adapter_listy_przedmiotow = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista_przedmiotow_do_listy);
             lista_przedmiotow.setAdapter(adapter_listy_przedmiotow);
 
 
@@ -260,7 +260,7 @@ public class dodawanie_nauczyciela_a extends Fragment {
         }else{
             Toast.makeText(getContext(), "'" +klasa+"' już znajduje się na liście",Toast.LENGTH_SHORT).show();
         }
-        ArrayAdapter adapter_listy_klas = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,lista_klas_do_listy);
+        ArrayAdapter adapter_listy_klas = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item,lista_klas_do_listy);
         lista_klas.setAdapter(adapter_listy_klas);
     }
 

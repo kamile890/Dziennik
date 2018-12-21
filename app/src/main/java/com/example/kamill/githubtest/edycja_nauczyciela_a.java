@@ -145,7 +145,7 @@ public class edycja_nauczyciela_a extends Fragment {
 
     //tworzenie adaptera dla spinnera
     public void stworz_adapter_dla_spinnera(ArrayList lista, Spinner spinner) {
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_checked, lista);
         spinner.setAdapter(adapter);
     }
 
@@ -266,7 +266,7 @@ public class edycja_nauczyciela_a extends Fragment {
 
     //tworzenie adaptera dla ListView
     public void stworz_adapter_dla_listView(ArrayList lista, ListView listaview){
-        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.preference_category, lista);
         listaview.setAdapter(adapter);
     }
 
