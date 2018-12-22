@@ -190,4 +190,5 @@
     <string name="title_activity_admin_activity">admin_activity</string>
     <string name="title_activity_nauczyciel_activity">nauczyciel_activity</string>
     <string name="title_activity_uczen_activity">Uczen_activity</string>
+    <string name="title_activity_opiekun_activity">opiekun_activity</string>
 </resources>
