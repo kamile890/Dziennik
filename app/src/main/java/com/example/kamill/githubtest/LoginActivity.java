@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 
 public class LoginActivity extends AppCompatActivity {
     //deklaracja zmiennych
@@ -33,12 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
     private DatabaseReference Database;
-    private String uczen;
-    private String nauczyciel;
-    private String rodzic;
-    private String admin;
-
-
 
 
     @Override
@@ -55,10 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        // sprawdzanie czy ktoś jest zalogowany
-        if(firebaseauth.getCurrentUser() != null){
-            firebaseauth.signOut();
-        }
+
 
     }
 
@@ -129,27 +122,39 @@ public class LoginActivity extends AppCompatActivity {
                                 Database.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getKey();
-                                        rodzic = dataSnapshot.child("Users").child("Opiekun").child(Uid).getKey();
-                                        nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getKey();
-                                        admin = dataSnapshot.child("Users").child("Admin").child(Uid).getKey();
+                                        ArrayList lista_uczniow = new ArrayList();
+                                        ArrayList lista_opiekunow = new ArrayList();
+                                        ArrayList lista_nauczycieli = new ArrayList();
+                                        ArrayList lista_adminow = new ArrayList();
+
+                                        for(DataSnapshot uczen: dataSnapshot.child("Users").child("Uczen").getChildren()){
+                                            lista_uczniow.add(uczen.getKey());
+                                        }
+                                        for(DataSnapshot uczen: dataSnapshot.child("Users").child("Opiekun").getChildren()){
+                                            lista_opiekunow.add(uczen.getKey());
+                                        }
+                                        for(DataSnapshot uczen: dataSnapshot.child("Users").child("Nauczyciel").getChildren()){
+                                            lista_nauczycieli.add(uczen.getKey());
+                                        }
+                                        for(DataSnapshot uczen: dataSnapshot.child("Users").child("Admin").getChildren()){
+                                            lista_adminow.add(uczen.getKey());
+                                        }
 
 
 
                                         // przejście do odpowiedniego interfejsu w zależności od statusu
-
-                                       if(admin != null){
-                                           proggres_dialog.dismiss();
+                                        if(lista_adminow.contains(firebaseauth.getCurrentUser().getUid())){
+                                            proggres_dialog.dismiss();
                                             go_to_Admin_Activity();
-                                       }else if(nauczyciel != null){
+                                        }else if(lista_opiekunow.contains(firebaseauth.getCurrentUser().getUid())){
+                                           proggres_dialog.dismiss();
+                                            go_to_Opiekun_Activity();
+                                       }else if(lista_nauczycieli.contains(firebaseauth.getCurrentUser().getUid())){
                                            proggres_dialog.dismiss();
                                            go_to_Nauczyciel_Activity();
-                                       }else if(uczen != null){
+                                       }else if(lista_uczniow.contains(firebaseauth.getCurrentUser().getUid())){
                                            proggres_dialog.dismiss();
                                            go_to_Uczen_Activity();
-                                       }else if(rodzic != null){
-                                           proggres_dialog.dismiss();
-                                           go_to_Opiekun_Activity();
                                        }
 
 
