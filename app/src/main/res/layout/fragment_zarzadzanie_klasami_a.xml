@@ -129,7 +129,7 @@
     <ListView
         android:id="@+id/lista_przedmiotow_list_view"
         android:layout_width="150dp"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="240dp"></ListView>
 
