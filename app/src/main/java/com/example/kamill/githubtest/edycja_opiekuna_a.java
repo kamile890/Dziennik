@@ -150,6 +150,9 @@ public class edycja_opiekuna_a extends Fragment {
         baza.child("Users").child("Opiekun").child(UID).child("nr_telefonu").setValue(telefon);
         if(lista_UID_dzieci_opiekuna.isEmpty()){
             baza.child("Users").child("Opiekun").child(UID).child("lista_dzieci").setValue("null");
+            for(int i=0; i<lista_UID_usunietych.size();i++){
+                baza.child("Users").child("Uczen").child(lista_UID_usunietych.get(i).toString()).child("opiekun").setValue("null");
+            }
         }else {
             baza.child("Users").child("Opiekun").child(UID).child("lista_dzieci").setValue(lista_UID_dzieci_opiekuna);
             for(int i=0;i<lista_UID_dzieci_opiekuna.size();i++){
@@ -186,7 +189,7 @@ public class edycja_opiekuna_a extends Fragment {
                 }
                 if (lista_dzieci_opiekuna.isEmpty()) {
                     Toast.makeText(getContext(), "Ten opiekun nie posiada podopiecznych", Toast.LENGTH_LONG).show();
-                }else{
+                }
                     ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_dropdown_item, lista_dzieci_opiekuna);
                     lista_podopiecznych_ListView.setAdapter(adapter);
                     lista_podopiecznych_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -201,7 +204,7 @@ public class edycja_opiekuna_a extends Fragment {
                             Toast.makeText(getContext(),"Usunięto '"+uczen+"' z listy",Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
+
 
             }
 
