@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".edycja_nauczyciela">
+    tools:context=".edycja_nauczyciela_a">
 
     <TextView
         android:id="@+id/textView_lista_nauczycieli"
@@ -14,7 +19,6 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-
         android:text="Lista nauczycieli: "
         android:textSize="20dp" />
 
@@ -33,25 +37,169 @@
         android:layout_toRightOf="@+id/textView_lista_nauczycieli"></Spinner>
 
     <EditText
+        android:id="@+id/imie_nauczyciela_EditText"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="80dp"
-        android:hint="Wpisz imie nauczyciela"/>
+        android:hint="Wpisz imie nauczyciela" />
 
     <EditText
+        android:id="@+id/nazwisko_nauczyciela_EditText"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:hint="Wpisz nazwisko nauczyciela"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="130dp"
+        android:hint="Wpisz nazwisko nauczyciela" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="180dp"
+        android:text="Lista przedmiotów: "
+        android:textSize="19sp"
+        android:gravity="center"/>
+
+    <Spinner
+        android:id="@+id/spinner_lista_przedmiotow"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="220dp"
-        android:hint="Wpisz imie nauczyciela"/>
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/dodaj_przedmiot_btn"
+        android:layout_toLeftOf="@+id/dodaj_przedmiot_btn"></Spinner>
+
+    <Button
+        android:id="@+id/dodaj_przedmiot_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Dodaj" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="260dp"
+        android:text="Lista klas: "
+        android:textSize="19sp"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/spinner_lista_klas"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/dodaj_klase_btn"
+        android:layout_toLeftOf="@+id/dodaj_klase_btn"></Spinner>
+
+    <Button
+        android:id="@+id/dodaj_klase_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Dodaj" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginRight="127dp"
+        android:text="Lista przedmiotów: "
+        android:textSize="19sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:text="Lista klas: "
+        android:textSize="19sp"
+        android:gravity="center"/>
+
+    <ListView
+        android:id="@+id/ListView_lista_przedmiotow"
+        android:layout_width="179dp"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/LiesView_lista_klas"
+        android:layout_toLeftOf="@+id/LiesView_lista_klas"></ListView>
+
+    <ListView
+        android:id="@+id/LiesView_lista_klas"
+        android:layout_width="192dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="380dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"></ListView>
+
+    <Button
+        android:id="@+id/zapisz_btn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="114dp"
+        android:layout_height="101dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Zapisz" />
+
+
+
+
 
 
 </RelativeLayout>
+</ScrollView>

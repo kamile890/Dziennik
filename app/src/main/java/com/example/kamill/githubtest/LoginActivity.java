@@ -33,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
     private DatabaseReference Database;
-    private Uczen uczen;
-    private Nauczyciel nauczyciel;
-    private Opiekun rodzic;
-    private Admin admin;
+    private String uczen;
+    private String nauczyciel;
+    private String rodzic;
+    private String admin;
 
 
 
@@ -77,11 +77,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public  void  go_to_Nauczyciel_Activity(){
         Intent i = new Intent(getApplicationContext(),Nauczyciel_Activity.class);
+        finish();
         startActivity(i);
     }
 
-    public  void  go_to_Uczen_Activity(){
+    public void  go_to_Uczen_Activity(){
         Intent i = new Intent(getApplicationContext(),Uczen_activity.class);
+        finish();
+        startActivity(i);
+    }
+
+    public void go_to_Opiekun_Activity(){
+        Intent i = new Intent(getApplicationContext(), opiekun_activity.class);
+        finish();
         startActivity(i);
     }
 
@@ -121,10 +129,10 @@ public class LoginActivity extends AppCompatActivity {
                                 Database.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getValue(Uczen.class);
-                                        rodzic = dataSnapshot.child("Users").child("Rodzic").child(Uid).getValue(Opiekun.class);
-                                        nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getValue(Nauczyciel.class);
-                                        admin = dataSnapshot.child("Users").child("Admin").child(Uid).getValue(Admin.class);
+                                        uczen = dataSnapshot.child("Users").child("Uczen").child(Uid).getKey();
+                                        rodzic = dataSnapshot.child("Users").child("Opiekun").child(Uid).getKey();
+                                        nauczyciel = dataSnapshot.child("Users").child("Nauczyciel").child(Uid).getKey();
+                                        admin = dataSnapshot.child("Users").child("Admin").child(Uid).getKey();
 
 
 
@@ -139,6 +147,9 @@ public class LoginActivity extends AppCompatActivity {
                                        }else if(uczen != null){
                                            proggres_dialog.dismiss();
                                            go_to_Uczen_Activity();
+                                       }else if(rodzic != null){
+                                           proggres_dialog.dismiss();
+                                           go_to_Opiekun_Activity();
                                        }
 
 

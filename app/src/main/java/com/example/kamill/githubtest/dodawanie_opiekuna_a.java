@@ -129,7 +129,7 @@ public class dodawanie_opiekuna_a extends Fragment {
 
                                 baza.child("Users").child("Opiekun").child(firebaseAuth.getCurrentUser().getUid()).setValue(opiekun);
                                 for(int i = 0;i<lista_UID_uczniow_w_ListView.size();i++){
-                                    baza.child("Users").child("Uczen").child((String)lista_UID_uczniow_w_ListView.get(i)).child("opiekun").setValue(login_opiekuna);
+                                    baza.child("Users").child("Uczen").child((String)lista_UID_uczniow_w_ListView.get(i)).child("opiekun").setValue(firebaseAuth.getCurrentUser().getUid());
                                 }
                                 firebaseAuth.sendPasswordResetEmail(login_opiekuna);
                                 firebaseAuth.signInWithEmailAndPassword(login_admina, "admin123");

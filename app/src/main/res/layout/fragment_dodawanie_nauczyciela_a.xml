@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,41 +44,33 @@
         android:hint="Nazwisko"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/pensja_nauczyciela"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Pensja"
-        android:inputType="number" />
-
     <TextView
         android:id="@+id/teskt_spinner_przedmiot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="160dp"
         android:layout_marginLeft="15dp"
         android:text="Wybierz przedmiot" />
 
     <Spinner
         android:id="@+id/spinner_przedmiot"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="15dp"
-        />
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_toStartOf="@+id/dodaj_przedmiot_do_listy_btn"
+        android:layout_toLeftOf="@+id/dodaj_przedmiot_do_listy_btn" />
 
     <Button
         android:id="@+id/dodaj_przedmiot_do_listy_btn"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="126dp"
         android:text="Dodaj" />
@@ -110,18 +107,25 @@
 
     <Spinner
         android:id="@+id/spinner_klasa"
-        android:layout_marginTop="280dp"
-        android:layout_marginLeft="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_toStartOf="@+id/dodaj_klase_do_listy_btn"
+        android:layout_toLeftOf="@+id/dodaj_klase_do_listy_btn" />
 
     <Button
         android:id="@+id/dodaj_klase_do_listy_btn"
         android:layout_width="100dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="275dp"
+        android:layout_marginTop="250dp"
         android:layout_marginRight="40dp"
         android:text="Dodaj" />
 
@@ -129,7 +133,7 @@
         android:id="@+id/tekst_spinner_klasa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="230dp"
         android:layout_marginLeft="15dp"
         android:text="Wybierz klase" />
 
@@ -151,7 +155,7 @@
     <ListView
         android:id="@+id/lista_przedmiotow"
         android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="15dp"
@@ -161,7 +165,7 @@
     <ListView
         android:id="@+id/lista_klas"
         android:layout_width="150dp"
-        android:layout_height="160dp"
+        android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="45dp"
@@ -174,3 +178,4 @@
 
 
 </RelativeLayout>
+</ScrollView>

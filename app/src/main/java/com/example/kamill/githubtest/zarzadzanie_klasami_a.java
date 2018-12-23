@@ -361,10 +361,10 @@ public class zarzadzanie_klasami_a extends Fragment {
                        lista_uczniow_UID = new ArrayList();
                         for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").getChildren()){
                            String UID = uczen.getKey();
-                           Uczen uczenn = dataSnapshot.child("Users").child("Uczen").child(UID).getValue(Uczen.class);
-                           String imie = uczenn.imie;
-                           String nazwisko = uczenn.nazwisko;
-                           String pesel = uczenn.pesel;
+
+                           String imie =(String) dataSnapshot.child("Users").child("Uczen").child(UID).child("imie").getValue();
+                           String nazwisko = (String) dataSnapshot.child("Users").child("Uczen").child(UID).child("nazwisko").getValue();
+                           String pesel = (String) dataSnapshot.child("Users").child("Uczen").child(UID).child("pesel").getValue();
                            lista_uczniow.add(imie+" "+nazwisko+"  | Pesel: "+pesel);
                            lista_uczniow_UID.add(UID);
                        }
@@ -469,24 +469,27 @@ public class zarzadzanie_klasami_a extends Fragment {
     // dodawanie ucznia bez klasy do wybranej klasy
     public void dodaj_ucznia_do_klasy(){
 
-
-        baza.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                baza.child("Users").child("Uczen").child(uczen_bez_klasy).child("klasa").setValue(wybrana_klasa);
-                for(DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Przedmioty").getChildren()){
-                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(uczen_bez_klasy).child("Oceny").child(przedmiot.getKey()).setValue("null");
+        if(spinner_uczniow_bez_klasy.getAdapter().isEmpty()){
+            Toast.makeText(getContext(),"Lista jest pusta",Toast.LENGTH_SHORT).show();
+        }else {
+            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    baza.child("Users").child("Uczen").child(uczen_bez_klasy).child("klasa").setValue(wybrana_klasa);
+                    for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Przedmioty").getChildren()) {
+                        baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(uczen_bez_klasy).child("Oceny").child(przedmiot.getKey()).setValue("null");
+                    }
+                    wyświetl_uczniow_bez_klasy_w_spinnerze();
+                    wyswietl_liste_uczniow_dla_klasy();
+                    pesel_textView.setText("");
                 }
-                wyświetl_uczniow_bez_klasy_w_spinnerze();
-                wyswietl_liste_uczniow_dla_klasy();
-                pesel_textView.setText("");
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
 

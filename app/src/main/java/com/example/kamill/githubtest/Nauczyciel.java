@@ -8,7 +8,6 @@ public class Nauczyciel {
     String login;
     String imie;
     String nazwisko;
-    String pensja;
     ArrayList<String> lista_przedmiotów;
     ArrayList<String> lista_klas;
 
@@ -16,12 +15,11 @@ public class Nauczyciel {
 
    }
 
-    public Nauczyciel(String login, String imie, String nazwisko, String pensja, ArrayList<String> lista_przedmiotów, ArrayList<String> lista_klas) {
+    public Nauczyciel(String login, String imie, String nazwisko, ArrayList<String> lista_przedmiotów, ArrayList<String> lista_klas) {
 
         this.login = login;
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.pensja = pensja;
         this.lista_przedmiotów = lista_przedmiotów;
         this.lista_klas = lista_klas;
     }
@@ -50,14 +48,6 @@ public class Nauczyciel {
         this.nazwisko = nazwisko;
     }
 
-
-    public String getPensja() {
-        return pensja;
-    }
-
-    public void setPensja(String pensja) {
-        this.pensja = pensja;
-    }
 
     public ArrayList<String> getLista_przedmiotów() {
         return lista_przedmiotów;

@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -67,6 +68,7 @@ public class dodawanie_ucznia_a extends Fragment {
         nazwisko = v.findViewById(R.id.nazwisko_ucznia);
 
 
+
         pesel = v.findViewById(R.id.pesel_ucznia);
         btn = v.findViewById(R.id.dodaj_ucznia_btn);
         // onClickListener dla przycisku
@@ -76,6 +78,7 @@ public class dodawanie_ucznia_a extends Fragment {
                 dodaj_ucznia_a();
             }
         });
+
 
 
         // wyszukanie wszystkich klas w bazie i dodanie ich do listy
@@ -128,10 +131,11 @@ public class dodawanie_ucznia_a extends Fragment {
             Toast.makeText(getContext(),"Wpisz PESEL ucznia",Toast.LENGTH_SHORT).show();
         }else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(login_ucznia).matches()){
             Toast.makeText(getContext(),"Niepoprawny format e-mail ucznia", Toast.LENGTH_SHORT).show();
-        }else {
-
-
-
+        }else if(pesel_ucznia.length() != 11){
+            Toast.makeText(getContext(), "PESEL musi zawierać 11 cyfr", Toast.LENGTH_SHORT).show();
+        }else if(!sprawdz_pesel(pesel_ucznia)){
+            Toast.makeText(getContext(), "PESEL niepoprawny", Toast.LENGTH_SHORT).show();
+        }else{
             firebaseAuth.createUserWithEmailAndPassword(login_ucznia, haslo)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -168,6 +172,33 @@ public class dodawanie_ucznia_a extends Fragment {
             pesel.setText("");
             }
         }
+
+        //metoda sprawdzająca poprawność numeru pesel
+    public boolean sprawdz_pesel(String pesel){
+        int first = pesel.charAt(0) - '0';
+        int second = pesel.charAt(1) - '0';
+        int third= pesel.charAt(2) - '0';
+        int fourth= pesel.charAt(3) - '0';
+        int fifth= pesel.charAt(4) - '0';
+        int sixth= pesel.charAt(5) - '0';
+        int seventh= pesel.charAt(6) - '0';
+        int eight= pesel.charAt(7) - '0';
+        int nineth= pesel.charAt(8) - '0';
+        int tenth= pesel.charAt(9) - '0';
+        int eleventh= pesel.charAt(10) - '0';
+
+        int suma = 9*first + 7*second + 3*third + fourth + 9*fifth + 7*sixth
+                + 3*seventh + eight + 9*nineth + 7*tenth;
+        int reszta = suma%10;
+        if(reszta == eleventh){
+            return true;
+        }else{
+            return false;
+        }
+
+
+
+    }
 
 
     // metoda generująca losowe hasło
