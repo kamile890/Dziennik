@@ -120,12 +120,22 @@ public class Uczen_activity extends AppCompatActivity
             Oceny_u obiekt = new Oceny_u();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,obiekt).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.UwagiID) {
+            setTitle("Uwagi");
+            Uwagi_u obiekt = new Uwagi_u();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment,obiekt).commit();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        } else if (id == R.id.PlanID) {
+            setTitle("Plan lekcji");
+            plan_lekcji_u obiekt = new plan_lekcji_u();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment,obiekt).commit();
+        } else if (id == R.id.UstawieniaID) {
+            setTitle("Ustawienia");
+            ustawienia_u obiekt = new ustawienia_u();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment,obiekt).commit();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
