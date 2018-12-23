@@ -16,22 +16,22 @@
             android:id="@+id/PlanID"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Plan lekcji" />
-        <item
-            android:id="@+id/UstawieniaID"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Ustawienia" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Ustawienia">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/UstawieniaID"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Ustawienia" />
+        </menu>
+    </item>
+    <item android:title="Wyloguj">
+        <menu>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/wyloguj"
+                android:icon="@android:drawable/ic_lock_power_off"
+                android:title="Wyloguj" />
         </menu>
     </item>
 

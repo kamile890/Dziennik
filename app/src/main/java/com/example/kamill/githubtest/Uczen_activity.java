@@ -1,5 +1,6 @@
 package com.example.kamill.githubtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -136,8 +138,12 @@ public class Uczen_activity extends AppCompatActivity
             ustawienia_u obiekt = new ustawienia_u();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,obiekt).commit();
-        } else if (id == R.id.nav_share) {
-
+        } else if (id == R.id.wyloguj){
+            firebaseAuth.signOut();
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            finish();
+            startActivity(i);
+            Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_send) {
 
         }
