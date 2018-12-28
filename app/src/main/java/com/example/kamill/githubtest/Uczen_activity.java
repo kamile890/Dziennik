@@ -144,8 +144,6 @@ public class Uczen_activity extends AppCompatActivity
             finish();
             startActivity(i);
             Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
