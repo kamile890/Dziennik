@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -50,6 +49,7 @@ public class GridView_Adapter_o extends BaseAdapter {
         final Button btn;
         if(convertView == null){
             btn = new Button(mContext);
+            btn.setWidth(200);
             btn.setBackgroundResource(R.drawable.button_oceny);
             btn.setTextSize(20);
             btn.setText(lstSource.get(position));
