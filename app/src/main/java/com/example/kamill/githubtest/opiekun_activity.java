@@ -1,5 +1,6 @@
 package com.example.kamill.githubtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,9 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class opiekun_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +30,7 @@ public class opiekun_activity extends AppCompatActivity
         setContentView(R.layout.activity_opiekun_activity);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        firebaseAuth = FirebaseAuth.getInstance();
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -83,8 +89,17 @@ public class opiekun_activity extends AppCompatActivity
             oceny_o ob = new oceny_o();
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,ob).commit();
+        } else if (id == R.id.nav_wyloguj) {
+            firebaseAuth.signOut();
+            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+            finish();
+            startActivity(i);
+            Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_uwagi) {
-
+            setTitle("Uwagi");
+            uwagi_o ob = new uwagi_o();
+            FragmentManager f = getSupportFragmentManager();
+            f.beginTransaction().replace(R.id.fragment,ob).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
