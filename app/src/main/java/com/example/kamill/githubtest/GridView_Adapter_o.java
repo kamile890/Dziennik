@@ -53,6 +53,7 @@ public class GridView_Adapter_o extends BaseAdapter {
             btn.setBackgroundResource(R.drawable.button_oceny);
             btn.setTextSize(20);
             btn.setText(lstSource.get(position));
+
             if(zaco.get(position).equals("Sprawdzian")){
                 btn.setBackgroundResource(R.drawable.button_oceny_sprawdzian);
             }

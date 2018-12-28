@@ -26,14 +26,17 @@ import java.util.List;
 
 public class oceny_o extends Fragment {
 
-    Spinner spinner;
-    DatabaseReference baza;
-    FirebaseAuth firebaseAuth;
-    String wybrany_uczen;
-    List<String> lista_ocen;
-    List<String> lista_za_co;
-    GridView grid;
-    String klasa;
+    private Spinner spinner;
+    private Spinner spinner_przedmioty;
+    private DatabaseReference baza;
+    private FirebaseAuth firebaseAuth;
+    private String wybrany_uczen;
+    private List<String> lista_ocen;
+    private List<String> lista_za_co;
+    private ArrayList lista_przedmiotow;
+    private GridView grid;
+    private String klasa;
+    private String wybrany_przedmiot;
 
     public oceny_o() {
         // Required empty public constructor
@@ -50,18 +53,13 @@ public class oceny_o extends Fragment {
         spinner = v.findViewById(R.id.spinner_uczniow);
         baza = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        spinner_przedmioty = v.findViewById(R.id.spinner_przedmioty);
 
 
-
-        //tworzenie spinnera z uczniami
+        //tworzenie spinnera z uczniami i przedmiotami
         stworz_spinner_z_uczniami();
 
-
-
-
-
         grid = v.findViewById(R.id.grid_oceny);
-
 
         return v;
     }
@@ -75,23 +73,57 @@ public class oceny_o extends Fragment {
                 final ArrayList lista_uczniow_nazwa = new ArrayList();
                 final ArrayList lista_uczniow_UID = new ArrayList();
                 for(DataSnapshot uczen: dataSnapshot.child("Users").child("Opiekun").child(firebaseAuth.getCurrentUser().getUid()).child("lista_dzieci").getChildren()){
-                    lista_uczniow_UID.add(uczen.getValue());
+                    String klasa = (String)dataSnapshot.child("Users").child("Uczen").child((String)uczen.getValue()).child("klasa").getValue();
+                    String imie = (String)dataSnapshot.child("Users").child("Uczen").child((String)uczen.getValue()).child("imie").getValue();
+                    String nazwisko = (String)dataSnapshot.child("Users").child("Uczen").child((String)uczen.getValue()).child("nazwisko").getValue();
+                    if(!klasa.equals("null")) {
+                        lista_uczniow_UID.add(uczen.getValue());
+                        lista_uczniow_nazwa.add(imie + " " + nazwisko);
+                    }
                 }
-                if(lista_uczniow_UID.isEmpty()){
 
-                }else{
-                for(int i =0; i<lista_uczniow_UID.size(); i++){
-                    String imie = (String)dataSnapshot.child("Users").child("Uczen").child(lista_uczniow_UID.get(i).toString()).child("imie").getValue();
-                    String nazwisko = (String)dataSnapshot.child("Users").child("Uczen").child(lista_uczniow_UID.get(i).toString()).child("nazwisko").getValue();
-                    lista_uczniow_nazwa.add(imie+" "+nazwisko);
-                }}
                 ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_checked,lista_uczniow_nazwa);
                 spinner.setAdapter(adapter);
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         wybrany_uczen = (String)lista_uczniow_UID.get(position);
-                        pobierz_liste_ocen(wybrany_uczen);
+                        stworz_spinnera_z_przedmiotami();
+
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    //tworzenie spinnera z przedmiotami
+    public void stworz_spinnera_z_przedmiotami(){
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lista_przedmiotow = new ArrayList();
+                String klasa = (String)dataSnapshot.child("Users").child("Uczen").child(wybrany_uczen).child("klasa").getValue();
+                for(DataSnapshot przedmiot: dataSnapshot.child("Klasy").child(klasa).child("Przedmioty").getChildren()){
+                    lista_przedmiotow.add(przedmiot.getKey());
+                }
+                ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_checked, lista_przedmiotow);
+                spinner_przedmioty.setAdapter(adapter);
+                spinner_przedmioty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        wybrany_przedmiot = (String)lista_przedmiotow.get(position);
+                        pobierz_liste_ocen();
                     }
 
                     @Override
@@ -110,27 +142,31 @@ public class oceny_o extends Fragment {
 
 
     //pobieranie listy ocen
-    public void pobierz_liste_ocen(final String uczen){
+    public void pobierz_liste_ocen(){
         baza.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_ocen = new ArrayList();
                 lista_za_co = new ArrayList();
-                if (uczen == null) {
-                    Toast.makeText(getContext(), "null", Toast.LENGTH_SHORT).show();
-                } else {
-                    klasa = (String) dataSnapshot.child("Users").child("Uczen").child(uczen).child("klasa").getValue();
-                    for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(uczen).child("Oceny").child("Goegrafia").getChildren()) {
+
+                    klasa = (String) dataSnapshot.child("Users").child("Uczen").child(wybrany_uczen).child("klasa").getValue();
+                    for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).getChildren()) {
                         String za_co = ocena.getKey();
                         String ocenaa = (String) ocena.getValue();
                         lista_za_co.add(za_co);
                         lista_ocen.add(ocenaa);
                     }
 
-                    GridView_Adapter_o adapter_o = new GridView_Adapter_o(lista_ocen, getContext(), lista_za_co);
-                    grid.setAdapter(adapter_o);
 
-                }
+                    GridView_Adapter_o adapter_o = new GridView_Adapter_o(lista_ocen, getContext(), lista_za_co);
+                    if(lista_za_co.isEmpty()){
+                        Toast.makeText(getContext(),"Jeszcze nie wpisano żadnych ocen", Toast.LENGTH_SHORT).show();
+                        grid.setAdapter(null);
+                    }else {
+                        grid.setAdapter(adapter_o);
+                    }
+
+
             }
 
             @Override
