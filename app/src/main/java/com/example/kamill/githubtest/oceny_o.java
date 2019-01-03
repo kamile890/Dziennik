@@ -34,9 +34,11 @@ public class oceny_o extends Fragment {
     private List<String> lista_ocen;
     private List<String> lista_za_co;
     private ArrayList lista_przedmiotow;
-    private GridView grid;
+    private ExpandableHeightGridView grid_sprawdzian;
     private String klasa;
     private String wybrany_przedmiot;
+    private ExpandableHeightGridView grid_kartkowka;
+    private ExpandableHeightGridView grid_odpowiedz;
 
     public oceny_o() {
         // Required empty public constructor
@@ -54,12 +56,14 @@ public class oceny_o extends Fragment {
         baza = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         spinner_przedmioty = v.findViewById(R.id.spinner_przedmioty);
-
-
+        grid_sprawdzian = v.findViewById(R.id.grid_oceny_sprawdzian);
+        grid_kartkowka = v.findViewById(R.id.grid_oceny_kartkowka);
+        grid_odpowiedz = v.findViewById(R.id.grid_oceny_odpowiedz);
+        grid_sprawdzian.setExpanded(true);
         //tworzenie spinnera z uczniami i przedmiotami
         stworz_spinner_z_uczniami();
 
-        grid = v.findViewById(R.id.grid_oceny);
+
 
         return v;
     }
@@ -123,7 +127,9 @@ public class oceny_o extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         wybrany_przedmiot = (String)lista_przedmiotow.get(position);
-                        pobierz_liste_ocen();
+                        pobierz_liste_ocen_sprawdzian();
+                        pobierz_liste_ocen_kartkowka();
+                        pobierz_liste_ocen_odpowiedz();
                     }
 
                     @Override
@@ -141,8 +147,8 @@ public class oceny_o extends Fragment {
     }
 
 
-    //pobieranie listy ocen
-    public void pobierz_liste_ocen(){
+    //pobieranie listy ocen sprawdzian
+    public void pobierz_liste_ocen_sprawdzian(){
         baza.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -150,8 +156,8 @@ public class oceny_o extends Fragment {
                 lista_za_co = new ArrayList();
 
                     klasa = (String) dataSnapshot.child("Users").child("Uczen").child(wybrany_uczen).child("klasa").getValue();
-                    for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).getChildren()) {
-                        String za_co = ocena.getKey();
+                    for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child("Sprawdzian").getChildren()) {
+                        String za_co = "Sprawdzian";
                         String ocenaa = (String) ocena.getValue();
                         lista_za_co.add(za_co);
                         lista_ocen.add(ocenaa);
@@ -160,10 +166,9 @@ public class oceny_o extends Fragment {
 
                     GridView_Adapter_o adapter_o = new GridView_Adapter_o(lista_ocen, getContext(), lista_za_co);
                     if(lista_za_co.isEmpty()){
-                        Toast.makeText(getContext(),"Jeszcze nie wpisano żadnych ocen", Toast.LENGTH_SHORT).show();
-                        grid.setAdapter(null);
+                        grid_sprawdzian.setAdapter(null);
                     }else {
-                        grid.setAdapter(adapter_o);
+                        grid_sprawdzian.setAdapter(adapter_o);
                     }
 
 
@@ -177,6 +182,75 @@ public class oceny_o extends Fragment {
 
     }
 
+    //pobieranie listy ocen kartkówka
+    public void pobierz_liste_ocen_kartkowka(){
+        baza.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lista_ocen = new ArrayList();
+                lista_za_co = new ArrayList();
+
+                klasa = (String) dataSnapshot.child("Users").child("Uczen").child(wybrany_uczen).child("klasa").getValue();
+                for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child("Kartkówka").getChildren()) {
+                    String za_co = "Kartkówka";
+                    String ocenaa = (String) ocena.getValue();
+                    lista_za_co.add(za_co);
+                    lista_ocen.add(ocenaa);
+                }
+
+
+                GridView_Adapter_o adapter_o = new GridView_Adapter_o(lista_ocen, getContext(), lista_za_co);
+                if(lista_za_co.isEmpty()){
+                    grid_kartkowka.setAdapter(null);
+                }else {
+                    grid_kartkowka.setAdapter(adapter_o);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    //pobieranie listy ocen odpowiedź
+    public void pobierz_liste_ocen_odpowiedz(){
+        baza.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lista_ocen = new ArrayList();
+                lista_za_co = new ArrayList();
+
+                klasa = (String) dataSnapshot.child("Users").child("Uczen").child(wybrany_uczen).child("klasa").getValue();
+                for (DataSnapshot ocena : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child("Odpowiedź").getChildren()) {
+                    String za_co = "Odpowiedź ustna";
+                    String ocenaa = (String) ocena.getValue();
+                    lista_za_co.add(za_co);
+                    lista_ocen.add(ocenaa);
+                }
+
+
+                GridView_Adapter_o adapter_o = new GridView_Adapter_o(lista_ocen, getContext(), lista_za_co);
+                if(lista_za_co.isEmpty()){
+                    grid_odpowiedz.setAdapter(null);
+                }else {
+                    grid_odpowiedz.setAdapter(adapter_o);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
 
 
