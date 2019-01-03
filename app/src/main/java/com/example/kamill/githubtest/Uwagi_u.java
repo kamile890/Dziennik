@@ -106,7 +106,7 @@ public class Uwagi_u extends Fragment {
                 }
 
 
-                GridView_Adapter_Uwagi_o adapter_o = new GridView_Adapter_Uwagi_o(lista_za_co, lista_kto, getContext(), lista_uwag);
+                Grid_Adapter_Uwagi_u adapter_o = new Grid_Adapter_Uwagi_u(lista_za_co, lista_kto, getContext(), lista_uwag);
                 if(lista_za_co.isEmpty()){
                     Toast.makeText(getContext(),"Jeszcze nie wpisano żadnych uwag", Toast.LENGTH_SHORT).show();
                     grid.setAdapter(null);

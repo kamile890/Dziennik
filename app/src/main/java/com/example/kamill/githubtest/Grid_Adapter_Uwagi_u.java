@@ -8,35 +8,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import java.util.List;
 
-public class GridView_Adapter_o extends BaseAdapter {
-    List<String> lstSource;
+public class Grid_Adapter_Uwagi_u extends BaseAdapter {
+    List<String> za_co;
+    List<String> kto;
     Context mContext;
-    List<String> zaco;
+    List<String> uwaga;
 
-
-    public GridView_Adapter_o(List<String> lstSource, Context mContext, List<String> zaco) {
-        this.lstSource = lstSource;
+    public Grid_Adapter_Uwagi_u(List<String> za_co, List<String> kto, Context mContext, List<String> uwaga) {
+        this.za_co = za_co;
+        this.kto = kto;
         this.mContext = mContext;
-        this.zaco = zaco;
+        this.uwaga = uwaga;
     }
-
 
     @Override
     public int getCount() {
-        return lstSource.size();
+        return za_co.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return lstSource.get(position);
-    }
-
-    public Object getItem_za_co(int position){
-        return zaco.get(position);
+        return za_co.get(position);
     }
 
     @Override
@@ -46,42 +43,37 @@ public class GridView_Adapter_o extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        final Button btn;
+        final TextView btn;
         if(convertView == null){
-            btn = new Button(mContext);
-            btn.setWidth(200);
-            btn.setBackgroundResource(R.drawable.button_oceny);
+            btn = new TextView(mContext);
             btn.setTextSize(20);
-            btn.setText(lstSource.get(position));
-
-            if(zaco.get(position).equals("Sprawdzian")){
-                btn.setBackgroundResource(R.drawable.button_oceny_sprawdzian);
-            }
-            if(zaco.get(position).equals("Kartkówka")){
-                btn.setBackgroundResource(R.drawable.button_oceny_kartk);
-            }
+            btn.setBackgroundResource(R.drawable.border_uwagi);
+            btn.setText(za_co.get(position));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     final AlertDialog.Builder alert_dialog = new AlertDialog.Builder(mContext);
-                    alert_dialog.setMessage(zaco.get(position))
+                    alert_dialog.setMessage(uwaga.get(position))
                             .setCancelable(false)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                            .setPositiveButton("Zamknij", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                 }
                             });
 
+
                     AlertDialog alert = alert_dialog.create();
-                    alert.setTitle("Ocena: "+lstSource.get(position));
+                    alert.setTitle(za_co.get(position));
                     alert.show();
 
                 }
             });
 
-                } else {
-            btn = (Button) convertView;
+        } else {
+            btn = (TextView) convertView;
         }
         return btn;
     }
 }
+
