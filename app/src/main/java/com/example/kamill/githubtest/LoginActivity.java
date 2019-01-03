@@ -48,11 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         proggres_dialog = new ProgressDialog(this);
         Database = FirebaseDatabase.getInstance().getReference();
 
-
-
-
-
-
     }
 
     //przejście do aktywności resetowania hasła
