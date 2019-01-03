@@ -27,9 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static android.app.ProgressDialog.STYLE_HORIZONTAL;
-import static android.app.ProgressDialog.STYLE_SPINNER;
-
 
 public class LoginActivity extends AppCompatActivity {
     //deklaracja zmiennych
@@ -38,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
     private DatabaseReference Database;
-    private Button zaloguj_btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         proggres_dialog = new ProgressDialog(this);
         Database = FirebaseDatabase.getInstance().getReference();
-        zaloguj_btn = findViewById(R.id.button);
 
-        zaloguj_btn.setBackgroundResource(R.drawable.przycisk_logowania);
-        zaloguj_btn.setTextSize(20);
-        email_field.setBackgroundResource(R.drawable.border_edittext_logowanie);
-        password_field.setBackgroundResource(R.drawable.border_edittext_logowanie);
+
 
 
 
@@ -109,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Nieprawidłowy format adresu e-mail", Toast.LENGTH_SHORT).show();
         } else {
             // animacja logowania
-            proggres_dialog.setMessage("Logowanie...");
+            proggres_dialog.setMessage("Logowanie ...");
             proggres_dialog.show();
 
             // Authentication

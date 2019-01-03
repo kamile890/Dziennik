@@ -128,16 +128,6 @@ public class Uczen_activity extends AppCompatActivity
             FragmentManager f = getSupportFragmentManager();
             f.beginTransaction().replace(R.id.fragment,obiekt).commit();
 
-        } else if (id == R.id.PlanID) {
-            setTitle("Plan lekcji");
-            plan_lekcji_u obiekt = new plan_lekcji_u();
-            FragmentManager f = getSupportFragmentManager();
-            f.beginTransaction().replace(R.id.fragment,obiekt).commit();
-        } else if (id == R.id.UstawieniaID) {
-            setTitle("Ustawienia");
-            ustawienia_u obiekt = new ustawienia_u();
-            FragmentManager f = getSupportFragmentManager();
-            f.beginTransaction().replace(R.id.fragment,obiekt).commit();
         } else if (id == R.id.wyloguj){
             firebaseAuth.signOut();
             Intent i = new Intent(getApplicationContext(),LoginActivity.class);

@@ -12,20 +12,8 @@
             android:id="@+id/UwagiID"
             android:icon="@android:drawable/stat_sys_warning"
             android:title="Uwagi" />
-        <item
-            android:id="@+id/PlanID"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Plan lekcji" />
     </group>
 
-    <item android:title="Ustawienia">
-        <menu>
-            <item
-                android:id="@+id/UstawieniaID"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Ustawienia" />
-        </menu>
-    </item>
     <item android:title="Wyloguj">
         <menu>
             <item
