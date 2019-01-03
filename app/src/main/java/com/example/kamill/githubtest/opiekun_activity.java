@@ -2,6 +2,7 @@ package com.example.kamill.githubtest;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -15,14 +16,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class opiekun_activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private TextView ImieNazwisko;
     private FirebaseAuth firebaseAuth;
+    private TextView EmailNauczyciela;
+    private DatabaseReference Baza;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +43,7 @@ public class opiekun_activity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         firebaseAuth = FirebaseAuth.getInstance();
-
+        Baza = FirebaseDatabase.getInstance().getReference();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -44,7 +56,31 @@ public class opiekun_activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View v = navigationView.getHeaderView(0);
+        EmailNauczyciela = v.findViewById(R.id.EmailNauczyciela);
+        ImieNazwisko = v.findViewById(R.id.ImieNazwiskoNauczyciela);
+        Baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String Uid = firebaseAuth.getCurrentUser().getUid();
+                String Imie = (String)dataSnapshot.child("Users").child("Opiekun").child(Uid).child("imie").getValue();
+                String Nazwisko = (String)dataSnapshot.child("Users").child("Opiekun").child(Uid).child("nazwisko").getValue();
+                ImieNazwisko.setText(Imie + " " + Nazwisko);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        EmailNauczyciela.setText(firebaseAuth.getCurrentUser().getEmail());
     }
+
+
+
+
+
+
 
     @Override
     public void onBackPressed() {
