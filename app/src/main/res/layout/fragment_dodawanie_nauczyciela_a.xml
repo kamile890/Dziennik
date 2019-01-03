@@ -16,8 +16,8 @@
         android:id="@+id/login_nauczyciela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Adres e-mail"
         android:inputType="textPersonName" />
@@ -35,11 +35,11 @@
 
     <EditText
         android:id="@+id/nazwisko_nauczyciela"
-        android:layout_marginTop="110dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="110dp"
         android:ems="10"
         android:hint="Nazwisko"
         android:inputType="textPersonName" />
@@ -168,11 +168,11 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="45dp"
-        android:layout_marginLeft="45dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginLeft="57dp"
         android:layout_marginTop="350dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
         android:layout_toEndOf="@+id/lista_przedmiotow"
         android:layout_toRightOf="@+id/lista_przedmiotow" />
 

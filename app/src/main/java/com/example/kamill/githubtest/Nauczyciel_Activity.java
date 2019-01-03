@@ -106,7 +106,12 @@ public class Nauczyciel_Activity extends AppCompatActivity
             finish();
             startActivity(i);
             Toast.makeText(getApplicationContext(),"Wylogowano",Toast.LENGTH_SHORT).show();
-        }
+        } else if (id == R.id.dodaj_ocene) {
+           setTitle("Dodaj ocenę");
+           dodawanie_oceny_n dodajocene = new dodawanie_oceny_n();
+           FragmentManager f = getSupportFragmentManager();
+           f.beginTransaction().replace(R.id.fragment, dodajocene).commit();
+       }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

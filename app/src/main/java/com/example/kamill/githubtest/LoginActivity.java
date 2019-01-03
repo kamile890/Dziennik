@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog proggres_dialog;
     private FirebaseAuth firebaseauth;
     private DatabaseReference Database;
+    private Button zaloguj_btn;
 
 
     @Override
@@ -47,7 +48,12 @@ public class LoginActivity extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         proggres_dialog = new ProgressDialog(this);
         Database = FirebaseDatabase.getInstance().getReference();
-        
+        zaloguj_btn = findViewById(R.id.button);
+
+        zaloguj_btn.setBackgroundResource(R.drawable.przycisk_logowania);
+        zaloguj_btn.setTextSize(20);
+        email_field.setBackgroundResource(R.drawable.border_edittext_logowanie);
+        password_field.setBackgroundResource(R.drawable.border_edittext_logowanie);
 
 
 
