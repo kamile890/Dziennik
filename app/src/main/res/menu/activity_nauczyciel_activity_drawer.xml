@@ -3,7 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Menu">
+    <item android:title="Oceny">
+        <menu>
+            <item
+                android:id="@+id/dodaj_ocene"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Dodaj ocene" />
+        </menu>
+    </item>
+    <item android:title="Uwagi">
+        <menu>
+            <item
+                android:id="@+id/dodaj_uwage"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="Dodaj uwagę" />
+        </menu>
+    </item>
+    <item android:title="Informacje">
         <menu>
             <item
                 android:id="@+id/przedmioty_nauczyciela"
