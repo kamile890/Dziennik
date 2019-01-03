@@ -49,9 +49,10 @@ public class GridView_Adapter_o extends BaseAdapter {
         final Button btn;
         if(convertView == null){
             btn = new Button(mContext);
-            btn.setWidth(200);
+            btn.setWidth(400);
+
             btn.setBackgroundResource(R.drawable.button_oceny);
-            btn.setTextSize(20);
+            btn.setTextSize(25);
             btn.setText(lstSource.get(position));
 
             if(zaco.get(position).equals("Sprawdzian")){

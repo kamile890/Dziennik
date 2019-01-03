@@ -18,6 +18,17 @@
                                 <PersistentState>
                                   <option name="children">
                                     <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="49" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="foregroundTextAsset">
                                         <value>
                                           <PersistentState>
@@ -34,9 +45,9 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="a61f0f" />
+                                      <entry key="backgroundColor" value="db1d1d" />
                                       <entry key="backgroundLayerName" value="Red" />
-                                      <entry key="foregroundAssetType" value="TEXT" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/app/src/main/res/drawable/iconfinder-128.png" />
                                       <entry key="foregroundLayerName" value="ic_tlo_do_uwag" />
                                     </map>
                                   </option>
