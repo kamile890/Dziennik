@@ -8,7 +8,7 @@
             <item
                 android:id="@+id/dodaj_ocene"
                 android:icon="@android:drawable/ic_input_add"
-                android:title="Dodaj ocene" />
+                android:title="Dodaj ocenę" />
         </menu>
     </item>
     <item android:title="Uwagi">

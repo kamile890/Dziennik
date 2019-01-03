@@ -7,21 +7,8 @@
     tools:context=".dodawanie_oceny_n">
 
 
-    <Spinner
-        android:id="@+id/spinner_zaco2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="280dp"></Spinner>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="240dp"
-        android:text="Ocena za"
-        android:textSize="24sp" />
+
 
     <TextView
         android:id="@+id/textView2"
@@ -30,14 +17,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Wybierz klasę"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
         <Spinner
             android:id="@+id/spinner_klasy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"></Spinner>
+            android:layout_marginTop="45dp"
+            android:textColor="@color/ciemnyKolorTekstu"></Spinner>
 
 
         <TextView
@@ -46,41 +35,55 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="140dp"
             android:text="Wybierz przedmiot"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/ciemnyKolorTekstu"/>
 
         <Spinner
             android:id="@+id/spinner_przedmioty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="120dp"></Spinner>
+            android:layout_marginTop="175dp"
+            android:textColor="@color/ciemnyKolorTekstu"></Spinner>
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="270dp"
             android:text="Wybierz ucznia"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/ciemnyKolorTekstu"/>
 
         <Spinner
             android:id="@+id/spinner_uczniowie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="200dp"></Spinner>
+            android:layout_marginTop="305dp"
+            android:textColor="@color/ciemnyKolorTekstu"></Spinner>
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="400dp"
         android:text="Ocena za"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
+
+
+    <Spinner
+        android:id="@+id/spinner_zaco2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="435dp"
+        android:textColor="@color/ciemnyKolorTekstu"></Spinner>
 
 
     <TextView
@@ -89,35 +92,41 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="150dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="400dp"
         android:layout_toEndOf="@+id/textView5"
         android:layout_toRightOf="@+id/textView5"
         android:text="Ocena"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="435dp"
         android:layout_toEndOf="@+id/textView5"
         android:layout_toRightOf="@+id/textView5"
         android:gravity="center"
         android:hint="Wpisz ocenę"
-        android:inputType="numberSigned" />
+        android:inputType="numberSigned"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="360dp"
-        android:text="Dodaj ocenę" />
+        android:layout_marginTop="510dp"
+        android:width="150dp"
+        android:height="60dp"
+        android:text="Dodaj ocenę"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/jasnyKolorTekstu"
+         />
+
 
 
 </RelativeLayout>
