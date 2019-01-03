@@ -6,9 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".dodawanie_oceny_n">
 
-
-
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView2"
@@ -127,6 +130,6 @@
         android:textColor="@color/jasnyKolorTekstu"
          />
 
-
-
+</RelativeLayout>
+</ScrollView>
 </RelativeLayout>
