@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseauth = FirebaseAuth.getInstance();
         proggres_dialog = new ProgressDialog(this);
         Database = FirebaseDatabase.getInstance().getReference();
-
+        
 
 
 
