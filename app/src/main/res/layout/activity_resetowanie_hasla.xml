@@ -39,8 +39,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:background="@drawable/przycisk_resetu_hasla"
                 android:onClick="resetowanie"
-                android:text="Resetuj hasło" />
+                android:text="Resetuj hasło"
+                android:textSize="20sp"/>
         </LinearLayout>
     </ScrollView>
 
