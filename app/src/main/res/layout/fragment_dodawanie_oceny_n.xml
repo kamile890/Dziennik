@@ -126,7 +126,7 @@
         android:width="150dp"
         android:height="60dp"
         android:text="Dodaj ocenę"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/kolorTlaPrzycisku"
         android:textColor="@color/jasnyKolorTekstu"
          />
 

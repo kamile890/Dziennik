@@ -123,6 +123,7 @@ public class dodawanie_oceny_n extends Fragment {
         });
     }
 
+    //Tworzenie spinnera z uczniami
     public void stworz_spinner_uczniow(){
         baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

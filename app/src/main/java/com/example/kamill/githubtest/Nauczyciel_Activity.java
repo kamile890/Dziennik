@@ -111,6 +111,11 @@ public class Nauczyciel_Activity extends AppCompatActivity
            dodawanie_oceny_n dodajocene = new dodawanie_oceny_n();
            FragmentManager f = getSupportFragmentManager();
            f.beginTransaction().replace(R.id.fragment, dodajocene).commit();
+       } else if (id == R.id.dodaj_uwage) {
+           setTitle("Dodaj uwagę");
+           dodawanie_uwagi_n dodajuwage = new dodawanie_uwagi_n();
+           FragmentManager f = getSupportFragmentManager();
+           f.beginTransaction().replace(R.id.fragment, dodajuwage).commit();
        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

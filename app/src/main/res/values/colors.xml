@@ -5,4 +5,5 @@
     <color name="colorAccent">#09b610</color>
     <color name="jasnyKolorTekstu">#FFF0F0F0</color>
     <color name="ciemnyKolorTekstu">#FF0B0B0B</color>
+    <color name="kolorTlaPrzycisku">#db1d1d</color>
 </resources>
