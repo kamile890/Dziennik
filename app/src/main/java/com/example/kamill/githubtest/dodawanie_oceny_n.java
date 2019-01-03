@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class dodawanie_oceny_n extends Fragment {
 
@@ -27,6 +28,7 @@ public class dodawanie_oceny_n extends Fragment {
     private Spinner spinner_klas;
     private Spinner spinner_przedmiotow;
     private Spinner spinner_uczniow;
+    private Spinner spinner_za_co;
     private FirebaseAuth firebaseAuth;
     private String wybrana_klasa;
     private String wybrany_przedmiot;
@@ -47,9 +49,11 @@ public class dodawanie_oceny_n extends Fragment {
         spinner_klas = v.findViewById(R.id.spinner_klasy);
         spinner_przedmiotow = v.findViewById(R.id.spinner_przedmioty);
         spinner_uczniow = v.findViewById(R.id.spinner_uczniowie);
+        spinner_za_co = v.findViewById(R.id.spinner_zaco2);
         firebaseAuth = FirebaseAuth.getInstance();
 
         stworz_spinner_klas();
+        stworz_spinnera_z();
 
         return v;
     }
@@ -70,6 +74,7 @@ public class dodawanie_oceny_n extends Fragment {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         wybrana_klasa = (String)lista_klas.get(position);
                         stworz_spinner_przedmiotow();
+                        stworz_spinner_uczniow();
                     }
 
                     @Override
@@ -125,12 +130,25 @@ public class dodawanie_oceny_n extends Fragment {
                 final ArrayList lista_uczniow_UID = new ArrayList();
                 final ArrayList lista_uczniow = new ArrayList();
                 for(DataSnapshot uczen: dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").getChildren()){
-                    lista_uczniow_UID.add(uczen.getValue());
+                    lista_uczniow_UID.add(uczen.getKey());
                     String imie = (String)dataSnapshot.child("Users").child("Uczen").child(uczen.getKey()).child("imie").getValue();
                     String nazwisko = (String)dataSnapshot.child("Users").child("Uczen").child(uczen.getKey()).child("nazwisko").getValue();
                     String pesel = (String)dataSnapshot.child("Users").child("Uczen").child(uczen.getKey()).child("pesel").getValue();
-                    lista_uczniow.add(imie + " " + nazwisko + " " );
+                    lista_uczniow.add(imie + " " + nazwisko);
                 }
+                ArrayAdapter adapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_activated_1, lista_uczniow);
+                spinner_uczniow.setAdapter(adapter);
+                spinner_uczniow.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        wybrany_uczen = (String)lista_uczniow_UID.get(position);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
             }
 
             @Override
@@ -138,6 +156,16 @@ public class dodawanie_oceny_n extends Fragment {
 
             }
         });
+    }
+
+    //tworzenie spinnera z (sprawdzian, kartkówka, odpowiedź)
+    public void stworz_spinnera_z(){
+        ArrayList lista = new ArrayList();
+        lista.add("Sprawdzian");
+        lista.add("Kartkówka");
+        lista.add("Odpowiedź");
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_activated_1, lista);
+        spinner_za_co.setAdapter(adapter);
     }
 
 }
