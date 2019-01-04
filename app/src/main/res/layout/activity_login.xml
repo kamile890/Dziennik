@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/przycisk_logowania"
                 android:onClick="LogInUser"
                 android:text="Zaloguj"
                 android:textStyle="bold" />
@@ -61,10 +62,12 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="zapomnialem_hasla"
                 android:layout_marginTop="20dp"
+                android:onClick="zapomnialem_hasla"
                 android:text="Zapomniałem hasła"
-                android:textSize="14sp" />
+                android:textSize="17sp"
+                android:layout_marginLeft="90dp"
+                />
 
         </LinearLayout>
     </ScrollView>
