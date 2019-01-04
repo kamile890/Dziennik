@@ -1,15 +1,25 @@
 package com.example.kamill.githubtest;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -18,6 +28,7 @@ public class GridView_Adapter_Uwagi_o extends BaseAdapter {
     List<String> kto;
     Context mContext;
     List<String> uwaga;
+    private DatabaseReference baza = FirebaseDatabase.getInstance().getReference();
 
     public GridView_Adapter_Uwagi_o(List<String> za_co, List<String> kto, Context mContext, List<String> uwaga) {
         this.za_co = za_co;
@@ -55,12 +66,6 @@ public class GridView_Adapter_Uwagi_o extends BaseAdapter {
                     final AlertDialog.Builder alert_dialog = new AlertDialog.Builder(mContext);
                     alert_dialog.setMessage(uwaga.get(position))
                             .setCancelable(false)
-                            .setNegativeButton("Wyślij wiadomość do nauczyciela", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            })
                             .setPositiveButton("Zamknij", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

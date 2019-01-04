@@ -310,6 +310,7 @@ public class edycja_nauczyciela_a extends Fragment {
             baza.child("Users").child("Nauczyciel").child(UID_wybranego_nauczyciela).child("nazwisko").setValue(nazwisko);
             baza.child("Users").child("Nauczyciel").child(UID_wybranego_nauczyciela).child("lista_przedmiotów").setValue(lista_przedmiotow_nauczyciela);
             baza.child("Users").child("Nauczyciel").child(UID_wybranego_nauczyciela).child("lista_klas").setValue(lista_klas_nauczyciela);
+            Toast.makeText(getContext(),"Zapisano zmiany", Toast.LENGTH_SHORT).show();
         }
     }
 

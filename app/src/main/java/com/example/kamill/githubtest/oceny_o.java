@@ -71,7 +71,7 @@ public class oceny_o extends Fragment {
 
     //stwórz spinner z uczniami
     public void stworz_spinner_z_uczniami(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList lista_uczniow_nazwa = new ArrayList();
@@ -149,7 +149,7 @@ public class oceny_o extends Fragment {
 
     //pobieranie listy ocen sprawdzian
     public void pobierz_liste_ocen_sprawdzian(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_ocen = new ArrayList();
@@ -184,7 +184,7 @@ public class oceny_o extends Fragment {
 
     //pobieranie listy ocen kartkówka
     public void pobierz_liste_ocen_kartkowka(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_ocen = new ArrayList();
@@ -219,7 +219,7 @@ public class oceny_o extends Fragment {
 
     //pobieranie listy ocen odpowiedź
     public void pobierz_liste_ocen_odpowiedz(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 lista_ocen = new ArrayList();
