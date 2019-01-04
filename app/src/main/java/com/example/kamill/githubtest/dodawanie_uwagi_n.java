@@ -3,14 +3,19 @@ package com.example.kamill.githubtest;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Contacts;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,11 +37,11 @@ public class dodawanie_uwagi_n extends Fragment {
     private String wybrana_klasa;
     private String wybrany_przedmiot;
     private String wybrany_uczen;
+    private EditText za_co;
+    private EditText tresc;
+    private String id;
+    private Button dodaj_uwage_btn;
 
-
-    public dodawanie_uwagi_n() {
-
-    }
 
 
     @Override
@@ -50,8 +55,19 @@ public class dodawanie_uwagi_n extends Fragment {
         spinner_przedmiotow = v.findViewById(R.id.spinner_przedmioty);
         spinner_uczniow = v.findViewById(R.id.spinner_uczniowie);
         firebaseAuth = FirebaseAuth.getInstance();
+        za_co = v.findViewById(R.id.editText1);
+        tresc = v.findViewById(R.id.editText2);
+        dodaj_uwage_btn = v.findViewById(R.id.button5);
+
 
         stworz_spinner_klas();
+
+        dodaj_uwage_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dodaj_uwage();
+            }
+        });
 
         return v;
     }
@@ -160,5 +176,43 @@ public class dodawanie_uwagi_n extends Fragment {
         });
     }
 
+
+    //dodawanie uwagi
+    public void dodaj_uwage(){
+        final String za_co_string = za_co.getText().toString();
+        final String tresc_string = tresc.getText().toString();
+        final String UID_nauczyciela = firebaseAuth.getCurrentUser().getUid();
+        if(TextUtils.isEmpty(za_co_string) || TextUtils.isEmpty(tresc_string) || TextUtils.isEmpty(wybrana_klasa) || TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen)){
+            Toast.makeText(getContext(),"Jedno z pól jest puste", Toast.LENGTH_SHORT).show();
+        }else{
+            baza.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot idd : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Uwagi").child(wybrany_przedmiot).getChildren()) {
+                        id = idd.getKey();
+                    }
+                    if (TextUtils.isEmpty(id)) {
+                        id = "1";
+                    } else {
+                        id = String.valueOf(Integer.parseInt(id) + 1);
+                    }
+                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Uwagi").child(wybrany_przedmiot).child(id).child("za_co").setValue(za_co_string);
+                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Uwagi").child(wybrany_przedmiot).child(id).child("kto").setValue(UID_nauczyciela);
+                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Uwagi").child(wybrany_przedmiot).child(id).child("tresc").setValue(tresc_string);
+                    Toast.makeText(getContext(),"Dodano uwagę", Toast.LENGTH_SHORT).show();
+                    za_co.setText("");
+                    tresc.setText("");
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+
+
+
+        }
+
+    }
 
 }

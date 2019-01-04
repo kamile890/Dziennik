@@ -76,7 +76,6 @@ public class dodawanie_oceny_n extends Fragment {
         dodaj_ocene_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),"Wciśnięto", Toast.LENGTH_SHORT).show();
                 dodaj_ocene();
             }
         });
@@ -140,11 +139,12 @@ public class dodawanie_oceny_n extends Fragment {
                         }
                         if(!lista_przedmiotow_nauczyciela.contains(wybrany_przedmiot)){
                             dodaj_ocene_btn.setEnabled(false);
-                            dodaj_ocene_btn.setBackgroundColor(Color.GRAY);
-                            Toast.makeText(getContext(),"Nie uczysz tego przedmiotu", Toast.LENGTH_SHORT).show();
+                            dodaj_ocene_btn.setBackgroundColor(Color.LTGRAY);
+                            dodaj_ocene_btn.setTextColor(Color.WHITE);
+
                         }else{
                             dodaj_ocene_btn.setEnabled(true);
-                            dodaj_ocene_btn.setBackgroundColor(Red);
+                            dodaj_ocene_btn.setBackgroundColor(R.color.kolorTlaPrzycisku);
                             dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
 
                         }
@@ -224,23 +224,28 @@ public class dodawanie_oceny_n extends Fragment {
     //dodawanie oceny
     public void dodaj_ocene(){
        final String wpisana_ocena = ocena.getText().toString();
-        baza.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot idd : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child(wybrane_za_co).getChildren()) {
-                        id = idd.getKey();
-                    }
-                    if (TextUtils.isEmpty(id)) {
-                        id = "1";
-                    } else {
-                        id = String.valueOf(Integer.parseInt(id) + 1);
-                    }
-                baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child(wybrane_za_co).child(id).setValue(wpisana_ocena);
-                }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa)){
+           Toast.makeText(getContext(),"Jedno z pól jest puste", Toast.LENGTH_SHORT).show();
+       }else {
+           baza.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                   for (DataSnapshot idd : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child(wybrane_za_co).getChildren()) {
+                       id = idd.getKey();
+                   }
+                   if (TextUtils.isEmpty(id)) {
+                       id = "1";
+                   } else {
+                       id = String.valueOf(Integer.parseInt(id) + 1);
+                   }
+                   baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child(wybrane_za_co).child(id).setValue(wpisana_ocena);
+               }
+
+               @Override
+               public void onCancelled(@NonNull DatabaseError databaseError) {
+               }
+           });
+       }
 
     }
 
