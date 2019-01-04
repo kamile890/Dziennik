@@ -8,37 +8,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="Lista nauczycieli: "
+        android:text="Moje klasy: "
         android:textSize="20dp"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+    <ListView
+        android:id="@+id/lista_klas_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"></Spinner>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:hint="Wpisz imie nauczyciela"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:hint="Wpisz nazwisko nauczyciela"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-        android:hint="Wpisz imie nauczyciela"/>
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"></ListView>
 
 
 </RelativeLayout>
