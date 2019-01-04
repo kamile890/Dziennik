@@ -11,7 +11,8 @@
         android:text="Moje klasy: "
         android:textSize="20dp"
         android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <ListView
         android:id="@+id/lista_klas_list_view"

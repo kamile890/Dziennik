@@ -9,13 +9,15 @@
         android:id="@+id/wybor_przedmiotu_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="Moje przedmioty"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <ListView
         android:id="@+id/lista_przedmiotow_list_view"
