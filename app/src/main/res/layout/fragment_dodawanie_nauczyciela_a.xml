@@ -12,37 +12,76 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Adres e-mail"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
+
     <EditText
         android:id="@+id/login_nauczyciela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="170dp"
+        android:width="200dp"
+        android:height="5dp"
         android:ems="10"
         android:hint="Adres e-mail"
         android:inputType="textPersonName" />
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="20dp"
+        android:text="Imię"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/imie_nauczyciela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="170dp"
+        android:width="200dp"
+        android:height="10dp"
         android:ems="10"
         android:hint="Imie"
         android:inputType="textPersonName" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="20dp"
+        android:text="Nazwisko"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/nazwisko_nauczyciela"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="170dp"
         android:layout_marginTop="110dp"
+        android:width="200dp"
+        android:height="10dp"
         android:ems="10"
         android:hint="Nazwisko"
         android:inputType="textPersonName" />
+
+
+
 
     <TextView
         android:id="@+id/teskt_spinner_przedmiot"
@@ -50,7 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:layout_marginLeft="15dp"
-        android:text="Wybierz przedmiot" />
+        android:text="Wybierz przedmiot"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_przedmiot"
@@ -88,7 +129,11 @@
         android:layout_marginTop="310dp"
         android:layout_marginEnd="203dp"
         android:layout_marginRight="203dp"
-        android:text="Dodaj nauczyciela" />
+        android:text="Dodaj nauczyciela"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"
+        android:width="150dp"
+        android:height="60dp"/>
 
     <TextView
         android:id="@+id/tekst_lista_przedmiotow"
@@ -103,7 +148,9 @@
         android:layout_marginTop="375dp"
         android:layout_marginEnd="250dp"
         android:layout_marginRight="250dp"
-        android:text="Lista przedmiotów:" />
+        android:text="Lista przedmiotów:"
+        android:textSize="15sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_klasa"
@@ -135,7 +182,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="230dp"
         android:layout_marginLeft="15dp"
-        android:text="Wybierz klase" />
+        android:text="Wybierz klase"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <TextView
         android:id="@+id/tekst_lista_klas"
@@ -150,7 +199,9 @@
         android:layout_marginTop="320dp"
         android:layout_marginEnd="102dp"
         android:layout_marginRight="102dp"
-        android:text="Lista klas:" />
+        android:text="Lista klas:"
+        android:textSize="15sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <ListView
         android:id="@+id/lista_przedmiotow"
