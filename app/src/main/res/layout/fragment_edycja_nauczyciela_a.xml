@@ -120,7 +120,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:width="170dp"
-        android:text="Dodaj przedmiot" />
+        android:text="Dodaj przedmiot"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu" />
 
 
 
@@ -161,7 +163,9 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:text="Dodaj klasę"
-        android:width="170dp"/>
+        android:width="170dp"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu" />
 
 
 

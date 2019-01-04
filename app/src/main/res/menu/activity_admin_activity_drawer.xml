@@ -6,7 +6,7 @@
     tools:showIn="navigation_view">
 
 
-    <item android:title="Uczen">
+    <item android:title="Uczeń">
         <menu>
             <item
                 android:id="@+id/nowy_uczen"
