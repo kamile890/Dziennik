@@ -91,7 +91,7 @@ public class Uwagi_u extends Fragment {
     }
 
     public void pobierz_liste_uwag(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList lista_uwag = new ArrayList();
