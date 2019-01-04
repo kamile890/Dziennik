@@ -127,12 +127,14 @@
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="250dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:text="Dodaj"
+        android:text="Dodaj ucznia"
         android:width="140dp"
-        android:height="60dp"/>
+        android:height="60dp"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"/>
 
     <ListView
         android:id="@+id/lista_uczniow_ListView"
@@ -155,7 +157,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:onClick="dodaj_opiekuna"

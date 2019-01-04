@@ -10,14 +10,16 @@
     android:layout_height="match_parent"
     tools:context=".edycja_ucznia_a">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Lista uczniów: "
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:textSize="20dp"
-        />
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
 
@@ -27,42 +29,82 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"></Spinner>
-    
+
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:text="Imię"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
+
     <EditText
         android:id="@+id/imie_ucznia_EditText"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="170dp"
         android:hint="Wpisz nowe imię"
         android:inputType="textPersonName"
         />
+
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="20dp"
+        android:text="Nazwisko"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/nazwisko_ucznia_EditText"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="150dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="170dp"
         android:hint="Wpisz nowe nazwisko"
         android:inputType="textPersonName"/>
+
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="20dp"
+        android:text="PESEL"
+        android:textSize="18sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/pesel_ucznia_Edit_text"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="170dp"
         android:hint="Wpisz nowy pesel"
         android:inputType="number"/>
 
+
+
     <Button
         android:id="@+id/zapisz_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="270dp"
-        android:text="Zapisz"/>
+        android:layout_marginTop="280dp"
+        android:text="Zapisz"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"/>
 
 </RelativeLayout>
 </ScrollView>

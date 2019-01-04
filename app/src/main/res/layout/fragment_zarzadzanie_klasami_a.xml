@@ -14,8 +14,10 @@
         android:layout_width="100dp"
         android:layout_height="20dp"
         android:text="Nowa klasa:"
+        android:textSize="18sp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"/>
+        android:layout_marginLeft="18dp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <EditText
         android:id="@+id/nazwa_nowej_klasy_edit_text"
@@ -34,20 +36,26 @@
 
     <Button
         android:id="@+id/dodaj_klase_btn"
-        android:layout_width="90dp"
+        android:layout_width="140dp"
         android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="Dodaj" />
+        android:text="Dodaj klasę"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"/>
+
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:text="_____________________________________________________________________________________"
         android:layout_marginTop="75dp"/>
+
+
 
     <TextView
         android:layout_width="140dp"
@@ -62,7 +70,8 @@
         android:layout_toStartOf="@+id/wybor_klasy_spinner"
         android:layout_toLeftOf="@+id/wybor_klasy_spinner"
         android:text="Wybierz klasę:"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/wybor_klasy_spinner"
@@ -73,6 +82,8 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"></Spinner>
+
+
 
 <RadioGroup
     android:layout_width="match_parent"
@@ -95,13 +106,16 @@
 </RadioGroup>
 
 
+
     <TextView
         android:id="@+id/wybierz_przedmiot_textView"
         android:layout_width="150dp"
         android:layout_height="31dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="190dp"
-        android:text="Wybierz przedmiot:" />
+        android:text="Wybierz przedmiot:"
+        android:textSize="17sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <TextView
         android:id="@+id/lista_przedmiotow_dla"
@@ -109,7 +123,9 @@
         android:layout_height="50dp"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="190dp"
-        android:text="Lista przedmiotów dla: " />
+        android:text="Lista przedmiotów dla: "
+        android:textSize="17sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/wybor_przedmiotu_spinner"
@@ -119,19 +135,24 @@
         android:layout_height="40dp"></Spinner>
 
     <Button
-        android:layout_width="100dp"
+        android:layout_width="150dp"
         android:layout_height="40dp"
         android:id="@+id/dodaj_przedmiot_btn"
-        android:layout_marginTop="290dp"
-        android:layout_marginLeft="35dp"
-        android:text="Dodaj"/>
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="20dp"
+        android:text="Dodaj przedmiot"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"/>
 
     <ListView
         android:id="@+id/lista_przedmiotow_list_view"
         android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_marginLeft="180dp"
-        android:layout_marginTop="240dp"></ListView>
+        android:layout_marginTop="230dp"></ListView>
+
+
+
 
     <ListView
         android:id="@+id/lista_uczniow_listView"
@@ -142,12 +163,14 @@
 
     <TextView
         android:id="@+id/text_nad_pinnerem"
-        android:layout_width="236dp"
+        android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="340dp"
         android:gravity="center"
-        android:text="Lista uczniów bez przydziału do klasy" />
+        android:text="Lista uczniów bez przydziału do klasy"
+        android:textSize="17sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_uczniow_bez_klasy"
@@ -157,7 +180,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="420dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_toStartOf="@+id/dodaj_ucznia_btn"
@@ -183,13 +206,11 @@
         android:id="@+id/dodaj_ucznia_btn"
         android:layout_width="100dp"
         android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_marginLeft="270dp"
-        android:layout_marginTop="425dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Dodaj" />
+        android:layout_marginTop="430dp"
+        android:text="Dodaj ucznia"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"/>
     
 
 </RelativeLayout>

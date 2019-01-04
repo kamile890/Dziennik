@@ -5,40 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".wyswietlenie_uczonych_klas_n">
 
+
     <TextView
+        android:id="@+id/moje_klasy"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Lista nauczycieli: "
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"/>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"></Spinner>
+        android:layout_marginTop="20dp"
+        android:text="Moje klasy"
+        android:textSize="25sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+    <ListView
+        android:id="@+id/LiesView_lista_klas"
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:hint="Wpisz imie nauczyciela"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:hint="Wpisz nazwisko nauczyciela"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
-        android:hint="Wpisz imie nauczyciela"/>
+        android:layout_height="match_parent"></ListView>
 
 
 </RelativeLayout>

@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="85dp"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="320dp"
         android:text="Dodaj ucznia"
         android:background="@color/kolorTlaPrzycisku"
         android:textColor="@color/jasnyKolorTekstu"

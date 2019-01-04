@@ -11,7 +11,8 @@
         android:text="Wybierz ucznia:"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_uczniow"
@@ -26,7 +27,8 @@
         android:text="Wybierz przedmiot:"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_przedmioty"

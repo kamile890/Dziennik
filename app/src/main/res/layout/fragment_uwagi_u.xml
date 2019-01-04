@@ -11,7 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Wybierz przedmiot:"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_przedmioty"

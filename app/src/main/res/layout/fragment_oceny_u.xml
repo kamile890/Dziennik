@@ -15,7 +15,8 @@
         android:text="Wybierz przedmiot:"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:textColor="@color/ciemnyKolorTekstu"/>
 
     <Spinner
         android:id="@+id/spinner_przedmioty"
@@ -38,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="Sprawdzian"
-                android:textSize="24dp"/>
+                android:textSize="24dp"
+                android:textColor="@color/ciemnyKolorTekstu"/>
 
             <com.example.kamill.githubtest.ExpandableHeightGridView
                 android:id="@+id/grid_oceny_sprawdzian"
@@ -63,7 +65,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="Kartkówka"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/ciemnyKolorTekstu"/>
 
             <com.example.kamill.githubtest.ExpandableHeightGridView
                 android:id="@+id/grid_oceny_kartkowka"
@@ -89,7 +92,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="Odpowiedź ustna"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/ciemnyKolorTekstu"/>
 
             <com.example.kamill.githubtest.ExpandableHeightGridView
                 android:id="@+id/grid_oceny_odpowiedz"
