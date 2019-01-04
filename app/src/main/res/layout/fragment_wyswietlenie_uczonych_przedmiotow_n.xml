@@ -19,9 +19,11 @@
 
     <ListView
         android:id="@+id/lista_przedmiotow_list_view"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="false"
+        android:layout_marginLeft="20dp"></ListView>
 
 
 
