@@ -22,10 +22,11 @@
         app:srcCompat="@drawable/teacher" />
 
     <TextView
+        android:id="@+id/ImieNazwiskoNauczyciela"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Nauczyciel"
+        android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="22sp" />
 
@@ -33,6 +34,7 @@
         android:id="@+id/login_nauczyciela"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:text="@string/nav_header_subtitle"/>
 
 </LinearLayout>
