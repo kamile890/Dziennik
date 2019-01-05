@@ -239,6 +239,8 @@ public class dodawanie_oceny_n extends Fragment {
                        id = String.valueOf(Integer.parseInt(id) + 1);
                    }
                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(wybrany_uczen).child("Oceny").child(wybrany_przedmiot).child(wybrane_za_co).child(id).setValue(wpisana_ocena);
+                   Toast.makeText(getContext(),"Dodano ocenę", Toast.LENGTH_SHORT).show();
+                   ocena.setText("");
                }
 
                @Override

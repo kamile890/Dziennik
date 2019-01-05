@@ -59,7 +59,7 @@ public class uwagi_o extends Fragment {
 
     //stwórz spinner z uczniami
     public void stworz_spinner_z_uczniami(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final ArrayList lista_uczniow_nazwa = new ArrayList();
@@ -133,7 +133,7 @@ public class uwagi_o extends Fragment {
     }
 
     public void pobierz_liste_uwag(){
-        baza.addValueEventListener(new ValueEventListener() {
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList lista_uwag = new ArrayList();
