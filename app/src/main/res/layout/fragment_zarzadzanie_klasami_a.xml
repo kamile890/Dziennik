@@ -147,9 +147,9 @@
     <ListView
         android:id="@+id/lista_przedmiotow_list_view"
         android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:layout_marginLeft="180dp"
-        android:layout_marginTop="230dp"></ListView>
+        android:layout_marginTop="250dp"></ListView>
 
 
 
@@ -178,14 +178,9 @@
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="420dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_toStartOf="@+id/dodaj_ucznia_btn"
-        android:layout_toLeftOf="@+id/dodaj_ucznia_btn"
-        android:gravity="center"></Spinner>
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="420dp"></Spinner>
 
     <TextView
         android:id="@+id/pesel_textView"

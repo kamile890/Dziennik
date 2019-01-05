@@ -266,7 +266,7 @@ public class edycja_opiekuna_a extends Fragment {
         }else {
             lista_dzieci_opiekuna.add(wybrany_uczen);
             lista_UID_dzieci_opiekuna.add(wybrany_uczen_UID);
-
+            Toast.makeText(getContext(), "Dodano ucznia do listy", Toast.LENGTH_SHORT).show();
             ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, lista_dzieci_opiekuna);
             lista_podopiecznych_ListView.setAdapter(adapter);
         }

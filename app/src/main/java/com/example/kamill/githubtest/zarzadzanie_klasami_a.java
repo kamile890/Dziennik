@@ -194,6 +194,7 @@ public class zarzadzanie_klasami_a extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot uczen : dataSnapshot.child("Klasy").child(klasa).child("Uczniowie").getChildren()){
                         baza.child("Klasy").child(klasa).child("Uczniowie").child(uczen.getKey()).child("Oceny").child(przedmiot).setValue("null");
+
                     }
                 }
 
