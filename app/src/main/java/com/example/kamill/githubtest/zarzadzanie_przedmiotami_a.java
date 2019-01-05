@@ -113,12 +113,10 @@ public class zarzadzanie_przedmiotami_a extends Fragment {
     public void dodaj_przedmiot(){
         Boolean czy_zawiera = false;
         String nazwa_przedmiotu = nazwa_nowego_przedmiotu.getText().toString();
-        for(int i =0; i<lista_przedmiotow_array_list.size(); i++){
-            if(lista_przedmiotow_array_list.get(i).toString().toLowerCase().equals(nazwa_przedmiotu.toLowerCase())){
-                czy_zawiera = true;
-            }
+        if(lista_przedmiotow_array_list.contains(nazwa_przedmiotu)){
+            czy_zawiera = true;
         }
-        if(czy_zawiera = false) {
+        if(czy_zawiera == false) {
             baza.child("Przedmioty").child(nazwa_przedmiotu).setValue(nazwa_przedmiotu);
             aktualizuj_liste();
             nazwa_nowego_przedmiotu.setText("");
