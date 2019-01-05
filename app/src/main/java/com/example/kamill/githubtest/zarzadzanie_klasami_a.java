@@ -480,9 +480,9 @@ public class zarzadzanie_klasami_a extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     baza.child("Users").child("Uczen").child(uczen_bez_klasy).child("klasa").setValue(wybrana_klasa);
-                    for (DataSnapshot przedmiot : dataSnapshot.child("Klasy").child(wybrana_klasa).child("Przedmioty").getChildren()) {
-                        baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(uczen_bez_klasy).child("Oceny").child(przedmiot.getKey()).setValue("null");
-                    }
+                    baza.child("Klasy").child(wybrana_klasa).child("Uczniowie").child(uczen_bez_klasy).setValue("null");
+                    Toast.makeText(getContext(),"Dodano ucznia do klasy", Toast.LENGTH_SHORT).show();
+
                     wyświetl_uczniow_bez_klasy_w_spinnerze();
                     wyswietl_liste_uczniow_dla_klasy();
                     pesel_textView.setText("");
