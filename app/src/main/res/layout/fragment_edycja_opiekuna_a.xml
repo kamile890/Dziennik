@@ -94,7 +94,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="15dp"
@@ -110,13 +110,13 @@
 
     <Spinner
         android:id="@+id/spinner_uczniow"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="320dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_toStartOf="@+id/lista_uczniow_ListView"
@@ -132,7 +132,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="390dp"
+        android:layout_marginTop="430dp"
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
         android:layout_toStartOf="@+id/lista_uczniow_ListView"
@@ -173,7 +173,7 @@
         android:layout_width="170dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="480dp"
         android:text="Zapisz"
         android:background="@color/kolorTlaPrzycisku"
         android:textColor="@color/jasnyKolorTekstu" />

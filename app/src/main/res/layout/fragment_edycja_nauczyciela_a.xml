@@ -98,7 +98,7 @@
 
     <Spinner
         android:id="@+id/spinner_lista_przedmiotow"
-        android:layout_width="match_parent"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -106,7 +106,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="215dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="50dp"
         android:layout_toStartOf="@+id/dodaj_przedmiot_btn"
         android:layout_toLeftOf="@+id/dodaj_przedmiot_btn"></Spinner>
 
@@ -141,7 +141,7 @@
 
     <Spinner
         android:id="@+id/spinner_lista_klas"
-        android:layout_width="match_parent"
+        android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -200,7 +200,7 @@
 
     <ListView
         android:id="@+id/ListView_lista_przedmiotow"
-        android:layout_width="179dp"
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -213,7 +213,7 @@
 
     <ListView
         android:id="@+id/LiesView_lista_klas"
-        android:layout_width="192dp"
+        android:layout_width="150dp"
         android:layout_height="200dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -230,7 +230,7 @@
         android:layout_below="@+id/ListView_lista_przedmiotow"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginRight="20dp"
         android:background="@color/kolorTlaPrzycisku"
         android:text="Zapisz"
