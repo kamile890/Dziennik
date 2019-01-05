@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -143,7 +144,9 @@ public class zarzadzanie_klasami_a extends Fragment {
     //metoda dodająca nową klase do bazy
     public void dodaj_klase(){
         String nazwa_klasy = nazwa_nowej_klasy.getText().toString();
-        if(!lista_klas.contains(nazwa_klasy)) {
+        if(TextUtils.isEmpty(nazwa_klasy)){
+            Toast.makeText(getContext(),"Wpisz nazwę klasy", Toast.LENGTH_SHORT).show();
+        }else if(!lista_klas.contains(nazwa_klasy)) {
             baza.child("Klasy").child(nazwa_klasy).setValue("a");
             aktualizacja_spinnera_z_klasami();
             Toast.makeText(getContext(), "Dodano '" + nazwa_klasy + "' do bazy", Toast.LENGTH_SHORT).show();
