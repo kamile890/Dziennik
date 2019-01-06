@@ -1,6 +1,7 @@
 package com.example.kamill.githubtest;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -16,12 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Nauczyciel_Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
 
     private TextView login;
+    private TextView imie_naziwko;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference baza;
+    private String imie;
+    private String nazwisko;
 
 
     @Override
@@ -30,6 +40,21 @@ public class Nauczyciel_Activity extends AppCompatActivity
         setContentView(R.layout.activity_nauczyciel_);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        imie_naziwko = findViewById(R.id.imie_nazwisko_nauczyciela);
+        baza = FirebaseDatabase.getInstance().getReference();
+
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                 imie = (String)dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("imie").getValue();
+                 nazwisko = (String)dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("nazwisko").getValue();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -48,8 +73,22 @@ public class Nauczyciel_Activity extends AppCompatActivity
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View v = navigationView.getHeaderView(0);
+        imie_naziwko = v.findViewById(R.id.imie_nazwisko_nauczyciela);
         login = v.findViewById(R.id.login_nauczyciela);
         login.setText(firebaseAuth.getCurrentUser().getEmail().toString());
+        baza.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                imie = (String)dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("imie").getValue();
+                nazwisko = (String)dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("nazwisko").getValue();
+                imie_naziwko.setText(imie+" "+nazwisko);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
