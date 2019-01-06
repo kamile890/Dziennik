@@ -6,4 +6,5 @@
     <color name="jasnyKolorTekstu">#FFF0F0F0</color>
     <color name="ciemnyKolorTekstu">#FF0B0B0B</color>
     <color name="kolorTlaPrzycisku">#FFDB1D1D</color>
+    <color name="kolorTlaPrzycisku2">#dd11ffdd</color>
 </resources>

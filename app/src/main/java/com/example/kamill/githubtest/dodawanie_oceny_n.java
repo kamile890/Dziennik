@@ -137,17 +137,17 @@ public class dodawanie_oceny_n extends Fragment {
                         for(DataSnapshot przedmiot: dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("lista_przedmiotów").getChildren()){
                             lista_przedmiotow_nauczyciela.add(przedmiot.getValue());
                         }
-                        if(!lista_przedmiotow_nauczyciela.contains(wybrany_przedmiot)){
+                        if(lista_przedmiotow_nauczyciela.contains(wybrany_przedmiot)){
+                            dodaj_ocene_btn.setEnabled(true);
+                            dodaj_ocene_btn.setBackgroundColor(R.color.kolorTlaPrzycisku);
+                            dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
+                        }else{
                             dodaj_ocene_btn.setEnabled(false);
                             dodaj_ocene_btn.setBackgroundColor(Color.LTGRAY);
                             dodaj_ocene_btn.setTextColor(Color.WHITE);
 
-                        }else{
-                            dodaj_ocene_btn.setEnabled(true);
-                            dodaj_ocene_btn.setBackgroundColor(R.color.kolorTlaPrzycisku);
-                            dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
 
-                        }
+                            }
                     }
 
                     @Override

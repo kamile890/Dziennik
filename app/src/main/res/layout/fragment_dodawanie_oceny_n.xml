@@ -119,6 +119,8 @@
 
     <Button
         android:id="@+id/button5"
+        android:background="@color/kolorTlaPrzycisku"
+        android:textColor="@color/jasnyKolorTekstu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -126,8 +128,7 @@
         android:width="150dp"
         android:height="60dp"
         android:text="Dodaj ocenę"
-        android:background="@color/kolorTlaPrzycisku"
-        android:textColor="@color/jasnyKolorTekstu"
+
          />
 
 </RelativeLayout>
