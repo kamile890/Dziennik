@@ -67,7 +67,6 @@ public class dodawanie_oceny_n extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         dodaj_ocene_btn = v.findViewById(R.id.button5);
         ocena = v.findViewById(R.id.editText2);
-        dodaj_ocene_btn.setBackgroundColor(Color.RED);
 
 
         stworz_spinner_klas();
@@ -144,7 +143,7 @@ public class dodawanie_oceny_n extends Fragment {
 
                         }else{
                             dodaj_ocene_btn.setEnabled(true);
-                            dodaj_ocene_btn.setBackgroundColor(R.color.kolorTlaPrzycisku);
+                            dodaj_ocene_btn.setBackgroundColor(Color.RED);
                             dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
 
                         }
@@ -224,7 +223,7 @@ public class dodawanie_oceny_n extends Fragment {
     //dodawanie oceny
     public void dodaj_ocene(){
        final String wpisana_ocena = ocena.getText().toString();
-       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa)){
+       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa) || TextUtils.isEmpty(ocena.getText())){
            Toast.makeText(getContext(),"Jedno z pól jest puste", Toast.LENGTH_SHORT).show();
        }else {
            baza.addListenerForSingleValueEvent(new ValueEventListener() {
