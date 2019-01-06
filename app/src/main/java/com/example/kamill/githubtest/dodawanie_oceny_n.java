@@ -67,7 +67,6 @@ public class dodawanie_oceny_n extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         dodaj_ocene_btn = v.findViewById(R.id.button5);
         ocena = v.findViewById(R.id.editText2);
-        dodaj_ocene_btn.setBackgroundColor(Color.RED);
 
 
         stworz_spinner_klas();
@@ -137,17 +136,17 @@ public class dodawanie_oceny_n extends Fragment {
                         for(DataSnapshot przedmiot: dataSnapshot.child("Users").child("Nauczyciel").child(firebaseAuth.getCurrentUser().getUid()).child("lista_przedmiotów").getChildren()){
                             lista_przedmiotow_nauczyciela.add(przedmiot.getValue());
                         }
-                        if(lista_przedmiotow_nauczyciela.contains(wybrany_przedmiot)){
-                            dodaj_ocene_btn.setEnabled(true);
-                            dodaj_ocene_btn.setBackgroundColor(R.color.kolorTlaPrzycisku);
-                            dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
-                        }else{
+                        if(!lista_przedmiotow_nauczyciela.contains(wybrany_przedmiot)){
                             dodaj_ocene_btn.setEnabled(false);
                             dodaj_ocene_btn.setBackgroundColor(Color.LTGRAY);
                             dodaj_ocene_btn.setTextColor(Color.WHITE);
 
+                        }else{
+                            dodaj_ocene_btn.setEnabled(true);
+                            dodaj_ocene_btn.setBackgroundColor(Color.RED);
+                            dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
 
-                            }
+                        }
                     }
 
                     @Override
@@ -224,7 +223,7 @@ public class dodawanie_oceny_n extends Fragment {
     //dodawanie oceny
     public void dodaj_ocene(){
        final String wpisana_ocena = ocena.getText().toString();
-       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa)){
+       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa) || TextUtils.isEmpty(ocena.getText())){
            Toast.makeText(getContext(),"Jedno z pól jest puste", Toast.LENGTH_SHORT).show();
        }else {
            baza.addListenerForSingleValueEvent(new ValueEventListener() {
