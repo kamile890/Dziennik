@@ -144,7 +144,7 @@ public class dodawanie_oceny_n extends Fragment {
                         }else{
                             dodaj_ocene_btn.setEnabled(true);
                             dodaj_ocene_btn.setBackgroundColor(Color.RED);
-                            dodaj_ocene_btn.setTextColor(R.color.jasnyKolorTekstu);
+                            dodaj_ocene_btn.setTextColor(Color.WHITE);
 
                         }
                     }
@@ -223,7 +223,10 @@ public class dodawanie_oceny_n extends Fragment {
     //dodawanie oceny
     public void dodaj_ocene(){
        final String wpisana_ocena = ocena.getText().toString();
-       if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa) || TextUtils.isEmpty(ocena.getText())){
+       if (Integer.parseInt(ocena.getText().toString()) < -6 || Integer.parseInt(ocena.getText().toString()) > 6){
+           Toast.makeText(getContext(),"Ocena jest niepoprawna", Toast.LENGTH_SHORT).show();
+       }
+       else if(TextUtils.isEmpty(wybrany_przedmiot) || TextUtils.isEmpty(wybrany_uczen) || TextUtils.isEmpty(wybrana_klasa) || TextUtils.isEmpty(ocena.getText())){
            Toast.makeText(getContext(),"Jedno z pól jest puste", Toast.LENGTH_SHORT).show();
        }else {
            baza.addListenerForSingleValueEvent(new ValueEventListener() {
