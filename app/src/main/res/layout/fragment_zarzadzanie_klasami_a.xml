@@ -161,16 +161,12 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="190dp"></ListView>
 
-
-
-
-
     <TextView
         android:id="@+id/text_nad_pinnerem"
         android:layout_width="160dp"
         android:layout_height="40dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="340dp"
         android:gravity="center"
         android:text="Lista uczniów bez przydziału do klasy"
         android:textSize="17sp"
@@ -184,7 +180,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="400dp"></Spinner>
+        android:layout_marginTop="420dp"></Spinner>
 
     <TextView
         android:id="@+id/pesel_textView"
@@ -195,8 +191,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="450dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="470dp"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:gravity="center_vertical" />
@@ -205,7 +201,7 @@
         android:id="@+id/dodaj_ucznia_btn"
         android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="230dp"
+        android:layout_marginLeft="270dp"
         android:layout_marginTop="430dp"
         android:text="Dodaj ucznia"
         android:background="@color/kolorTlaPrzycisku"

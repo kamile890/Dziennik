@@ -139,7 +139,7 @@
     <ListView
         android:id="@+id/lista_uczniow_ListView"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="10dp"
